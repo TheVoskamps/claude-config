@@ -1,0 +1,97 @@
+# Invert: .gitignore everything, so invert what we want to NOT .gitignore
+/*
+
+# Standard Repo Files
+!.gitignore
+!.github/
+!.github/**
+!/LICENSE
+!/PATENTS
+!/PRIOR_ART.md
+!/README.md
+!/.markdownlint.jsonc
+# Static informational file; tracked like any other source file.
+!/CONTRIBUTORS
+
+# Claude config — whitelist shareable files, ignore everything else.
+# New Claude-generated dirs (cache, sessions, projects, todos, ...) stay
+# ignored by default. Add them to the allow-list explicitly if needed.
+# Re-including a file inside an ignored dir requires un-ignoring each
+# parent first (git's negation rule).
+!/agents/
+!/hooks/
+!/output-styles/
+!/plans/
+!/rules/
+!/skills/
+!/CLAUDE.md
+!/settings.json
+!/keybindings.json
+
+# The user-global user-config (issue #220) is deployed to
+# ~/.claude/rules/user-config.md at runtime by /global-user-config, but
+# it holds a user's PRIVATE machine-wide values. It must never be
+# committed to this source tree. Re-ignore it here, AFTER the !/rules/
+# un-ignore above — gitignore is last-match-wins. The file exists at
+# ~/.claude/rules/ at runtime; it is simply never tracked.
+# See rules/repo-is-claude-config-source.md.
+/rules/user-config.md
+
+# Self-contained installer that lands this repo onto ~/.claude.
+!/install.sh
+
+# Installs/updates the Claude Code plugins and marketplaces declared in
+# a settings.json (companion to install.sh).
+!/plugins.sh
+
+# Per-repo config for /issue-address and friends. Lives in the
+# *nested* .claude/ (this repo's root IS ~/.claude, so .claude/ here
+# is the per-repo config for using ~/.claude on itself). Each parent
+# must be un-ignored before the file becomes visible to git.
+!/.claude/
+!/.claude/rules/
+!/.claude/rules/repo-config.md
+# Repo-level user-config (deployed by /user-config) holds this user's
+# PRIVATE per-repo values. Re-ignore it AFTER the !/.claude/rules/
+# un-ignore above — gitignore is last-match-wins — so it is never
+# tracked even though its sibling repo-config.md is.
+/.claude/rules/user-config.md
+
+# Always ignore local/temp/backup/lock files anywhere under .claude/,
+# even inside whitelisted directories
+/**/*.local.*
+/**/*.backup.*
+/**/*.lock
+/**/tmp/
+/**/worktrees/
+
+# Repo-root CLAUDE override files (sibling to CLAUDE.md)
+/CLAUDE.local.*
+
+# Backup files from Claude setup
+*.backup.*
+
+#
+# Below this should be excluded, but it is belt-and-braces
+#
+
+# macOS Finder metadata and temp dirs
+.DS_Store
+__MACOSX/
+
+# macOS system files
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Git repo metadata
+.git/
+
+# Misc
+*.log
+*.tmp
+
+#VSCode swapfile
+*.swp
+

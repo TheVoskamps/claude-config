@@ -1,0 +1,149 @@
+# Git Workflow
+
+## Stay Within Your Repo
+
+You should be run from the root of a repo. Verify with `git rev-parse
+--show-toplevel` if unsure. If the starting CWD is not a repo root, tell
+the user — don't guess.
+
+You may freely `cd` to any path **at or below** the repo root,
+including:
+
+- subdirectories of the repo
+- worktrees under `.claude/worktrees/`
+- back to the repo root
+
+You may **not** `cd` outside the repo root without permission. If a fix
+requires changes in another repo, suggest the change in the
+conversation; don't implement it.
+
+## cwd persists across Bash calls
+
+The working directory **persists across Bash calls** in the main
+session. After one bare `cd`, every subsequent command runs in the
+new CWD without re-stating it. If the local directory (re)setting is
+wrong, tell the user.
+
+> **Subagent / `isolation: worktree` context.** The rules for
+> Task-tool subagents — cwd-does-not-persist, the worktree command
+> forms, and end-of-run worktree/branch cleanup — live with the
+> orchestrator and its agents in the `sdlc` plugin, not here. This
+> file covers only the main session.
+
+## Commit Messages
+
+- First line: present-tense imperative verb and summary (e.g. "Add
+  Lambda for account creation"); keep under 72 characters.
+- Blank line.
+- Detailed body: wrap at 132 characters; explain what and why.
+- Use clear, descriptive commit messages.
+- Focus on the "what" and "why", not the "how".
+- Commit incrementally — small, focused commits rather than one large
+  catch-all commit.
+
+### Commit Signing
+
+If you get an error on a commit "remote: error: GH006: Protected branch
+update failed for refs/heads/main." or "remote: error: Commits must have
+verified signatures." or "remote: error: GH013: Repository rule violations
+found for refs/heads/main." or "remote: - Commits must have verified
+signatures." you need to sign the commit with a signature GitHub can
+verify (GPG, S/MIME, or SSH) against a key registered to a GitHub account,
+with the committer email matching a verified email on that account.
+
+### Issue References
+
+#### CRITICAL — never use closing keywords adjacent to issue references
+
+Committing or creating a PR does not mean the issue should be closed.
+GitHub auto-closes an issue when a commit message or PR body contains a
+closing keyword **immediately followed by** an issue reference. The
+forbidden patterns are:
+
+- `<keyword> #N`
+- `<keyword> owner/repo#N`
+- `<keyword> GH-N`
+- `<keyword> https://github.com/owner/repo/issues/N`
+
+…where `<keyword>` is any of (case-insensitive): `close`, `closes`,
+`closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`, `resolved`.
+
+**What this rule prohibits:**
+
+- ❌ `Fixes #123`
+- ❌ `Closes owner/repo#123`
+- ❌ `Resolves https://github.com/owner/repo/issues/123`
+- ❌ `Closes Dependabot alert #88` (the parser ignores the
+  "Dependabot alert" prefix and sees `Closes #88`)
+
+**What this rule does NOT prohibit:**
+
+- ✅ The keywords as ordinary English prose with no adjacent issue
+  reference: "Dependency tree after fix", "The fix lands in PR #1070",
+  "This closes a long-standing gap", "Resolved in production".
+- ✅ The keywords inside code blocks, file paths, or identifiers
+  (`fix_bug.py`, `def resolve_path()`).
+
+The auto-close parser is purely syntactic — it looks for the
+keyword-then-reference pattern. Rewriting "Dependency tree after fix"
+to "Dependency tree after patch" is gold-plating, not rule compliance,
+and changes the meaning unnecessarily.
+
+✅ To link *other* related issues (predecessors, follow-ups, umbrella
+issues, etc.) use a `References: #N` trailer. For multiple, repeat the
+line. `References:` is not a closing keyword.
+
+## Commit and Push Approval
+
+The general rule — get explicit approval before making changes or
+running state-modifying commands — lives in `rules/core-principles.md`
+§0 ("ALWAYS EXPLAIN BEFORE ACTING"). `git commit` and `git push` are
+state-modifying commands, but (without a `-f` or `--force` flag) are
+not destructive, so §0 does not govern them.
+
+**After committing**, after tests pass, present the summary of
+changes, files modified with line counts, the proposed commit message,
+and the test results. The user may request code or commit
+message changes, ask for more testing, or reject the changes entirely.
+But all of those can be done: changes by another `git commit`, changing
+the commit message by `git commit --amend`, and rejecting the changes
+by `git reset --soft HEAD~1` or, if the user wants to unstage them as
+well by `git reset HEAD~1`
+
+**Before pushing**, after committing:
+
+Unless the user prior explicitly asked to do the commit and push on the
+default branch, the push should **always** be on a working branch.
+
+If it **is** on the default branch:
+
+1. Show the commit created and be explicit it is on the default branch.
+2. Ask explicitly: "Do you want me to push this to `origin/{branch}`?"
+3. Wait for explicit "yes" / "push" or similar.
+
+Otherwise, when working on a branch, you may push without prior approval.
+After all, this too is undoable. You may **never** use `--force` or `-f`
+or `--mirror` flags on a push, unless you are explicit with the user you
+are going to do so and explain why and get prior explicit permission.
+You may use the `--force-with-lease` and `--force-if-includes` flags,
+e.g. for rebasing the branch onto HEAD of the default branch.
+
+## When Merging
+
+Always first do a dry-run merge:
+`git checkout TARGET_BRANCH && git merge --no-commit --no-ff main`.
+
+Never squash merge.
+
+Never merge the default branch into another branch: always rebase the
+other branch.
+
+## Fixing having committed things on the wrong branch
+
+When you made a commit on the wrong branch:
+
+1. **git stash** — save working changes.
+2. **git reset --hard HEAD~1** — undo commit on wrong branch.
+3. **git checkout CORRECT_BRANCH** — switch to correct branch.
+4. **git stash pop** — re-apply the saved changes.
+5. **git commit** — commit to correct branch.
