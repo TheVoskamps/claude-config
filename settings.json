@@ -524,8 +524,8 @@
   "extraKnownMarketplaces": {
     "thevoskamps": {
       "source": {
-        "source": "github",
-        "repo": "TheVoskamps/claude-plugins-marketplace"
+        "source": "url",
+        "url": "https://github.com/TheVoskamps/claude-plugins-marketplace.git"
       },
       "autoUpdate": true
     }
