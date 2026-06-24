@@ -10,15 +10,15 @@ This repo can become your `~/.claude` directly. Clone it somewhere, then
 run the bundled install script from inside the clone:
 
 ```sh
-git clone git@github.com:TheVoskamps/global-claude-config-mirrored-to-public.git
-cd global-claude-config-mirrored-to-public
+git clone git@github.com:TheVoskamps/claude-config.git
+cd claude-config
 ./install.sh
 ```
 
 The HTTPS clone URL works too:
 
 ```sh
-git clone https://github.com/TheVoskamps/global-claude-config-mirrored-to-public.git
+git clone https://github.com/TheVoskamps/claude-config.git
 ```
 
 ### What the install script does
@@ -77,3 +77,19 @@ Per-item failures are collected rather than fatal: every marketplace and
 plugin is attempted, a summary lists any failures at the end, and the
 script exits non-zero if any failed. It requires `jq` and `claude` on
 `PATH`.
+
+## Contributing
+
+This is a public repository. Contributions are welcome:
+
+- **Fork** the repository and create a feature branch from the default
+  branch.
+- **Open a pull request** from your fork. PRs require a passing CI run,
+  code-owner review (`@evoskamp`), and all review conversations
+  resolved before they can merge.
+- **File an issue** to report a bug or propose a change. Any logged-in
+  GitHub user can open and comment on issues.
+
+Outside contributors have read access: you can fork, open PRs from your
+fork, and file/comment on issues. Push access, merging, and issue
+triage are reserved for maintainers.
