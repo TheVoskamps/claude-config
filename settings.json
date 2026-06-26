@@ -1,7 +1,4 @@
 {
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
   "permissions": {
     "allow": [
       "Bash(aws acm describe-certificate:*)",
@@ -519,7 +516,8 @@
     "cc-tools@thevoskamps": true,
     "github-claude-identity@thevoskamps": true,
     "guardrails@thevoskamps": true,
-    "claude-vm@thevoskamps": true
+    "claude-vm@thevoskamps": true,
+    "block-background-agents@thevoskamps": true
   },
   "extraKnownMarketplaces": {
     "thevoskamps": {
@@ -532,5 +530,6 @@
   },
   "alwaysThinkingEnabled": false,
   "theme": "dark",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "tui": "fullscreen"
 }
