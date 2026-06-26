@@ -516,7 +516,8 @@
     "cc-tools@thevoskamps": true,
     "github-claude-identity@thevoskamps": true,
     "guardrails@thevoskamps": true,
-    "claude-vm@thevoskamps": true
+    "claude-vm@thevoskamps": true,
+    "block-background-agents@thevoskamps": true
   },
   "extraKnownMarketplaces": {
     "thevoskamps": {
