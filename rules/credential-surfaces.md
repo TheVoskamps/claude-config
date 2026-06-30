@@ -25,8 +25,7 @@ that might block on I/O. If the user is slow to respond, wait.
 ## What's forbidden
 
 Do NOT, on your own initiative, run tools that **inspect or
-manipulate the user's credential agent state**. The harness
-will block them. You also may not:
+manipulate the user's credential agent state**. You also may not:
 
 - Switching from SSH to HTTPS (or vice versa) for git remotes,
   swapping AWS profiles, or rewriting remote URLs to dodge an
@@ -34,7 +33,8 @@ will block them. You also may not:
 - Looping a failing command with `sleep` in the hope the agent
   comes back.
 
-These are agent introspection, not normal command execution.
+These are agent introspection or evasion, not normal command
+execution.
 
 ## On auth failure
 
