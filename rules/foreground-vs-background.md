@@ -40,10 +40,3 @@ When you need to continue a stopped subagent's work:
    permission-prompt channel.
 
 3. **Never use `SendMessage` to bridge a "needs user input" stop.**
-
-## Why this rule exists separately from "spawn foreground"
-
-The existing rule in the `orchestrate` skill says "when spawning
-teammates, do not run them in the background." That rule covers
-initial spawning. It does NOT cover resumption — and resumption
-via `SendMessage` is the failure mode that actually keeps biting.
