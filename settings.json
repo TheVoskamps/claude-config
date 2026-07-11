@@ -33,7 +33,6 @@
       "Bash(npm run lint:*)",
       "Bash(npm test:*)",
       "Bash(npm view:*)",
-      "Bash(npx --yes markdownlint-cli2:*)",
       "Bash(npx ajv:*)",
       "Bash(npx basedpyright:*)",
       "Bash(npx cdk list:*)",
