@@ -53,28 +53,58 @@ with the committer email matching a verified email on that account.
 
 ### Issue References
 
-#### CRITICAL — never use closing keywords adjacent to issue references
+#### CRITICAL — closing keyword: PR body only, own issue only
 
-Committing or creating a PR does not mean the issue should be closed.
-GitHub auto-closes an issue when a commit message or PR body contains a
-closing keyword **immediately followed by** an issue reference. The
-forbidden patterns are:
+GitHub links and auto-closes issues via a closing keyword (`close`,
+`closes`, `closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`,
+`resolved`, case-insensitive) **immediately followed by** an issue
+reference (`#N`, `owner/repo#N`, `GH-N`, or
+`https://github.com/owner/repo/issues/N`). Per GitHub's "Linking a
+pull request to an issue" docs, the keyword behaves differently
+depending on *where* it appears:
 
-- `<keyword> #N`
-- `<keyword> owner/repo#N`
-- `<keyword> GH-N`
-- `<keyword> https://github.com/owner/repo/issues/N`
+- **In the PR description**: creates the Development-sidebar "linked
+  pull request" **and** auto-closes the linked issue when the PR
+  merges into the repository's default branch. This is GitHub's
+  sanctioned mechanism for both effects.
+- **In a commit message**: auto-closes the issue on merge to default,
+  but the containing PR is **not** listed as a linked PR — the sidebar
+  link comes from the PR description (or manual linking), not from
+  commits. Commit-message placement gets the close without the link,
+  and muddies commit history with a repo-wide side effect.
+- Keywords are interpreted only when the PR targets the default
+  branch.
 
-…where `<keyword>` is any of (case-insensitive): `close`, `closes`,
-`closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`, `resolved`.
+Because auto-close-on-merge for the branch's own issue is the outcome
+we want, and the PR body is the only placement that also produces the
+sidebar link, the rule is:
+
+1. **Put a closing keyword in the PR body, referencing the branch's
+   own issue.** This is required, not forbidden — it is how the PR
+   gets linked in the Development sidebar and how the issue
+   auto-closes when the PR merges to the default branch.
+2. **Never put a closing keyword in a commit message.** Closing
+   keywords belong in the PR body only.
+3. **Never aim a closing keyword at any issue other than the branch's
+   own issue** — not an umbrella/parent issue, not a predecessor, not
+   a "related" issue.
+
+**What this rule requires:**
+
+- ✅ PR body for the branch's own issue #123: `Closes #123`,
+  `Fixes #123`, `Resolves #123` (or another keyword from the list
+  above).
 
 **What this rule prohibits:**
 
-- ❌ `Fixes #123`
-- ❌ `Closes owner/repo#123`
-- ❌ `Resolves https://github.com/owner/repo/issues/123`
+- ❌ A closing keyword anywhere in a commit message, e.g.
+  `Fixes #123` as a commit trailer — even for the branch's own issue.
+- ❌ A closing keyword in the PR body aimed at any issue other than
+  the branch's own, e.g. `Closes #100` in the PR body of a branch
+  whose own issue is #123.
 - ❌ `Closes Dependabot alert #88` (the parser ignores the
-  "Dependabot alert" prefix and sees `Closes #88`)
+  "Dependabot alert" prefix and sees `Closes #88`) unless #88 is
+  genuinely the branch's own issue.
 
 **What this rule does NOT prohibit:**
 
@@ -90,8 +120,10 @@ to "Dependency tree after patch" is gold-plating, not rule compliance,
 and changes the meaning unnecessarily.
 
 ✅ To link *other* related issues (predecessors, follow-ups, umbrella
-issues, etc.) use a `References: #N` trailer. For multiple, repeat the
-line. `References:` is not a closing keyword.
+issues, etc.) in either a commit message or a PR body, use a
+`References: #N` trailer. For multiple, repeat the line.
+`References:` is never a closing keyword and never auto-closes
+anything, regardless of where it appears.
 
 ## Commit and Push Approval
 
