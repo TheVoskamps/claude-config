@@ -89,6 +89,15 @@ sidebar link, the rule is:
    own issue** — not an umbrella/parent issue, not a predecessor, not
    a "related" issue.
 
+**The branch's own issue** is the issue number the issue-developer was
+tasked with when it created the branch. That number is also encoded in
+the branch name (convention `issue-<N>-<slug>`). The two normally
+agree, but when they don't, **the branch name is the higher-fidelity
+source of truth** — the orchestrator itself sometimes performs the
+final push and PR creation (e.g. when the issue-developer dies
+mid-run), and in that path the branch name is the durable record of
+which issue the PR closes.
+
 **What this rule requires:**
 
 - ✅ PR body for the branch's own issue #123: `Closes #123`,
@@ -102,9 +111,13 @@ sidebar link, the rule is:
 - ❌ A closing keyword in the PR body aimed at any issue other than
   the branch's own, e.g. `Closes #100` in the PR body of a branch
   whose own issue is #123.
-- ❌ `Closes Dependabot alert #88` (the parser ignores the
-  "Dependabot alert" prefix and sees `Closes #88`) unless #88 is
-  genuinely the branch's own issue.
+- ❌ `Closes Dependabot alert #88` — the parser requires nothing
+  between the keyword and the `#N`; it discards intervening words like
+  "Dependabot alert" and reads this as `Closes #88`, closing issue #88
+  itself. This is a trap: the author believes "Dependabot alert" scopes
+  the reference, but the syntactic parser does not know what a
+  Dependabot alert is — it only sees `<keyword> ... #<N>` and closes
+  whatever issue number follows.
 
 **What this rule does NOT prohibit:**
 
