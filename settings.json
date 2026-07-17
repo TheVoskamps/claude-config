@@ -75,10 +75,12 @@
       "Read(.claude/rules/repo-config.md)",
       "Read(.claude/worktrees/**)",
       "Edit(.claude/worktrees/**)",
-      "Write(.claude/worktrees/**)",
       "Read(.claude/tmp/**)",
       "Edit(.claude/tmp/**)",
-      "Write(.claude/tmp/**)"
+      "Read(/private/tmp/claude-501/**)",
+      "Edit(/private/tmp/claude-501/**)",
+      "Read(/tmp/claude-501/**)",
+      "Edit(/tmp/claude-501/**)"
     ],
     "deny": [
       "Bash(ssh-add:*)",
@@ -94,25 +96,18 @@
       "Bash(gpgconf:*)",
       "Read(~/.ssh/**)",
       "Edit(~/.ssh/**)",
-      "Write(~/.ssh/**)",
       "Read(~/.gnupg/**)",
       "Edit(~/.gnupg/**)",
-      "Write(~/.gnupg/**)",
       "Read(~/Library/Keychains/**)",
       "Edit(~/Library/Keychains/**)",
-      "Write(~/Library/Keychains/**)",
       "Read(/Users/*/.ssh/**)",
       "Edit(/Users/*/.ssh/**)",
-      "Write(/Users/*/.ssh/**)",
       "Read(~/.aws/**)",
       "Edit(~/.aws/**)",
-      "Write(~/.aws/**)",
       "Read(/Users/*/.aws/**)",
       "Edit(/Users/*/.aws/**)",
-      "Write(/Users/*/.aws/**)",
       "Read(/tmp/**)",
       "Edit(/tmp/**)",
-      "Write(/tmp/**)",
       "Read(.env)",
       "Read(.env.*)",
       "Read(**/secrets/**)",
@@ -183,30 +178,34 @@
     ],
     "additionalDirectories": []
   },
-  "model": "claude-opus-4-8",
+  "model": "claude-fable-5[1m]",
   "enabledPlugins": {
+    "show-loaded-rules@thevoskamps": true,
+    "show-loaded-skills@thevoskamps": true,
+    "block-background-agents@thevoskamps": true,
+    "guardrails@thevoskamps": true,
     "issues@thevoskamps": true,
     "issues-jira@thevoskamps": true,
-    "sdlc@thevoskamps": true,
     "github-setup@thevoskamps": true,
     "git-tools@thevoskamps": true,
+    "github-prs@thevoskamps": true,
+    "sdlc@thevoskamps": true,
     "cc-tools@thevoskamps": true,
-    "github-claude-identity@thevoskamps": true,
-    "guardrails@thevoskamps": true,
     "claude-vm@thevoskamps": true,
-    "block-background-agents@thevoskamps": true
+    "github-claude-identity@thevoskamps": true,
+    "writing-tools@thevoskamps": true
   },
   "extraKnownMarketplaces": {
     "thevoskamps": {
       "source": {
-        "source": "url",
+        "source": "git",
         "url": "https://github.com/TheVoskamps/claude-plugins-marketplace.git"
       },
       "autoUpdate": true
     }
   },
   "alwaysThinkingEnabled": false,
+  "tui": "fullscreen",
   "theme": "dark",
-  "agentPushNotifEnabled": true,
-  "tui": "fullscreen"
+  "agentPushNotifEnabled": true
 }
