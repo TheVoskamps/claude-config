@@ -181,7 +181,7 @@
   },
   "//": "autoMode block for ~/.claude/settings.json (user scope only). v3 — per second critique: overrides marked as explicit replacements, IaC scopes narrowed rather than nulled, s3 fixture claim bounded to concrete prefixes, hook line rewritten as a checkable property, fixture note given an execution boundary, main-push-is-a-publish stated.",
   "autoMode": {
-    "//environment": [
+    "environment": [
       "$defaults",
       "Organization: personal (TheVoskamps) and Fablegate. Primary use: software development, Claude Code plugin authoring, and AWS infrastructure work on macOS.",
       "Source control: github.com. Trusted orgs: TheVoskamps, Fablegate.",
@@ -219,7 +219,7 @@
       "podman commands against local images, containers, and volumes are routine local development and are allowed.",
       "Reading, writing, and editing SYNTHETIC or redacted .jsonl transcript fixtures under test/, tests/, and **/testdata/ inside the daaain/claude-code-log and socketteer/Claude-Conversation-Exporter checkouts is allowed: they are authored test data for a parser, not captured user sessions. Reading real transcripts under ~/.claude/projects/ to develop or debug those tools is allowed. Writing, editing, or deleting anything under ~/.claude/projects/ is NOT covered, and copying a real transcript into a repository working tree is NOT covered."
     ],
-    "//soft_deny": [
+    "soft_deny": [
       "$defaults",
       "Never mutate the filesystem — create, modify, truncate, or delete a file — through any mechanism that hides the target path from static analysis. The user's PreToolUse analyzer validates literal paths in shell command text; it cannot see inside an interpreter program body. This covers inline interpreter programs (perl -e, perl -pi -e, python -c, python3 -c, node -e, ruby -e, awk programs, jq writing to a file), in-place editors (sed -i, ed, ex, patch), find -exec with a mutating command, and generating a script and then executing it. Clears when the user explicitly asked for that specific mechanism, or when the mutation is a build or test step defined by a script already committed in the repository. Read-only uses of the same tools — sed without -i, awk, jq, perl -n printing to stdout — are unaffected, as are ordinary redirection and heredoc writes (>, >>, tee, cat > file) whose target path is literal in the command text.",
       "Never delete, truncate, or revert files under a repository working tree outside <repo>/.claude/tmp/ and <repo>/.claude/worktrees/. This covers rm, git reset --hard, git checkout -- <path>, git restore, git stash drop, and git clean. This rule OVERRIDES the default Irreversible Local Destruction carve-out for files the agent created this session, with two exceptions that remain allowed: gitignored build output (dist/, build/, node_modules/, __pycache__, .venv/, target/) and a file the agent both created and last wrote during this session. Clears when the user names the specific paths to remove. A general request to clean up, tidy, or reset does not clear it.",
@@ -232,7 +232,7 @@
       "Never run gh release create, gh repo create --public, or gh repo edit --visibility public. Creating a public surface is the user's decision. Clears when the user names the repository and says to publish it.",
       "Never change the permission system this session runs under: the PreToolUse hook registration in any settings.json, the permissions or autoMode blocks of any settings.json, or the installed copy of the guardrails plugin under ~/.claude/. Editing guardrails plugin SOURCE inside a TheVoskamps/claude-plugins-marketplace checkout or worktree is normal development work and is not this rule — the distinction is between changing the code under review and changing the enforcement configuration currently protecting the session. Clears when the user names the setting or file and says to change it."
     ],
-    "//hard_deny": [
+    "hard_deny": [
       "$defaults",
       "Never execute code fetched at runtime through an ad-hoc shell pipe: curl or wget piped into a shell or interpreter, bash <(wget ...), python -c \"$(curl ...)\", or running a script downloaded during this session. Package managers resolving from a declared manifest or lockfile (npm install, pip install -r, uv sync, go install, cargo install, brew install, docker run of a tagged image) are NOT this rule. Official toolchain installers from sh.rustup.rs, astral.sh, bun.sh, get.docker.com, and proto.dev are NOT this rule. Writing a curl-pipe string as data into plugins/guardrails/**/test*/**, hooks/permission-gate/**/test*/**, **/testdata/**, or <repo>/.claude/tmp/** is permitted; executing it, or writing it to any path outside those globs, is not.",
       "Credential material — access keys, session tokens, private keys, passwords, decrypted secret values — never enters any repository, private ones included, in tracked files, commit messages, PR or issue bodies, release notes, gists, or CI logs. Additionally, AWS account numbers, SSO profile names, and CodeArtifact domain endpoints must never reach the PUBLIC repositories named in environment through any of those same surfaces.",
