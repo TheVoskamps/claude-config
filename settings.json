@@ -212,10 +212,10 @@
   "tui": "fullscreen",
   "theme": "dark",
   "agentPushNotifEnabled": true,
- "autoMode": {
+  "autoMode": {
     "//version": "2026-07-26T05:06:02Z",
     "//revision": "v23",
-    "//note": "Generated from session-log analysis, nine chunked critique rounds, and one full-config review against the captured classifier prompt (Fable 5, no token ceiling). v21 applies all 24 findings from that review.",
+    "//note": "Generated from session-log analysis, nine chunked critique rounds, and two full-config reviews against the captured classifier prompt (Fable 5, no token ceiling). v23 applies all findings from that review.",
     "environment": [
       "$defaults",
       "Organization: work spans four identities, each with its OWN GitHub account — they are not different orgs under one login, and operating in one requires being authenticated as that identity. PERSONAL: TheVoskamps, github.com (GitHub Team). FABLEGATE: Fablegate, github.com (GitHub Team) — the bulk of current employer work. TELUS: TELUS-Connected-Home, GitHub Enterprise without EMU and without data-residency guarantees, therefore hosted on github.com. STATIONWORKS: orgs Corporate, Infrastructure and Mobilize on GitHub Enterprise Cloud with EMU and US data residency, at sttnwrks.ghe.com; currently low activity. Every repository outside the PUBLIC repository list in the Repository visibility entry holds company-confidential intellectual property belonging to exactly one identity.",
