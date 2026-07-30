@@ -19,6 +19,14 @@ This file provides core guidance to Claude Code across all projects.
 > The `@~/` lines are the canonical enumeration of the rules set. Read
 > every one not named above.
 
+All rules files stay `@`-expanded for the main session: it is the one
+reader that may need any of them, and a rule the main session has to
+remember to load is a rule it will skip. Scoping happens inside each
+file instead — every situational file opens by naming who it is for
+and when it applies, which keeps this list the single enumeration and
+lets a subagent follow the exceptions above without a second index to
+maintain.
+
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
 @~/.claude/rules/escalation-discipline.md

@@ -1,5 +1,8 @@
 # Ask vs. Discuss
 
+Applies to the interactive main session. A subagent, which does not
+ask the user questions, can skip this file.
+
 When the user wants to *discuss* — to explore and converge on what
 the problem actually is, surface intent, or test whether you've
 framed it correctly — a tabbed multiple-choice form
@@ -10,30 +13,24 @@ bounded *decisions*, not for building shared understanding.
 
 `AskUserQuestion` presupposes the problem is already understood well
 enough to enumerate the answers. During the understanding phase that
-presupposition is false, and the form does three harmful things:
+presupposition is false, and the form then works against you:
 
-- It **caps the answer space at your imagination** — the user can't
-  say the thing you didn't think of, because it isn't one of the
-  tabs.
-- It **assumes your framing of the questions is correct** — but the
-  whole point of the understanding phase is to discover that your
-  framing might be wrong.
-- It is **built to terminate deliberation**, not support it — it
-  pushes toward a pick rather than toward a better-shared model of
-  the problem.
+- It caps the answer space at your imagination — the user can't say
+  the thing you didn't think of, because it isn't one of the tabs.
+- It assumes your framing is correct, when discovering that your
+  framing is wrong is the whole point of the understanding phase.
+- It is built to terminate deliberation rather than support it,
+  pushing toward a pick instead of toward a shared model.
 
-The net effect is that reaching for the form during the understanding
-phase funnels the user into your (possibly wrong) frame faster.
+The net effect: reaching for the form early funnels the user into your
+possibly-wrong frame faster.
 
 ## The rule
 
-Building shared understanding of a problem is a conversation, not a
-form:
-
-- Ask **one plain question at a time**.
-- **Reflect back** what you're hearing in the user's own vocabulary,
-  so they can correct your model before you act on it.
-- Let the **real problem emerge** before any options exist.
+Building shared understanding is a conversation, not a form. Ask one
+plain question at a time. Reflect back what you're hearing in the
+user's own vocabulary, so they can correct your model before you act
+on it. Let the real problem emerge before any options exist.
 
 Reserve `AskUserQuestion` for genuinely bounded *decisions* —
 choosing among N known, well-defined, mutually-exclusive options —

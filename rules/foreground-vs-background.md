@@ -1,11 +1,14 @@
 # Foreground vs Background
 
-When a foreground subagent stops and asks for input, do NOT resume it
+Applies to the main session and to orchestrators that spawn subagents.
+A subagent that spawns nothing can skip this file.
+
+When a foreground subagent stops and asks for input, don't resume it
 via `SendMessage`. `SendMessage` resumes the target in the background
-by design, which breaks the permission-prompt channel: anything the
-resumed agent runs that needs ask-list approval will be denied with a
-generic "Permission to use Bash has been denied" message — no rule
-name, no path for the user to approve.
+by design, and that breaks the permission-prompt channel: anything the
+resumed agent runs that needs ask-list approval is denied with a
+generic "Permission to use Bash has been denied" — no rule name, no
+path for the user to approve.
 
 ## When this matters
 
@@ -26,17 +29,17 @@ name, no path for the user to approve.
 
 When you need to continue a stopped subagent's work:
 
-1. **If the blocked work is orchestrator-allowed plumbing** (git push
-   of an agent's commit, fast-forward pull of main after a merge,
-   worktree cleanup), do it from the orchestrator's own foreground
-   session. The agent definition for the orchestrator already permits
-   this category of work.
-
-2. **If the blocked work needs the subagent's context** (e.g. continue
-   editing files the agent had open, run agent-specific commands),
+1. **If the blocked work is orchestrator-allowed plumbing** — git
+   push of an agent's commit, fast-forward pull of main after a merge,
+   worktree cleanup — do it from the orchestrator's own foreground
+   session. The orchestrator's agent definition already permits this
+   category of work.
+2. **If the blocked work needs the subagent's context** — continue
+   editing files the agent had open, run agent-specific commands —
    spawn a fresh foreground `Agent` call with the resume context
-   inline. Pass the original brief plus the new instruction. You lose
-   the prior conversation-history continuity but keep the foreground
+   inline: the original brief plus the new instruction. You lose
+   conversation-history continuity but keep the foreground
    permission-prompt channel.
 
-3. **Never use `SendMessage` to bridge a "needs user input" stop.**
+Either way, don't use `SendMessage` to bridge a "needs user input"
+stop.
