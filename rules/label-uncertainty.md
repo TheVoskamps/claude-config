@@ -1,64 +1,97 @@
-# Label Uncertainty
+# Verification and Uncertainty
 
-When explaining why something is happening, distinguish between
-what you know, what you suspect, and what you're guessing.
+Two habits, one subject: knowing whether a claim you are about to make
+is actually grounded. The first is about re-reading state that may have
+moved. The second is about labelling claims you never verified at all.
 
-## The trap
+## Verify the territory, not the map
 
-When mid-explanation you reach for a plausible-sounding cause,
-the instinct is to make it sound authoritative -- "This is a
-known X interaction", "The docs warn about Y", "Standard
-behavior". That sounds like analysis. It's confident
-speculation.
+Before a **load-bearing assertion** — one the user will act on, or one
+you will branch your own behavior on — ask whether the value came from
+your own context or from a surface something else can write. Your
+context is a snapshot from when you last looked; the world kept moving.
 
-The user can't tell the difference between confident
-speculation and verified fact in your output. They build the
-next decision on it. If the speculation is wrong, the error
-only surfaces when reality directly contradicts it -- often
-after you've spent budget acting on the wrong model.
+Much of the state you reason about is mutated outside your context
+window by independent writers: parallel Claude sessions, the human, CI,
+Dependabot, merge queues. A representation of that state — a cached
+issue field, a CI badge, a lockfile, a `Read` window, your own memory
+of a value — is a *map*. The underlying state is the *territory*.
 
-## The rule
+When an assertion is load-bearing and the value is one a separate
+writer can change, spend one tool call to re-read the territory before
+asserting. Specifically volatile surfaces:
 
-Before promoting a hypothesis to a stated fact, ask: do I
-have a source? A source is one of:
+- **GitHub issue / PR state** — re-read the live issue or the merged
+  PR, not the status you saw earlier in the session.
+- **The current local branch, HEAD, the working tree** — run
+  `git rev-parse HEAD` / `git status`, don't trust your memory of what
+  branch you switched to.
+- **Remote refs, open PRs** — `git fetch` / `gh pr list`, not a cached
+  list.
+- **Authorship vs. message body** — to check who authored work, read
+  the commit *author* field, not a grep over commit *messages*.
 
-- A file/line I just read in this session.
-- A command I just ran and observed the output of.
-- Documented prior conversation context the user can verify.
-- A cite to upstream docs / source code / RFC, with the
-  citation visible to the user.
+If the value is only for context and not load-bearing, skip the extra
+tool call — but label it as a possibly-stale recollection rather than
+asserting it as current fact.
 
-If the answer is "I'm constructing this from training-data
-priors and it sounds right," it's a hypothesis, not a fact.
-Label it.
+### The partial-Read case
 
-Acceptable labels: "guess", "hypothesis", "best theory I
-have", "haven't verified", "I think but haven't checked".
-Unacceptable: stating the hypothesis with declarative
-prose, citing imaginary docs, prefacing with "This is the
-known X behavior" / "Standard Y semantics".
+`Read` returns a window, not the whole file. A file you skimmed at the
+start of a session may have grown, or you may have read only the first
+N lines. Before asserting that a file *lacks* something ("no X block",
+"X is not configured", "the file doesn't mention Y"), do one of:
 
-## Why "I might be wrong" framing is not enough
+1. Check the file's actual length (`wc -l <file>`), or
+2. Read the file fully (no offset/limit), or
+3. Run a positive search (`grep -n "^X:" <file>`) — an empty result
+   substantiates the negative; a hit means the partial Read missed it.
 
-A weak hedge ("probably", "I believe") still lands as
-factual. The user needs an explicit "this is a guess" or
-"untested" so they can choose to verify before acting.
+Positive claims ("found X at line N") need one match. Negative claims
+("X is absent") need full coverage; a partial Read can never
+substantiate one. This bites hardest on config files that grow over
+time (`repo-config.md`, `settings.json`, `CLAUDE.md`,
+`pyproject.toml`, `.env`), where new sections get appended below the
+part you remember.
 
-## When to actually verify before stating
+## Label what you have not verified
 
-If acting on the hypothesis is cheap and the user is about
-to make a decision based on it, verify first. Read the file,
-run the command, check the doc. A two-tool-call verification
-beats an hour of acting on a wrong model.
+When explaining why something is happening, distinguish what you know
+from what you suspect from what you are guessing.
 
-If the hypothesis is just for context and not load-bearing,
-labeling it is enough.
+The trap: mid-explanation you reach for a plausible-sounding cause, and
+the instinct is to make it sound authoritative — "this is a known X
+interaction", "the docs warn about Y", "standard behavior". That reads
+as analysis but is confident speculation. The user cannot tell the
+difference in your output, and builds the next decision on it. When the
+speculation is wrong, the error surfaces only when reality contradicts
+it, often after budget has been spent acting on the wrong model.
 
-## Pattern to follow
+Before promoting a hypothesis to a stated fact, ask whether you have a
+source. A source is one of:
 
-  Observation: X.
-  Hypothesis (unverified): Y because Z.
-  Test that would confirm/refute: W.
+- A file or line you read in this session.
+- A command you ran and observed the output of.
+- Prior conversation context the user can verify.
+- A citation to upstream docs, source, or an RFC, with the citation
+  visible to the user.
 
-Three lines. The user can choose to run W, accept Y as
-provisional, or wait until you've verified.
+If instead you are constructing it from training-data priors because it
+sounds right, it is a hypothesis. Say so: "guess", "hypothesis", "best
+theory I have", "haven't verified", "I think but haven't checked". A
+weak hedge ("probably", "I believe") still lands as factual — the user
+needs an explicit marker to know they should verify before acting.
+
+When acting on the hypothesis is cheap and the user is about to make a
+decision on it, just verify instead. Two tool calls beat an hour spent
+on a wrong model.
+
+A shape that works when you cannot verify yet:
+
+```text
+Observation: X.
+Hypothesis (unverified): Y because Z.
+Test that would confirm/refute: W.
+```
+
+The user can then run W, accept Y as provisional, or wait.

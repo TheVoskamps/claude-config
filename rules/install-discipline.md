@@ -19,9 +19,8 @@ improvise a recovery that touches either surface. The user will decide
 whether to fix the repo (e.g. correct a bad script), install something,
 or take a different path.
 
-See also: `rules/core-principles.md` §0 ("NEVER EVER execute bash
-commands that modify state without explicit approval"). This rule
-extends that general principle by naming the specific classes of
+This file is the detail behind the install carve-out in
+`rules/core-principles.md` §1. It names the specific classes of
 install command so they survive reasoning like "but the build needs
 CDK, so installing CDK is implied."
 
@@ -96,46 +95,27 @@ the time it's visible it's already done.
 
 ## When a project-local command fails
 
-1. **State the failure plainly.** Quote the verbatim error output;
-   don't paraphrase.
-2. **Identify the root cause** if it's evident from the error
-   (e.g. "the `synth` script invokes bare `cdk` instead of `npx cdk`,
-   which isn't on PATH").
-3. **Report and stop.** Don't run a recovery. The user picks the fix.
+Stop and report, per the report shape in
+`rules/escalation-discipline.md`. Do not run a recovery: the user
+picks the fix. Alongside the verbatim error, name the root cause when
+the error makes it evident, the missing tool, and the project's
+declared way to invoke it.
 
-This mirrors the escalation-discipline rule
-(`~/.claude/rules/escalation-discipline.md`): an environmental
-mismatch is a decision-point, not noise to silently solve.
+What that adds up to in the common case — `npm ci` (or the language
+equivalent) ran, and the tool still isn't there:
 
-### Subagent escalation message shape
+> The project's `npm run synth` script invokes bare `cdk`; the
+> `node_modules/.bin/cdk` is installed by `npm ci` but isn't on PATH
+> for the script's subshell. The repo-side fix is to change the script
+> to `npx cdk synth` (tracked in issue #1058). I'm escalating because
+> `npm install aws-cdk` would drift the project's declared deps, and
+> `npm install -g aws-cdk` is forbidden by the host-integrity axis
+> above.
 
-When `npm ci` (or the language equivalent) does not give a subagent
-the tool it needs, **stop and escalate**. Do not improvise. The
-escalation message names:
-
-1. **Which tool is missing** (`cdk`, `tsc`, `kubectl`, etc.).
-2. **Which command failed** and the project's declared way to
-   invoke that tool (`npm run synth`, `npx tsc`, `npm test`, etc.).
-   Quote the verbatim error output; do not paraphrase.
-3. **The shortest explanation** of why this isn't something the
-   subagent can fix in scope. Example:
-
-   > The project's `npm run synth` script invokes bare `cdk`; the
-   > `node_modules/.bin/cdk` is installed by `npm ci` but isn't on
-   > PATH for the script's subshell. The repo-side fix is to change
-   > the script to `npx cdk synth` (tracked in issue #1058). I'm
-   > escalating because `npm install aws-cdk` would drift the
-   > project's declared deps, and `npm install -g aws-cdk` is
-   > forbidden by the host-integrity axis above.
-
-The orchestrator's job, on receiving the escalation, is to surface it
-to the human verbatim. The human's options are:
-
-- (a) Fix the project (e.g. land the repo-side script fix).
-- (b) Explicitly approve an ad-hoc install for this one task. That
-  approval does NOT carry over to the next task or the next tool;
-  each ad-hoc install requires its own approval.
-- (c) Abandon the task.
+An orchestrator receiving such an escalation surfaces it to the human
+verbatim. The human can fix the project, approve an ad-hoc install for
+this one task, or abandon the task. An ad-hoc approval covers that one
+command only — it does not carry to the next tool or the next task.
 
 ## What this rule does NOT forbid
 
@@ -160,11 +140,6 @@ to the human verbatim. The human's options are:
 
 ## Relationship to other rules
 
-- `rules/escalation-discipline.md` describes the general shape of
-  "stop and report back" for environmental mismatches. The escalation
-  flow above is a specialization of that pattern for the
-  dependency-install case.
-- `rules/credential-surfaces.md` covers credential-agent
-  introspection, not installs. The two files are parallel in style —
-  "user-owned surfaces you must not touch on your own initiative" —
-  but they cover different surfaces.
+`rules/credential-surfaces.md` is this file's sibling: same shape
+("user-owned surfaces you must not touch on your own initiative"),
+different surface. It covers credential agents, not installs.

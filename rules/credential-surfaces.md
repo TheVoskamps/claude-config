@@ -1,10 +1,13 @@
 # Credential Surfaces Are User-Owned
 
-The user's credential agents (SSH agent, SSO token cache, GPG
-agent, system keychain) are the user's. Don't probe them. Don't
-manipulate them. But running a normal command that prompts for
-credentials is fine -- that is no different from any other
-command that blocks on I/O.
+Read this file when a command fails with an authentication error,
+before you report that failure.
+
+The user's credential agents — SSH agent, SSO token cache, GPG agent,
+system keychain — belong to the user. Don't probe them and don't
+manipulate them. Running a normal command that prompts for credentials
+is fine; that is no different from any other command that blocks on
+I/O.
 
 ## What's allowed
 
@@ -24,14 +27,13 @@ that might block on I/O. If the user is slow to respond, wait.
 
 ## What's forbidden
 
-Do NOT, on your own initiative, run tools that **inspect or
-manipulate the user's credential agent state**. You also may not:
+On your own initiative, don't run tools that inspect or manipulate
+the user's credential agent state. Equally out of bounds:
 
-- Switching from SSH to HTTPS (or vice versa) for git remotes,
-  swapping AWS profiles, or rewriting remote URLs to dodge an
-  auth failure.
-- Looping a failing command with `sleep` in the hope the agent
-  comes back.
+- Switching a git remote between SSH and HTTPS, swapping AWS
+  profiles, or rewriting remote URLs to dodge an auth failure.
+- Looping a failing command with `sleep` in the hope the agent comes
+  back.
 
 These are agent introspection or evasion, not normal command
 execution.
@@ -45,19 +47,21 @@ When a normal command fails with an auth error:
    fix is a single credential-prompting command from "What's
    allowed" above, run that command. Wait for the user to
    complete the browser flow or unlock prompt.
-3. If the failure is **agent-state opaque** -- e.g. SSH
-   `Permission denied (publickey)` with no clear single-command
-   fix -- stop. Report the failure per "Reporting an auth
-   failure" below. Wait for the user to deal with it. When told
-   to retry, re-run the exact original command verbatim.
-4. Never escalate to forbidden tools from "What's forbidden".
-   If the obvious credential-prompting command doesn't resolve
-   the failure, stop and ask the user.
+3. If the failure is **agent-state opaque** — e.g. SSH
+   `Permission denied (publickey)` with no clear single-command fix —
+   stop. Report it per "Reporting an auth failure" below, and wait
+   for the user to deal with it. When told to retry, re-run the exact
+   original command verbatim.
+4. Never escalate to the forbidden tools above. If the obvious
+   credential-prompting command doesn't resolve the failure, stop and
+   ask.
 
 ## Reporting an auth failure
 
-When you stop and report an auth failure (item 3 above), the
-report has exactly three parts and nothing else:
+An auth failure narrows the general report shape in
+`rules/escalation-discipline.md`: here, naming options and a
+recommendation is itself out of bounds, because both reach into the
+credential surface. So the report has three parts and nothing else:
 
 1. A bare statement that the operation failed.
 2. The literal error output, verbatim, in a code block.
@@ -73,11 +77,11 @@ Forbidden in that report:
   which key was tried. You did not observe the internals; do
   not narrate them.
 - **Unlabeled relay.** If the error text came from a subagent's
-  report rather than a command you ran yourself, say so --
-  "the subagent reported:" -- and do not present it as
-  something you observed. If the claim is load-bearing and
-  cheaply checkable (e.g. did the push land? -- `git ls-remote`),
-  verify the territory before asserting it.
+  report rather than a command you ran yourself, say so — "the
+  subagent reported:" — and don't present it as something you
+  observed. If the claim is load-bearing and cheaply checkable (did
+  the push land? `git ls-remote`), verify the territory first, per
+  `rules/label-uncertainty.md`.
 
 The failure mode this prevents: dressing a second-hand or
 unobserved error up as firsthand fact, then inventing a
@@ -90,6 +94,6 @@ The agent's state is the user's. Probing or manipulating it
 risks accidentally caching, exporting, or logging credentials
 that should stay in the agent. Running commands that happen to
 trigger an OS-level credential prompt is a different category
-entirely -- those commands are the normal way the user supplies
-credentials, and waiting for the user to respond is the same
-patience required by any blocking I/O.
+entirely: those commands are the normal way the user supplies
+credentials, and waiting for the user to respond is the same patience
+any blocking I/O requires.
