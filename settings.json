@@ -107,8 +107,6 @@
       "Edit(~/.aws/**)",
       "Read(/Users/*/.aws/**)",
       "Edit(/Users/*/.aws/**)",
-      "Read(/tmp/**)",
-      "Edit(/tmp/**)",
       "Read(.env)",
       "Read(.env.*)",
       "Read(**/secrets/**)",
