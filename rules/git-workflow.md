@@ -1,21 +1,15 @@
 # Git Workflow
 
-## Stay Within Your Repo
+## Stay within your repo
 
-You should be run from the root of a repo. Verify with `git rev-parse
---show-toplevel` if unsure. If the starting CWD is not a repo root, tell
-the user — don't guess.
+You should be run from the root of a repo. Verify with
+`git rev-parse --show-toplevel` if unsure; if the starting CWD is not a
+repo root, tell the user rather than guessing.
 
-You may freely `cd` to any path **at or below** the repo root,
-including:
-
-- subdirectories of the repo
-- worktrees under `.claude/worktrees/`
-- back to the repo root
-
-You may **not** `cd` outside the repo root without permission. If a fix
-requires changes in another repo, suggest the change in the
-conversation; don't implement it.
+`cd` freely to any path at or below the repo root — subdirectories,
+worktrees under `.claude/worktrees/`, and back again. Going outside the
+repo root needs permission, per the boundary rule in
+`rules/core-principles.md` §1.
 
 ## cwd persists across Bash calls
 
@@ -30,7 +24,7 @@ wrong, tell the user.
 > orchestrator and its agents in the `sdlc` plugin, not here. This
 > file covers only the main session.
 
-## Commit Messages
+## Commit messages
 
 - First line: present-tense imperative verb and summary (e.g. "Add
   Lambda for account creation"); keep under 72 characters.
@@ -41,7 +35,7 @@ wrong, tell the user.
 - Commit incrementally — small, focused commits rather than one large
   catch-all commit.
 
-### Commit Signing
+### Commit signing
 
 If you get an error on a commit "remote: error: GH006: Protected branch
 update failed for refs/heads/main." or "remote: error: Commits must have
@@ -51,9 +45,9 @@ signatures." you need to sign the commit with a signature GitHub can
 verify (GPG, S/MIME, or SSH) against a key registered to a GitHub account,
 with the committer email matching a verified email on that account.
 
-### Issue References
+### Issue references
 
-#### CRITICAL — closing keyword: PR body only, own issue only
+#### Closing keyword: PR body only, own issue only
 
 GitHub links and auto-closes issues via a closing keyword (`close`,
 `closes`, `closed`, `fix`, `fixes`, `fixed`, `resolve`, `resolves`,
@@ -98,97 +92,71 @@ final push and PR creation (e.g. when the issue-developer dies
 mid-run), and in that path the branch name is the durable record of
 which issue the PR closes.
 
-**What this rule requires:**
+So the PR body for a branch whose own issue is #123 carries
+`Closes #123` (or `Fixes #123` / `Resolves #123`). Prohibited:
 
-- ✅ PR body for the branch's own issue #123: `Closes #123`,
-  `Fixes #123`, `Resolves #123` (or another keyword from the list
-  above).
+- A closing keyword anywhere in a commit message — including
+  `Fixes #123` as a trailer, even for the branch's own issue.
+- A closing keyword in the PR body aimed at any other issue, e.g.
+  `Closes #100` in the PR body of a branch whose own issue is #123.
+- `Closes Dependabot alert #88`. The parser allows nothing meaningful
+  between the keyword and the `#N`: it discards the intervening
+  "Dependabot alert" and reads `Closes #88`, closing issue #88. The
+  trap is believing those words scope the reference — the parser has
+  no concept of a Dependabot alert, it sees only
+  `<keyword> ... #<N>` and closes whatever number follows.
 
-**What this rule prohibits:**
+The parser is purely syntactic, matching the keyword-then-reference
+pattern, so the keywords are harmless as ordinary prose with no
+adjacent issue reference ("Dependency tree after fix", "The fix lands
+in PR #1070", "This closes a long-standing gap") and inside code
+blocks, paths, or identifiers (`fix_bug.py`, `def resolve_path()`).
+Rewriting "Dependency tree after fix" to "after patch" is
+gold-plating, not compliance, and loses meaning for nothing.
 
-- ❌ A closing keyword anywhere in a commit message, e.g.
-  `Fixes #123` as a commit trailer — even for the branch's own issue.
-- ❌ A closing keyword in the PR body aimed at any issue other than
-  the branch's own, e.g. `Closes #100` in the PR body of a branch
-  whose own issue is #123.
-- ❌ `Closes Dependabot alert #88` — the parser requires nothing
-  between the keyword and the `#N`; it discards intervening words like
-  "Dependabot alert" and reads this as `Closes #88`, closing issue #88
-  itself. This is a trap: the author believes "Dependabot alert" scopes
-  the reference, but the syntactic parser does not know what a
-  Dependabot alert is — it only sees `<keyword> ... #<N>` and closes
-  whatever issue number follows.
+To link *other* related issues — predecessors, follow-ups, umbrella
+issues — use a `References: #N` trailer, repeated per issue, in either
+a commit message or a PR body. `References:` is never a closing
+keyword and never auto-closes anything, wherever it appears.
 
-**What this rule does NOT prohibit:**
+## Commit and push approval
 
-- ✅ The keywords as ordinary English prose with no adjacent issue
-  reference: "Dependency tree after fix", "The fix lands in PR #1070",
-  "This closes a long-standing gap", "Resolved in production".
-- ✅ The keywords inside code blocks, file paths, or identifiers
-  (`fix_bug.py`, `def resolve_path()`).
+`git commit` and `git push` without a force flag are reversible, so
+they fall outside the approval carve-outs in
+`rules/core-principles.md` §1 and need no advance approval on a
+working branch.
 
-The auto-close parser is purely syntactic — it looks for the
-keyword-then-reference pattern. Rewriting "Dependency tree after fix"
-to "Dependency tree after patch" is gold-plating, not rule compliance,
-and changes the meaning unnecessarily.
+After committing and once tests pass, present the summary of changes,
+the files modified with line counts, the proposed commit message, and
+the test results. Everything the user might then want is still
+available: more changes via another commit, a reworded message via
+`git commit --amend`, a rollback via `git reset --soft HEAD~1` (or
+`git reset HEAD~1` to unstage as well).
 
-✅ To link *other* related issues (predecessors, follow-ups, umbrella
-issues, etc.) in either a commit message or a PR body, use a
-`References: #N` trailer. For multiple, repeat the line.
-`References:` is never a closing keyword and never auto-closes
-anything, regardless of where it appears.
+Push to a working branch freely. Pushing to the **default branch**
+requires approval unless the user already asked for it explicitly:
+show the commit, say plainly that it is on the default branch, ask
+"Do you want me to push this to `origin/{branch}`?", and wait for a
+yes.
 
-## Commit and Push Approval
+`--force`, `-f`, and `--mirror` on a push each require explaining why
+and getting explicit permission first — they can destroy work that is
+not yours. `--force-with-lease` and `--force-if-includes` are fine
+without it, e.g. after rebasing a branch onto the default branch's
+HEAD, because they refuse to clobber commits you haven't seen.
 
-The general rule — get explicit approval before making changes or
-running state-modifying commands — lives in `rules/core-principles.md`
-§0 ("ALWAYS EXPLAIN BEFORE ACTING"). `git commit` and `git push` are
-state-modifying commands, but (without a `-f` or `--force` flag) are
-not destructive, so §0 does not govern them.
+## Merging
 
-**After committing**, after tests pass, present the summary of
-changes, files modified with line counts, the proposed commit message,
-and the test results. The user may request code or commit
-message changes, ask for more testing, or reject the changes entirely.
-But all of those can be done: changes by another `git commit`, changing
-the commit message by `git commit --amend`, and rejecting the changes
-by `git reset --soft HEAD~1` or, if the user wants to unstage them as
-well by `git reset HEAD~1`
-
-**Before pushing**, after committing:
-
-Unless the user prior explicitly asked to do the commit and push on the
-default branch, the push should **always** be on a working branch.
-
-If it **is** on the default branch:
-
-1. Show the commit created and be explicit it is on the default branch.
-2. Ask explicitly: "Do you want me to push this to `origin/{branch}`?"
-3. Wait for explicit "yes" / "push" or similar.
-
-Otherwise, when working on a branch, you may push without prior approval.
-After all, this too is undoable. You may **never** use `--force` or `-f`
-or `--mirror` flags on a push, unless you are explicit with the user you
-are going to do so and explain why and get prior explicit permission.
-You may use the `--force-with-lease` and `--force-if-includes` flags,
-e.g. for rebasing the branch onto HEAD of the default branch.
-
-## When Merging
-
-Always first do a dry-run merge:
+Dry-run the merge first:
 `git checkout TARGET_BRANCH && git merge --no-commit --no-ff main`.
 
-Never squash merge.
+Don't squash merge, and don't merge the default branch into another
+branch — rebase the other branch onto it instead.
 
-Never merge the default branch into another branch: always rebase the
-other branch.
+## Recovering a commit made on the wrong branch
 
-## Fixing having committed things on the wrong branch
-
-When you made a commit on the wrong branch:
-
-1. **git stash** — save working changes.
-2. **git reset --hard HEAD~1** — undo commit on wrong branch.
-3. **git checkout CORRECT_BRANCH** — switch to correct branch.
-4. **git stash pop** — re-apply the saved changes.
-5. **git commit** — commit to correct branch.
+1. `git stash` — save working changes.
+2. `git reset --hard HEAD~1` — undo the commit on the wrong branch.
+3. `git checkout CORRECT_BRANCH`.
+4. `git stash pop` — re-apply the saved changes.
+5. `git commit` — commit to the correct branch.
