@@ -1,0 +1,1 @@
+- [Adjudicate count words before flagging](feedback_adjudicate_count_words_before_flagging.md) — classify each numeral tally/constraint/anaphor/quotation against core-principles.md §7; most are exempt
