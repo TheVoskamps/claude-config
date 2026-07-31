@@ -5,33 +5,32 @@ This file provides core guidance to Claude Code across all projects.
 > **If you are reading this file with the Read tool** — typically
 > because you are a subagent and your agent definition told you to
 > load global rules — the `@~/` lines below are not auto-expanded for
-> you the way they are at main-session startup. Read them yourself,
-> with these exceptions:
+> you the way they are at main-session startup. Read each `@~/` line
+> yourself, with these exceptions:
 >
-> - `rules/credential-surfaces.md` — do not read up front. Read it
->   when a command fails with an authentication error, before you
->   report that failure.
 > - `rules/ask-vs-discuss.md` — skip; it governs interactive
 >   question-asking, which a subagent does not do.
 > - `rules/foreground-vs-background.md` — skip; it governs how the
 >   main session resumes subagents.
 >
-> The `@~/` lines are the canonical enumeration of the rules set. Read
-> every one not named above.
+> The list below — `@~/` lines and the plain-path line alike — is the
+> canonical enumeration of the rules set.
 
-All rules files stay `@`-expanded for the main session: it is the one
-reader that may need any of them, and a rule the main session has to
-remember to load is a rule it will skip. Scoping happens inside each
-file instead — every situational file opens by naming who it is for
-and when it applies, which keeps this list the single enumeration and
-lets a subagent follow the exceptions above without a second index to
-maintain.
+The list below is the single canonical enumeration of the rules set,
+kept as one list so a future rules file joins the fleet's diet with no
+second edit point. Most lines are `@`-expanded: the main session loads
+them at startup, and a subagent reads each one per the note above.
+`rules/credential-surfaces.md` is the one plain-path line instead — it
+is purely situational for every reader, main session included, so
+loading it up front would be dead weight most sessions never touch.
+Read it when a command fails with an authentication error, before you
+report that failure.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
 @~/.claude/rules/escalation-discipline.md
 @~/.claude/rules/install-discipline.md
 @~/.claude/rules/label-uncertainty.md
-@~/.claude/rules/credential-surfaces.md
+rules/credential-surfaces.md
 @~/.claude/rules/ask-vs-discuss.md
 @~/.claude/rules/foreground-vs-background.md
