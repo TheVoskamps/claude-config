@@ -8,7 +8,7 @@ working branch without asking first — the harness's permission system
 already gates what needs gating, and re-asking on top of it stalls
 work that was already authorized.
 
-Four categories are the exception. Each is irreversible, or lands
+These categories are the exception. Each is irreversible, or lands
 outside the sandbox, or commits the user to something they cannot
 cheaply undo, so each requires explicit approval before you act:
 

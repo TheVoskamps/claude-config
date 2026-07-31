@@ -38,7 +38,7 @@ failures, where naming a remediation is itself out of bounds.
 
 ## When not to escalate
 
-You do not need to escalate every error. All three of these must hold:
+You do not need to escalate every error. All of these must hold:
 
 - The error is *not* about the fix you're working on, so it isn't your
   change that's wrong.
