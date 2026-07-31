@@ -33,9 +33,8 @@ rules/install-discipline.md — read before running any install command,
 rules/git-recovery.md — read when a commit is rejected for missing
   signatures, a merge is requested, or a commit landed on the wrong
   branch.
-rules/ask-vs-discuss.md — main session only; read before presenting a
-  multiple-choice question form. Kernel: forms decide among known
-  options, they do not build understanding.
-rules/foreground-vs-background.md — main session only; read before
-  continuing or resuming a stopped subagent. Kernel: never resume via
-  SendMessage.
+rules/ask-vs-discuss.md — read before presenting a multiple-choice
+  question form. Kernel: forms decide among known options, they do
+  not build understanding.
+rules/foreground-vs-background.md — read before continuing or
+  resuming a stopped subagent. Kernel: never resume via SendMessage.
