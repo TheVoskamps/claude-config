@@ -1,1 +1,1 @@
-- [Adjudicate count words before flagging](feedback_adjudicate_count_words_before_flagging.md) — classify each numeral tally/constraint/anaphor/quotation against core-principles.md §7; most are exempt
+- [Adjudicate count words before flagging](feedback_adjudicate_count_words_before_flagging.md) — classify each numeral as tally/constraint/anaphor/quotation/prose-continuation against core-principles.md §7 before flagging; most grep hits are exempt

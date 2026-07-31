@@ -9,7 +9,9 @@ Reviewing `claude-config`'s rules set for §7 violations ("no 'number
 of' before a self-counting list") means grepping for number words and
 then **adjudicating each hit**, not flagging them. A raw grep over
 `CLAUDE.md` + `rules/` returns roughly a dozen hits, of which typically
-zero to one are actual violations. Classify each:
+zero to one are actual violations, because §7 exempts several numeral
+shapes that a plain grep can't distinguish from a real tally. Classify
+each hit:
 
 - **Tally** (the violation): count word immediately before an adjacent
   enumerated list — bullets, numbered items, *or a table* — that the
@@ -27,23 +29,22 @@ zero to one are actual violations. Classify each:
   itself to prose introducing an *adjacent enumerated list*, and
   running prose is not one.
 
-**Why:** on PR 34 round 5 I had to adjudicate every hit individually to
-confirm the fixer's sweep was complete. Flagging an exempt numeral
-would have been a fabricated finding in the file that *defines* the
-rule — maximally embarrassing and, at the review cap, costly. Equally,
-missing a real one costs a round. The §7 text carries its own carve-out
-("a count that carries independent meaning… rather than a tally of a
-list already in view"), so the adjudication criteria are in the file
-itself; read them before judging.
+**Why:** flagging an exempt numeral is a fabricated finding in the file
+that *defines* the rule — maximally embarrassing, and costly at a
+review cap. Equally, missing a real one costs a round. The §7 text
+carries its own carve-out ("a count that carries independent
+meaning… rather than a tally of a list already in view"), so the
+adjudication criteria are in the file itself; read them before
+judging.
 
 **How to apply:** when a review round flags a §7 instance, expect the
 fixer to sweep per §8 and expect the sweep to touch files beyond the
 flagged one. Verify the sweep by grepping the *touched-file set* and
 classifying each hit as above, and separately confirm each sweep edit
 preserved meaning — the count word is often adjacent to load-bearing
-text ("the report has three parts **and nothing else**", "**All** of
-these must hold"), where deleting the numeral is safe but deleting the
-surrounding qualifier would silently loosen a constraint. Check the
-qualifier survived, not just that the numeral left. Also check whether
-a flagged line is even in the diff: pre-existing lines outside the PR's
-changes are not this PR's findings.
+text ("the report has the following parts **and nothing else**"), where
+deleting the numeral is safe but deleting the surrounding qualifier
+would silently loosen a constraint. Check the qualifier survived, not
+just that the numeral left. Also check whether a flagged line is even
+in the diff: pre-existing lines outside the PR's changes are not this
+PR's findings.
