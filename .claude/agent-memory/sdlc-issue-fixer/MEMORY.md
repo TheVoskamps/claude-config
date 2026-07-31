@@ -1,0 +1,2 @@
+- [claude-config repo purpose](project_claude_config_repo_purpose.md) — source-of-truth repo for ~/.claude; issue #30/PR 34 rewrote the rules set for a frontier-model fleet
+- [Sweep the class on self-referential rules](feedback_sweep_the_class_on_self_referential_rules.md) — grep whole touched-file set for a flagged rule-violation pattern, not just the named line
