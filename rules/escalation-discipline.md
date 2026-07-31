@@ -6,7 +6,9 @@ than inventing a workaround — when you hit one of these:
 - **An environmental mismatch the task does not describe.** The host
   Python rejects a dependency, the deployment target's runtime differs
   from the host's, a required tool is missing, a credential has
-  expired, a base image won't pull, a port is occupied.
+  expired and no allowed refresh command exists (see
+  `rules/credential-surfaces.md`), a base image won't pull, a port is
+  occupied.
 - **A rule that contradicts another rule, or that doesn't fit the
   situation.** The task body tells you to write to `/tmp/` but the
   agent rules forbid it; a rule says "verify in a venv" but the host
@@ -16,8 +18,8 @@ than inventing a workaround — when you hit one of these:
   that have nothing to do with the version bump you were asked for.
 
 These are not implementation noise to solve and move on from. Each is a
-decision about which canonical path to take, and the answer shapes
-every future run — so the human needs to see it in real time.
+decision about which canonical path to take, and the decision belongs
+to the human, not to you — surface it and stop.
 
 ## The report shape
 

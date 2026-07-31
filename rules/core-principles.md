@@ -49,7 +49,8 @@ cheaply undo, so each requires explicit approval before you act:
   behind it is not.
 
 When one of these comes up: say what you found, say what you would do,
-and ask. When none of them is in play, act.
+and ask. When none of these is in play and the task raises no decision
+that is the user's to make (`rules/escalation-discipline.md`), act.
 
 ## 2. Be precise; ask when genuinely ambiguous
 

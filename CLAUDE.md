@@ -6,31 +6,36 @@ This file provides core guidance to Claude Code across all projects.
 > because you are a subagent and your agent definition told you to
 > load global rules — the `@~/` lines below are not auto-expanded for
 > you the way they are at main-session startup. Read each `@~/` line
-> yourself, with these exceptions:
->
-> - `rules/ask-vs-discuss.md` — skip; it governs interactive
->   question-asking, which a subagent does not do.
-> - `rules/foreground-vs-background.md` — skip; it governs how the
->   main session resumes subagents.
->
-> The list below — `@~/` lines and the plain-path line alike — is the
-> canonical enumeration of the rules set.
+> yourself, so every reader ends up with the same always-on set. The
+> plain-path lines are never loaded up front, by main session or
+> subagent — each loads only on the trigger stated inline, whichever
+> reader the trigger fires for.
 
 The list below is the single canonical enumeration of the rules set,
 kept as one list so a future rules file joins the fleet's diet with no
-second edit point. Most lines are `@`-expanded: the main session loads
-them at startup, and a subagent reads each one per the note above.
-`rules/credential-surfaces.md` is the one plain-path line instead — it
-is purely situational for every reader, main session included, so
-loading it up front would be dead weight most sessions never touch.
-Read it when a command fails with an authentication error, before you
-report that failure.
+second edit point, now with per-line load mode. A file earns
+`@`-expansion only when it shapes judgment continuously — its
+applicability can't be recognized without the rule already in
+context. A file whose applicability announces itself at a crisp
+moment loads on demand instead, and its line carries a one-line
+kernel so the hard rule stays available even when the procedure
+doesn't load.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
 @~/.claude/rules/escalation-discipline.md
-@~/.claude/rules/install-discipline.md
 @~/.claude/rules/label-uncertainty.md
-rules/credential-surfaces.md
-@~/.claude/rules/ask-vs-discuss.md
-@~/.claude/rules/foreground-vs-background.md
+rules/credential-surfaces.md — read when a command fails with an
+  authentication error, before you report that failure.
+rules/install-discipline.md — read before running any install command,
+  or when a needed tool is missing. Kernel: never install on your own
+  initiative; lockfile-honoring installs only.
+rules/git-recovery.md — read when a commit is rejected for missing
+  signatures, a merge is requested, or a commit landed on the wrong
+  branch.
+rules/ask-vs-discuss.md — main session only; read before presenting a
+  multiple-choice question form. Kernel: forms decide among known
+  options, they do not build understanding.
+rules/foreground-vs-background.md — main session only; read before
+  continuing or resuming a stopped subagent. Kernel: never resume via
+  SendMessage.
