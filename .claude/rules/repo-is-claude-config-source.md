@@ -30,17 +30,12 @@ When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
 edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
 deployed copy in `~/.claude/`.
 
-Editing these files **in this repo** is ordinary in-repo work. It
-follows the normal code-change approval flow (propose → approve →
-edit → commit). It is **NOT** the "propose before editing global
-~/.claude" case from `core-principles.md` §1.5.
-
-The `core-principles.md` §1.5 rule ("PROPOSE BEFORE EDITING GLOBAL
-~/.claude") applies to editing the **deployed copies** under
-`~/.claude/` directly — e.g. when working in some *other* repo and
-reaching over into `~/.claude/`. It explicitly does NOT apply to
-editing the source files in this repo, which is this repo's entire
-purpose.
+Editing these files **in this repo** is ordinary in-repo work: they
+are inside your sandbox, so the repository-boundary carve-out in
+`core-principles.md` §1 does not apply to them. That carve-out governs
+writes to the **deployed copies** under `~/.claude/` — e.g. reaching
+over into `~/.claude/` while working in some *other* repo. Editing the
+source files here is this repo's entire purpose.
 
 ## The trap to avoid
 

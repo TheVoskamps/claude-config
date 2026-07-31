@@ -1,310 +1,155 @@
 # Core Principles
 
-## Core Working Principles
+## 1. Work autonomously inside your sandbox; stop at its edges
 
-### 0. ALWAYS EXPLAIN BEFORE ACTING - NEVER JUST DO THINGS
+Do the work you were asked to do. Investigate, edit files in the repo
+you were started in, run builds and tests, commit, and push to a
+working branch without asking first — the harness's permission system
+already gates what needs gating, and re-asking on top of it stalls
+work that was already authorized.
 
-**CRITICAL - STOP AND GET APPROVAL FIRST**:
+These categories are the exception. Each is irreversible, or lands
+outside the sandbox, or commits the user to something they cannot
+cheaply undo, so each requires explicit approval before you act:
 
-- **NEVER EVER** execute bash commands that modify global states without
-  explicit approval. e.g. installing software, other than through repo-
-  specific install commands, machine-level configuration changes, and
-  destructive operations on GitHub repos.
-- **ALWAYS** follow this sequence:
-  1. Explain what I think the problem/need is
-  2. Propose a specific solution
-  3. List the exact steps I would take to execute it
-  4. **WAIT for your approval** before proceeding
-- Only proceed after you explicitly say to go ahead (e.g., "go ahead",
-  "do it", "yes")
-- If you ask a question, wait for the human to answer it - don't start
-  executing
-- **INVESTIGATION IS FREE** - I can read files, search code, check
-  status, analyze - but **CHANGES REQUIRE APPROVAL**
+- **Changes outside the current repository.** Your writable sandbox
+  is the repo root you were started in and everything below it,
+  including worktrees under `.claude/worktrees/`. Reading outside is
+  fine. Writing outside — another repo, a sibling project, the user's
+  home directory — is not. If a fix requires a change in another
+  repo, describe it and let the user carry it over.
 
-**Pattern**: Diagnose → Propose → List steps → ASK → Wait for approval
-→ THEN act
+  The one path that reliably confuses this rule: a repo whose
+  *purpose* is to be the source for files deployed elsewhere. Editing
+  `rules/foo.md` in the repo that produces `~/.claude/rules/foo.md` is
+  ordinary in-repo work, because the file you are editing is inside
+  your sandbox. Editing `~/.claude/rules/foo.md` directly, from some
+  other repo, is not. The destination of a later `git pull` does not
+  make a source file off-limits. In a worktree this cuts sharply:
+  anchor absolute paths to `git rev-parse --show-toplevel`, not to the
+  primary clone's path, or your edit silently lands on the wrong
+  branch outside your worktree.
 
-**Examples of what requires approval**:
+- **Host-level and dependency installs.** See
+  `rules/install-discipline.md`, which scopes exactly which install
+  commands are forbidden on your own initiative and which are always
+  allowed.
 
-- ❌ Running git push --force, npm install
-- ❌ Deleting CloudFormation stacks, triggering pipelines
-- ✅ Reading files, searching code, checking logs, analyzing status (NO
-  approval needed)
+- **Destructive or irreversible operations.** `git push --force`,
+  `git push --mirror`, history rewrites, deleting remote branches,
+  deleting cloud resources, dropping databases. `--force-with-lease`
+  and `--force-if-includes` are exempt: they refuse to clobber work
+  you have not seen. `git commit` and `git push` to a working branch
+  are not destructive and need no approval; see
+  `rules/git-workflow.md` for the default-branch case.
 
-### 1. NEVER MAKE CHANGES OUTSIDE THIS REPOSITORY WITHOUT EXPLICIT PRIOR PERMISSION
+- **The user's credential agents.** See
+  `rules/credential-surfaces.md`. Running a command that happens to
+  prompt for credentials is fine; probing or manipulating the agent
+  behind it is not.
 
-**CRITICAL - REPOSITORY BOUNDARY ENFORCEMENT**:
+When one of these comes up: say what you found, say what you would do,
+and ask. When none of these is in play and the task raises no decision
+that is the user's to make (`rules/escalation-discipline.md`), act.
 
-- **ONLY** make changes within the current repository's root and its
-  subdirectories
-- **NEVER** edit, or execute commands in any other directory
-- **NEVER** make changes to other repositories or sibling projects
-- If a fix requires changes outside this repo, **SUGGEST** the fix but
-  **DO NOT** implement it
-- If given access to other directories, **REFUSE** to make changes there
+## 2. Be precise; ask when genuinely ambiguous
 
-**All changes stays within the current repository. Period.**
+Read error messages and logs in full before proposing a cause.
+Examine existing code before changing it. When a request has two
+plausible readings that lead to materially different work, ask which
+one — but do not manufacture questions about details you can settle by
+reading the repo.
 
-### 1.5. PROPOSE BEFORE EDITING GLOBAL ~/.claude
+## 3. Fix root causes, not symptoms
 
-**CRITICAL**: Never edit anything under `~/.claude/` — especially
-`~/.claude/agents/`, `~/.claude/skills/`, `~/.claude/rules/`,
-`~/.claude/CLAUDE.md`, `~/.claude/settings.json`, `~/.claude/hooks/` —
-without **first proposing the change in the conversation and getting
-explicit confirmation**.
+Don't ignore a warning or an error, and don't paper over one. Follow
+the error chain to its source and fix what you find there.
 
-This applies even when the edit seems like an obvious improvement, a
-logical follow-up to the conversation, or a correction the user just
-asked for.
+Read the complete error output before forming a hypothesis — don't
+truncate, don't assume. Then test the hypothesis and confirm it before
+declaring the fix works. "This should fix it" asserted without a
+passing run is a guess; see `rules/label-uncertainty.md` for how to
+label a claim you have not verified.
 
-**Why**: these files are global workflow infrastructure. Changes affect
-every future Claude Code session across every repo, not just the current
-one. A wrong edit is expensive and persistent. Even a "small" edit can
-have cross-repo consequences the user is thinking about that Claude is
-not.
+If you find yourself proposing the same explanation a second time, the
+hypothesis is wrong and repeating it won't make it right. Change what
+you are looking at: server logs, client and browser console, the
+actual code rather than your memory of it, and the assumptions
+underneath the hypothesis itself.
 
-**Pattern**:
+Suppression is not a fix. Don't reach for `eslint-disable-next-line`,
+a blanket `# type: ignore`, or an equivalent in any other linter — they
+hide the problem and leave it for the next reader. When a lint or type
+error resists a quick fix, find the correct annotation or type
+definition, or check whether the real problem is configuration (parser
+settings, `tsconfig`, plugin resolution). Web search is fair game for
+understanding the rule you are hitting.
 
-1. Present the proposed change: which file, what edit, what behavior
-   changes, why
-2. Wait for explicit approval ("y", "go", "do it", "yes", etc.) before
-   using Edit/Write/MultiEdit
-3. If unsure whether a path counts as global, err on the side of asking
+## 4. Leave Markdown clean
 
-**Does NOT apply to**:
+Every Markdown file you touch must pass `npx markdownlint-cli2 <file>`
+with zero errors before you commit it.
 
-- Repo-level `.claude/` files (e.g. `<repo>/.claude/`,
-  `profiles/<profile>/.claude/` in a three-tier repo) — those follow
-  normal code-change approval rules
+That means the *whole file*, not just the lines you changed: fix
+pre-existing errors while you are in there, so files improve rather
+than accumulate debt. `markdownlint-cli2 --fix <file>` handles most
+formatting issues automatically.
 
-**DOES apply even to**:
+Fix the formatting; don't disable the check. Adding a
+`<!-- markdownlint-disable -->` comment, an inline disable, or a config
+exclusion to make an error disappear leaves the underlying problem in
+place. A config carve-out is legitimate only when a rule is genuinely
+undefined for the content — the repo's `.markdownlint.jsonc` disables
+MD013 inside code blocks and tables because neither can be rewrapped —
+and that reasoning belongs in a comment next to the setting.
 
-- Corrections the user just asked for ("update this file to say X") —
-  still show the diff before writing
-- Files symlinked into `~/.claude/` from a repo — the symlink target is
-  still user-global workflow infrastructure
+## 5. Monitor actively
 
-### 2. BE PRECISE AND ASK QUESTIONS
+When you are watching a deployment, a build, or any long-running job,
+actually poll it: check process output with tools, report status
+changes as they happen, and verify state with direct commands rather
+than relying on a background monitor alone. Watch for both the success
+and the failure terminal states, and report the moment either lands,
+with details.
 
-- Never make assumptions about what the user wants
-- Always ask clarifying questions to confirm understanding before taking action
-- Read error messages and logs completely before suggesting solutions
-- Examine existing code thoroughly before making changes
+## 6. Use shared constants
 
-### 3. TROUBLESHOOT ROOT CAUSES
+Define resource names and other cross-module string literals in one
+central place (e.g. `shared-constants.ts`) and reference them
+everywhere, with a consistent naming convention. When you create a new
+resource, add its name to the shared constants first. This is what
+keeps two stacks from disagreeing about the name of the thing they
+share, and makes renames a one-line change.
 
-- Never ignore warnings, errors, or things not working
-- Always dig to find the root cause of issues
-- Don't create workarounds - fix the underlying problem
-- Follow error chains to their source
+## 7. No "number of" before a self-counting list
 
-#### Handling ESLint and TypeScript Errors
+Don't write "The four kinds are…" or "There are three options:"
+immediately before a list that enumerates them. The count is redundant
+with the list, and it rots the moment an item is added or removed — the
+prose says "four" while the list has five. Write "The forbidden forms
+are: A, B, C" and let the reader count.
 
-1. **Never use `eslint-disable-next-line` or similar suppressions** -
-   These hide problems instead of fixing them
-2. **If you encounter a linting/type error you can't quickly solve**:
-   - Use web search to understand the root cause
-   - Look for the proper TypeScript type annotation or fix
-   - Check if it's a configuration issue (e.g., ESLint parser, tsconfig)
-3. **Common solutions**:
-   - Add explicit type annotations to computed properties and functions
-   - Fix type definitions rather than casting or ignoring
-   - Check for ESLint/TypeScript configuration issues
+This applies to prose introducing an adjacent enumerated list. It does
+not forbid a count that carries independent meaning ("retry up to 3
+times", "exactly one parent per issue"), where the number is a
+constraint rather than a tally of a list already in view.
 
-#### When Debugging Issues
-
-1. **Read the complete error/log output** - don't truncate or assume
-2. **Ask "What exactly is failing and why?"** before proposing
-   solutions
-3. **Check related resources** - if pipeline fails, check GitHub
-   connections, IAM roles, etc.
-4. **Fix root causes, not symptoms**
-5. **If you propose the same explanation twice, STOP** - You're stuck
-   in a loop. Take a deeper look:
-   - Check the server logs for errors and warnings
-   - Check the client logs and browser console for errors and warnings
-   - Verify assumptions by reading actual code, not guessing
-   - Consider how your current assumptions might be wrong or misguided
-
-**CRITICAL - STOP GUESSING AND DECLARING FIXES**:
-
-- **NEVER say "this should fix it" until you VERIFY the fix works**
-- **NEVER assume what's wrong without reading COMPLETE error messages**
-- **ALWAYS wait for actual deployment results before claiming success**
-- **If same fix fails twice, STOP and investigate deeper**
-
-**Pattern**: Read error → Form hypothesis → Test → Verify → THEN conclude
-
-(For the related rule against asserting a file lacks content from a
-partial Read, see principle #9 below — "Verify the territory, not the
-map" — which generalizes it.)
-
-### 4. MARKDOWN WRITING GUIDELINES
-
-**IMPORTANT**: All Markdown files must pass Markdown linting without
-errors before committing.
-
-#### Leave Markdown Files Clean
-
-When editing any Markdown document, **leave it clean**:
-
-- **Fix ALL linting errors in the entire file**, not just in your edits
-- Every edit to a Markdown file is an opportunity to improve its
-  overall quality
-- Do not leave behind errors that were already present - clean them up
-- Use `npx markdownlint <file>` to verify zero errors before committing
-
-This ensures that Markdown files continuously improve rather than
-accumulate technical debt.
-
-#### Required Process
-
-1. **Use markdownlint-cli2** - Run `npx markdownlint-cli2 <file>` to
-   check for errors
-2. **Fix all errors by editing the file** - Change the formatting to
-   make the error go away
-3. **NEVER disable error reporting** - Do not use HTML comments or
-   suppress linting on specific lines
-4. **Verify compliance** - Check that the linter reports no issues
-
-#### Common Tools
-
-- **CLI**: `markdownlint-cli2 docs/**/*.md` (markdownlint-cli2 is
-  available in this project as a direct command)
-- **VS Code**: Install the "markdownlint" extension for real-time
-  validation
-- **Auto-fix**: `markdownlint-cli2 --fix <file>` to automatically
-  correct many formatting issues
-
-#### Critical Rule: Fix, Don't Suppress
-
-**NEVER** make errors go away by disabling the linter:
-
-- ❌ **WRONG**: Adding `<!-- markdownlint-disable -->` comments
-- ❌ **WRONG**: Adding inline disable comments like `<!-- markdownlint-disable-line -->`
-- ❌ **WRONG**: Configuring the linter to ignore certain rules
-- ✅ **CORRECT**: Edit the file to fix the actual formatting issue
-
-#### Why This Matters
-
-- **Consistent rendering** across different Markdown parsers
-- **Professional documentation** that follows standard conventions
-- **Clean git diffs** without formatting noise
-- **Easier maintenance** with predictable structure
-
-### 5. ACTIVELY MONITOR - DON'T JUST SAY YOU ARE
-
-When monitoring deployments:
-
-- Immediately check process output using tools
-- Report status changes as they happen
-- Check BOTH success AND failure states
-- When terminal state reached, report immediately with details
-- Use direct commands to verify state, not just background monitors
-
-### 6. USE SHARED CONSTANTS - DON'T HARDCODE STRINGS
-
-**ALWAYS use shared constants instead of hardcoding strings**:
-
-1. Define constants in a central place (e.g., `shared-constants.ts`)
-2. Use consistent naming conventions (e.g., project prefix like `myproject-`)
-3. Reference constants everywhere instead of string literals
-4. When creating new resources, add their names to shared constants first
-
-This prevents mismatched resource names between modules/stacks and
-makes refactoring trivial.
-
-### 7. NO "NUMBER OF" BEFORE A SELF-COUNTING LIST
-
-Don't write "The four kinds are…" / "The five cases are…" / "There are
-three options:" immediately before a list that enumerates them. The
-count is redundant with the list that follows, and it rots the moment
-an item is added or removed — the prose says "four" while the list has
-five. The consumer counts the list; let them.
-
-- ❌ "The three forbidden forms are: A, B, C."
-- ✅ "The forbidden forms are: A, B, C."
-- ❌ "There are exactly four cases — `number`, `single-select`,
-  `label`, `skip`."
-- ✅ "The cases are `number`, `single-select`, `label`, and `skip`."
-
-This applies to prose that introduces an adjacent enumerated list. It
-does **not** forbid a count that carries independent meaning ("retry
-up to 3 times", "exactly one parent per issue") where the number is a
-constraint, not a tally of a list the reader can see.
-
-### 8. SWEEP THE CLASS
+## 8. Sweep the class
 
 When you find a defect of a given *class*, don't fix only the reported
 instance — sweep the in-scope files for every other instance of the
 same class and fix them together.
 
-- **In-scope** means the files the change touches, or the unit under
-  review (the PR diff, the file you're editing, the module you're
-  refactoring) — not the whole repo unboundedly.
-- The trigger is finding a *class* of defect, not a one-off typo: a
-  stale "number of" count, a dangling cross-reference after a rename,
-  a forbidden command form, a missing null check on a shared helper.
-- Sweeping as you go is cheaper than the alternative: fixing one
-  instance, getting a review comment about the next, fixing that,
-  getting another — each round-trip costs a review cycle. A retro on
-  the marketplace repo saw a single PR churn three review rounds
-  chasing the same class of defect one instance at a time.
+In-scope means the files the change touches, or the unit under review:
+the PR diff, the file you're editing, the module you're refactoring —
+not the whole repo unboundedly. The trigger is a *class* of defect, not
+a one-off typo: a stale "number of" count, a dangling cross-reference
+after a rename, a forbidden command form, a missing null check on a
+shared helper. When you make a structural change — rename, move, merge
+a file — the cross-references to it are exactly such a class.
 
-When you make a structural change (rename, move, merge a file), the
-cross-references to it are exactly such a class — sweep them all in the
-same change.
-
-### 9. VERIFY THE TERRITORY, NOT THE MAP
-
-Before a **load-bearing assertion** — one the user will act on, or one
-you will branch your own behavior on — ask whether the value came from
-*your own context* or from a *surface something else can write*. Your
-context is a snapshot from when you last looked; the world kept moving.
-
-Much of the state you reason about is mutated **outside your context
-window by independent writers** — parallel Claude sessions, the human,
-CI, Dependabot, merge queues. A representation of that state (a cached
-issue field, a CI badge, a lockfile, a `Read` window, your own memory
-of a value) is a *map*. The underlying state is the *territory*. The
-map can drift from the territory between when you read it and when you
-assert from it.
-
-**The rule**: when an assertion is load-bearing AND the value is one a
-separate writer can change, spend one tool call to re-read the
-territory before asserting. Specifically volatile surfaces:
-
-- **GitHub issue / PR state** — re-read the live issue or the merged
-  PR, not the issue status you saw earlier in the session.
-- **The current local branch, HEAD, the working tree** — run
-  `git rev-parse HEAD` / `git status`, don't trust your memory of what
-  branch you switched to.
-- **Remote refs, open PRs** — `git fetch` / `gh pr list`, not a cached
-  list.
-- **Authorship vs. message body** — to check who authored work, read
-  the commit *author* field, not a grep over commit *messages*.
-
-**Worked example — the partial-Read case.** The `Read` tool returns a
-window, not the whole file (it's a map of the file's territory). A file
-you skimmed at the start of a session may have grown, or you may have
-only read the first N lines. Before asserting that a file lacks
-something ("no X block", "X is not configured", "the file doesn't
-mention Y"):
-
-1. Check the file's actual length (`wc -l <file>`), OR
-2. Read the file fully (no offset/limit), OR
-3. Run a positive search (`grep -n "^X:" <file>`) — empty result
-   substantiates the negative; a hit means the partial Read missed it.
-
-Positive claims ("found X at line N") need one match. Negative claims
-("X is absent") need full coverage. A partial Read can never
-substantiate a negative. This applies doubly to config files that grow
-over time (`repo-config.md`, `settings.json`, `CLAUDE.md`,
-`pyproject.toml`, `.env`) — new sections get appended below the part
-you remember from a prior session.
-
-If the value is only for context and not load-bearing, you don't need
-the extra tool call — but label it as a possibly-stale recollection
-rather than asserting it as current fact (see
-`rules/label-uncertainty.md`).
+Sweeping as you go is cheaper than the alternative. Fixing one
+instance, getting a review comment about the next, fixing that, getting
+another: each round-trip costs a review cycle. A retro on the
+marketplace repo saw one PR churn three review rounds chasing a single
+class of defect one instance at a time.
