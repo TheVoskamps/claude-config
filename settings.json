@@ -178,7 +178,6 @@
     "defaultMode": "auto",
     "additionalDirectories": []
   },
-  "model": "claude-opus-5",
   "enabledPlugins": {
     "show-agent-calls@thevoskamps": true,
     "show-loaded-rules@thevoskamps": true,
@@ -205,8 +204,9 @@
       "autoUpdate": true
     }
   },
-  "alwaysThinkingEnabled": false,
+  "model": "claude-opus-5",
   "effortLevel": "medium",
+  "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "theme": "dark",
   "agentPushNotifEnabled": true,
