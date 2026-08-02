@@ -24,6 +24,24 @@ by the `@thevoskamps` marketplace plugins, declared in the
 A task to "update skill X", "change agent Z", or "edit a hook" is an
 edit in the corresponding plugin repo, not here.
 
+## Rules headings are quoted downstream
+
+Section headings in `rules/*.md` are load-bearing outside this repo:
+`@thevoskamps` plugin skills and agent definitions cite them verbatim
+as prose pointers, and those plugins live in separate repos a worktree
+of this repo cannot edit. A heading rename here lands as a dangling
+reference over there, unnoticed until a reader greps for a string that
+no longer exists. Treat a heading rename as an API change, not a
+wording tweak.
+
+When a task's substance is in the body of a rules section, leave the
+heading alone. If the heading is genuinely wrong after the change,
+make the smallest edit that keeps the old text a substring of the new
+one, and say in the report-back that downstream quoters may need a
+follow-up. To find who quotes what, grep the plugin cache under
+`~/.claude/plugins/cache/thevoskamps/` — reading outside the repo is
+allowed, writing there is not.
+
 ## What this means for editing
 
 When a task says "fix rule Y" or "update `CLAUDE.md`", the file to

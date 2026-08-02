@@ -5,6 +5,8 @@ metadata:
   type: project
 ---
 
+# Git command forms gated in the worktree sandbox
+
 In this repo's worktree sandbox, three git invocation shapes are
 blocked by the harness before they run: `git -C <abs-path> <cmd>`
 ("forbidden form"), any `git` call whose arguments contain a command
@@ -14,8 +16,7 @@ unverifiable). Each rejection costs a wasted tool call.
 
 **Why:** worktree-isolated agents' git operations must be statically
 verifiable as targeting their own worktree; dynamic tokens defeat the
-gate. Hit three times in one pr-reviewer run (2026-08-02) while
-verifying PR #38's topology.
+gate.
 
 **How to apply:** run bare `git <subcommand>` with literal arguments
 from the worktree cwd (cwd persists across Bash calls here despite

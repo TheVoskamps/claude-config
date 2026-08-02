@@ -5,6 +5,8 @@ metadata:
   type: feedback
 ---
 
+# Adjudicate count words before flagging
+
 Reviewing `claude-config`'s rules set for §7 violations ("no 'number
 of' before a self-counting list") means grepping for number words and
 then **adjudicating each hit**, not flagging them. A raw grep over
