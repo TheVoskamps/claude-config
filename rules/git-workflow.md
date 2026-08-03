@@ -111,7 +111,7 @@ Closes #201
 Closes #207
 ```
 
-For an ordinary single-issue branch that collapses to the one line it
+For an ordinary single-issue branch, that collapses to the one line it
 has always been: a branch whose set is {123} carries `Closes #123` (or
 `Fixes #123` / `Resolves #123`) and nothing further. Prohibited:
 
