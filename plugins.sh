@@ -82,8 +82,9 @@ DRY_RUN=0
 
 # --- Quiet mode ------------------------------------------------------------
 # QUIET is turned on by do_update (see below) unless VERBOSE=1 is set in the
-# environment. --install leaves it off: adding a marketplace or installing a
-# plugin is a real change, and its output is worth reading.
+# environment or --dry-run is in effect. --install leaves it off: adding a
+# marketplace or installing a plugin is a real change, and its output is worth
+# reading.
 
 VERBOSE="${VERBOSE:-0}"
 QUIET=0
