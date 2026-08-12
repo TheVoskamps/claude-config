@@ -36,6 +36,12 @@
 # Per-item failures do NOT abort the run: every marketplace and plugin is
 # attempted, failures are collected, and a summary is printed at the end. The
 # script exits non-zero if any item failed.
+#
+# --update is quiet by default: an item that was already up to date prints
+# nothing, so a fully-synced run reports only its two section headers and the
+# final `[ok]` line. Set VERBOSE=1 to see every per-item label and the full
+# `claude plugin ...` stdout. Only stdout is filtered — stderr, warnings, and
+# the failure summary always pass through.
 
 set -euo pipefail
 
@@ -60,6 +66,10 @@ Usage:
 Options:
   --dry-run   Print the claude commands that would run; execute nothing.
 
+Environment:
+  VERBOSE=1   Do not quiet --update: print every per-item label and the
+              full claude plugin output, including no-op progress chatter.
+
 SETTINGS_FILE defaults to ~/.claude/settings.json.
 EOF
 }
@@ -70,8 +80,45 @@ EOF
 FAILURES=()
 DRY_RUN=0
 
+# --- Quiet mode ------------------------------------------------------------
+# QUIET is turned on by do_update (see below) unless VERBOSE=1 is set in the
+# environment or --dry-run is in effect. --install leaves it off: adding a
+# marketplace or installing a plugin is a real change, and its output is worth
+# reading.
+
+VERBOSE="${VERBOSE:-0}"
+QUIET=0
+
+# stdout lines the `claude plugin ...` commands print while doing nothing:
+# progress chatter, plus the "nothing to do" verdict itself.
+QUIET_PATTERNS='Refreshing marketplace cache|Successfully updated marketplace|Checking for updates for plugin|is already at the latest version'
+
+# Run "$@" with the no-op chatter dropped from its stdout, and return the exit
+# status of "$@" itself rather than grep's.
+#
+# grep exits 1 when it emits nothing, which is exactly what an up-to-date item
+# looks like, so grep's status must not be mistaken for the command's. Reading
+# PIPESTATUS[0] on the line right after the pipeline is what keeps a real
+# `claude` failure visible. That also rules out the `| grep ... || true` form:
+# `true` is itself a pipeline, so it would overwrite PIPESTATUS before it could
+# be read.
+#
+# Call this only from a context where errexit is disabled (an `if` condition, a
+# `!` negation, or the left side of `||`, as run_item does) so the failing
+# pipeline does not abort the whole run under `set -e`.
+#
+# stderr is not piped, so genuine error text still reaches the terminal.
+run_quiet() {
+    local status
+    "$@" | grep -Ev "$QUIET_PATTERNS"
+    status=${PIPESTATUS[0]}
+    return "$status"
+}
+
 # Run a claude command for one item; record a failure instead of aborting.
 # In dry-run mode, print the command that would run and execute nothing.
+# In quiet mode, the per-item label is printed only when the item fails —
+# an up-to-date item is silent end to end.
 #   run_item "<human label>" claude plugin ...
 run_item() {
     local label="$1"; shift
@@ -79,8 +126,14 @@ run_item() {
         echo "[dry-run] $*"
         return 0
     fi
-    info "$label"
-    if ! "$@"; then
+    local ok=1
+    if [[ "$QUIET" == 1 ]]; then
+        run_quiet "$@" || ok=0
+    else
+        info "$label"
+        "$@" || ok=0
+    fi
+    if [[ "$ok" == 0 ]]; then
         warn "failed: $label"
         FAILURES+=("$label")
     fi
@@ -118,6 +171,12 @@ enabled_plugins() {
 # --- Modes -----------------------------------------------------------------
 
 do_update() {
+    # Quiet the no-op chatter unless the caller asked for everything. Dry-run
+    # output is a listing of commands, not command output, so leave it alone.
+    if [[ "$VERBOSE" != 1 && "$DRY_RUN" != 1 ]]; then
+        QUIET=1
+    fi
+
     info "Updating marketplaces from $SETTINGS"
     local name found=0
     while IFS= read -r name; do
@@ -126,7 +185,9 @@ do_update() {
         run_item "marketplace update: $name" \
             claude plugin marketplace update "$name"
     done < <(marketplace_names)
-    [[ "$found" == 0 ]] && warn "no marketplaces in .extraKnownMarketplaces; skipping"
+    if [[ "$found" == 0 ]]; then
+        warn "no marketplaces in .extraKnownMarketplaces; skipping"
+    fi
 
     info "Updating plugins from $SETTINGS"
     local plugin
@@ -137,7 +198,9 @@ do_update() {
         run_item "plugin update: $plugin" \
             claude plugin update "$plugin"
     done < <(enabled_plugins)
-    [[ "$found" == 0 ]] && warn "no enabled plugins in .enabledPlugins; skipping"
+    if [[ "$found" == 0 ]]; then
+        warn "no enabled plugins in .enabledPlugins; skipping"
+    fi
 }
 
 do_install() {
@@ -154,7 +217,9 @@ do_install() {
         run_item "marketplace add: $name ($arg)" \
             claude plugin marketplace add "$arg"
     done < <(marketplace_add_args)
-    [[ "$found" == 0 ]] && warn "no marketplaces in .extraKnownMarketplaces; skipping"
+    if [[ "$found" == 0 ]]; then
+        warn "no marketplaces in .extraKnownMarketplaces; skipping"
+    fi
 
     info "Installing plugins from $SETTINGS"
     local plugin
@@ -165,7 +230,9 @@ do_install() {
         run_item "plugin install: $plugin" \
             claude plugin install "$plugin"
     done < <(enabled_plugins)
-    [[ "$found" == 0 ]] && warn "no enabled plugins in .enabledPlugins; skipping"
+    if [[ "$found" == 0 ]]; then
+        warn "no enabled plugins in .enabledPlugins; skipping"
+    fi
 }
 
 # --- Main ------------------------------------------------------------------

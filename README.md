@@ -73,6 +73,20 @@ settings file other than `~/.claude/settings.json`.
 - `--dry-run` combines with either mode to print the `claude` commands
   that would run without executing any of them.
 
+`--update` is quiet: an item that was already up to date prints nothing,
+so a fully-synced run shows only its two section headers and the closing
+`[ok]` line. Set `VERBOSE=1` to see every per-item label and the full
+`claude plugin` output instead:
+
+```sh
+VERBOSE=1 ./plugins.sh --update
+```
+
+Only stdout is filtered, so a failing item still shows the `claude`
+error text on stderr, its own `Warning: failed: ...` line, and an entry
+in the closing summary. `--install` is never filtered — adding a
+marketplace or installing a plugin is a real change worth reading.
+
 Per-item failures are collected rather than fatal: every marketplace and
 plugin is attempted, a summary lists any failures at the end, and the
 script exits non-zero if any failed. It requires `jq` and `claude` on
