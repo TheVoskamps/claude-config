@@ -164,7 +164,7 @@ marketplace_add_args() {
 enabled_plugins() {
     jq -r '
         (.enabledPlugins // {}) | to_entries[] |
-        select(.value == true or .value.enabled == true) | .key
+        select(.value == true or ((.value | type) == "object" and .value.enabled == true)) | .key
     ' "$SETTINGS"
 }
 
