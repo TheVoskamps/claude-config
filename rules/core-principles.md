@@ -60,50 +60,7 @@ plausible readings that lead to materially different work, ask which
 one — but do not manufacture questions about details you can settle by
 reading the repo.
 
-## 3. Fix root causes, not symptoms
-
-Don't ignore a warning or an error, and don't paper over one. Follow
-the error chain to its source and fix what you find there.
-
-Read the complete error output before forming a hypothesis — don't
-truncate, don't assume. Then test the hypothesis and confirm it before
-declaring the fix works. "This should fix it" asserted without a
-passing run is a guess; see `rules/label-uncertainty.md` for how to
-label a claim you have not verified.
-
-If you find yourself proposing the same explanation a second time, the
-hypothesis is wrong and repeating it won't make it right. Change what
-you are looking at: server logs, client and browser console, the
-actual code rather than your memory of it, and the assumptions
-underneath the hypothesis itself.
-
-Suppression is not a fix. Don't reach for `eslint-disable-next-line`,
-a blanket `# type: ignore`, or an equivalent in any other linter — they
-hide the problem and leave it for the next reader. When a lint or type
-error resists a quick fix, find the correct annotation or type
-definition, or check whether the real problem is configuration (parser
-settings, `tsconfig`, plugin resolution). Web search is fair game for
-understanding the rule you are hitting.
-
-## 4. Leave Markdown clean
-
-Every Markdown file you touch must pass `npx markdownlint-cli2 <file>`
-with zero errors before you commit it.
-
-That means the *whole file*, not just the lines you changed: fix
-pre-existing errors while you are in there, so files improve rather
-than accumulate debt. `markdownlint-cli2 --fix <file>` handles most
-formatting issues automatically.
-
-Fix the formatting; don't disable the check. Adding a
-`<!-- markdownlint-disable -->` comment, an inline disable, or a config
-exclusion to make an error disappear leaves the underlying problem in
-place. A config carve-out is legitimate only when a rule is genuinely
-undefined for the content — the repo's `.markdownlint.jsonc` disables
-MD013 inside code blocks and tables because neither can be rewrapped —
-and that reasoning belongs in a comment next to the setting.
-
-## 5. Monitor actively
+## 3. Monitor actively
 
 When you are watching a deployment, a build, or any long-running job,
 actually poll it: check process output with tools, report status
@@ -112,7 +69,7 @@ than relying on a background monitor alone. Watch for both the success
 and the failure terminal states, and report the moment either lands,
 with details.
 
-## 6. Use shared constants
+## 4. Use shared constants
 
 Define resource names and other cross-module string literals in one
 central place (e.g. `shared-constants.ts`) and reference them
@@ -121,7 +78,7 @@ resource, add its name to the shared constants first. This is what
 keeps two stacks from disagreeing about the name of the thing they
 share, and makes renames a one-line change.
 
-## 7. Sweep the class
+## 5. Sweep the class
 
 When you find a defect of a given *class*, don't fix only the reported
 instance — sweep the in-scope files for every other instance of the

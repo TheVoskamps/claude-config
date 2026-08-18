@@ -17,9 +17,11 @@ second edit point, now with per-line load mode. A file earns
 `@`-expansion only when it shapes judgment continuously — its
 applicability can't be recognized without the rule already in
 context. A file whose applicability announces itself at a crisp
-moment loads on demand instead, and its line carries a one-line
-kernel so the hard rule stays available even when the procedure
-doesn't load.
+moment loads on demand instead, and its entry carries a kernel of
+exactly one sentence, wrapped to this file's width as needed, so the
+hard rule stays available even when the procedure doesn't load. The
+trigger clause that precedes the kernel runs longer where a file has
+more than one condition that should load it.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
@@ -39,10 +41,13 @@ rules/ask-vs-discuss.md — read before presenting a multiple-choice
   not build understanding.
 rules/foreground-vs-background.md — read before continuing or
   resuming a stopped subagent. Kernel: never resume via SendMessage.
-rules/code-style.md — read before writing or reviewing code.
-  Kernel: your diff should be indistinguishable in style from the
-  file it lands in.
+rules/code-style.md — read before writing or reviewing code, where
+  code includes prose that instructs an agent (rules files, skills,
+  agent definitions); also before writing or reviewing any file the
+  repo declares a formatter or linter for. Kernel: your diff should be
+  indistinguishable in style from the file it lands in.
 rules/comment-style.md — read before writing or reviewing comments in
-  code. Kernel: a comment states a constraint the code can't show —
-  never provenance, next-line narration, or a correctness argument
-  aimed at the reviewer.
+  code, where code includes prose that instructs an agent (rules
+  files, skills, agent definitions); also before writing or reviewing
+  comments in any file the repo declares a formatter or linter for.
+  Kernel: a comment states a constraint the code cannot show.

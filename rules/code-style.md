@@ -1,13 +1,31 @@
 # Code Style
 
-Read before writing or reviewing code.
+Read before writing or reviewing code — and before writing or
+reviewing any file a repo declares a formatter or linter for, whatever
+that file's language.
+
+"Code" here includes prose written to instruct an agent: rules files,
+skills, agent definitions, and the like are source a model executes,
+so this guide governs them. Prose written for a human reader stays
+under `rules/communication-style.md`.
 
 The **preamble** below is judgment guidance for a human or an agent
 holding the whole change in its head. The **rules** under it are the
 machine-consumable part: each `###` heading under
-"Rules" is exactly one rule, phrased as a claim about a diff that a
-single quoted counterexample refutes. A tool enumerating rules from
-this file reads the `###` headings under "Rules" and nothing else.
+"Rules" is exactly one rule, phrased as a claim that a single quoted
+counterexample refutes.
+
+The evidence a rule quantifies over is the diff, plus the touched file
+at head where the rule's own wording asks for it. A rule about
+matching what a file already does cannot be settled from the diff
+alone: the convention it names lives in the lines the diff did not
+touch, so the counterexample is a pair — the added lines, and the
+lines they fail to match. Both halves are quotable, so such a rule
+stays disprovable. A rule that names neither piece of evidence is
+judgment guidance and belongs in the preamble.
+
+A tool enumerating rules from this file reads the `###` headings under
+"Rules" and nothing else.
 
 ## Preamble (not a rule source)
 
@@ -26,6 +44,25 @@ own change rather than as a silent rider on an unrelated one.
 Style is downstream of correctness, never a substitute for it. A
 change that satisfies every rule below and is wrong is still wrong.
 
+So fix root causes, not symptoms. Don't ignore a warning or an error,
+and don't paper over one: follow the error chain to its source and fix
+what you find there. If you find yourself proposing the same
+explanation a second time, the hypothesis is wrong and repeating it
+won't make it right — change what you are looking at: server logs,
+client and browser console, the actual code rather than your memory of
+it, and the assumptions underneath the hypothesis itself.
+
+Suppression is not a fix. `eslint-disable-next-line`, a blanket
+`# type: ignore`, a loosened linter config: each hides the problem and
+leaves it for the next reader. When a lint or type error resists a
+quick fix, find the correct annotation or type definition, or check
+whether the real problem is configuration (parser settings,
+`tsconfig`, plugin resolution). Web search is fair game for
+understanding the rule you are hitting. The rules below that this
+paragraph governs — "No suppression directive is added" and "Files
+conform to the repo's declared formatter and linter" — are its
+diff-checkable cases, not its whole content.
+
 ## Rules
 
 ### Naming follows the file's dominant convention
@@ -37,6 +74,19 @@ convention already dominant in the file it lands in.
 Counterexample shape: a `snake_case` local added to a file whose every
 other local is `camelCase`.
 
+### Structure follows the file's existing organization
+
+No unit the diff adds — function, method, class, module-level block —
+departs from the organizing convention the file it lands in already
+follows: where declarations sit relative to their use, how a unit is
+split into helpers rather than nested further, where errors are
+handled relative to where they arise, and the order the file groups
+its members in.
+
+Counterexample shape: a 200-line function with four levels of nesting
+added to a file whose other functions each stay under 30 lines and
+delegate to named helpers.
+
 ### No suppression directive is added
 
 No line the diff adds is a linter, type-checker, or compiler
@@ -44,12 +94,10 @@ suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
 `# type: ignore`, `# noqa`, `@SuppressWarnings`, `#pragma warning
 disable`, or any equivalent.
 
-The authority is `rules/core-principles.md` → "Fix root causes, not
-symptoms"; this rule is the diff-checkable form of that section's
-suppression-directive case only. Passing it says nothing about the
-rest of that section — a diff can add no suppression and still paper
-over a root cause. Removing an existing suppression is not a violation
-— only adding one is.
+This is the diff-checkable case of the preamble's
+suppression-is-not-a-fix paragraph, and no more: a diff can add no
+suppression and still paper over a root cause. Removing an existing
+suppression is not a violation — only adding one is.
 
 ### Every symbol the diff introduces is referenced
 
@@ -80,9 +128,13 @@ in a raised error, or returning it as a value the caller must handle.
 Counterexample shape: an empty catch block, or one whose entire body
 is a log call followed by falling through to the success path.
 
+A swallowed error is the runtime form of the suppression the preamble
+forbids at compile time: both make the symptom disappear and leave the
+cause in place.
+
 ### Existing helpers are reused rather than reimplemented
 
-No function the diff adds duplicates the behaviour of a function
+No function the diff adds duplicates the behavior of a function
 already reachable from the same module — already imported, already
 exported by a sibling, or already in the language's standard library.
 
@@ -101,18 +153,25 @@ diff leaves called with the old arity elsewhere in the repo.
 
 ### Files conform to the repo's declared formatter and linter
 
-Every file the diff touches passes the formatter and linter the repo
-already declares in its own configuration, with that configuration
-unmodified by the diff.
+Every file the diff touches passes, in whole, the formatter and linter
+the repo already declares in its own configuration — including the
+lines the diff did not change, and including files the repo lints as
+prose rather than as code, such as Markdown.
 
-The authority is `rules/core-principles.md` → "Leave Markdown clean",
-generalized from Markdown to every language the repo lints: a diff
-that loosens the config to make itself pass is a counterexample, not a
-compliance.
+A diff that loosens the config to make itself pass is a
+counterexample, not a compliance, and so is an inline disable comment
+(see "No suppression directive is added"). A config carve-out is
+legitimate only where a rule is genuinely undefined for the content —
+a line-length rule has no meaning inside a code fence or a table cell,
+because neither can be rewrapped — and the diff states that reasoning
+in a comment next to the setting.
 
-### Public behaviour changes ship with a test
+Counterexample shape: a diff that touches a file carrying pre-existing
+lint errors and leaves them there.
 
-Every change in behaviour the diff makes to a public entry point —
+### Public behavior changes ship with a test
+
+Every change in behavior the diff makes to a public entry point —
 exported function, HTTP route, CLI flag, event handler — is covered by
 a test the diff adds or updates, in repos that already have a test
 suite for that surface.
@@ -123,17 +182,17 @@ repo whose other flags are each tested.
 ## Per-repo extension
 
 A repo extends or overrides this guide with
-`<repo>/.claude/rules/code-style.md`, tracked the same way that repo
-already tracks `<repo>/.claude/rules/repo-config.md`. Git reaches a
-file only when every parent directory is un-ignored, so a `.gitignore`
-that un-ignores the `.claude/rules/` directory and matches nothing
-inside it picks the new file up with no further change — that one
-directory negation already covers every sibling. A by-name negation
-line is needed only where some pattern still matches the file itself,
-such as a recursive `*` or `.claude/**` ignore that re-catches the
-directory's contents. Its sibling guide has its own extension file at
-the fixed name `<repo>/.claude/rules/comment-style.md`; the two files
-are independent, and a repo may carry either, both, or neither.
+`<repo>/.claude/rules/code-style.md`. In most repos that is an
+ordinary tracked file needing no special handling. In a repo whose
+`.gitignore` ignores by default and un-ignores what it wants tracked,
+git reaches a file only when every parent directory is un-ignored
+first, so un-ignoring the `.claude/rules/` directory is enough — one
+directory negation covers every file in it. A by-name negation line is
+needed only where a later pattern re-matches the file itself, such as
+a recursive `*` or `.claude/**` ignore that re-catches the directory's
+contents. Its sibling guide has its own extension file at the fixed
+name `<repo>/.claude/rules/comment-style.md`; the two files are
+independent, and a repo may carry either, both, or neither.
 
 Resolution is global-then-repo: this file first, the repo file
 appended as extension and override. Where the two conflict, the repo
@@ -141,7 +200,13 @@ file wins — it is the more specific statement about the code actually
 in front of you.
 
 The repo file follows the same structure as this one: one rule per
-heading, each rule a claim about a diff that a quoted counterexample
-refutes, judgment-only guidance confined to a marked preamble. A tool
-reads the concatenation, so a repo file that drops the structure makes
-its own rules unreadable to that tool.
+heading, each rule a claim that a quoted counterexample refutes,
+judgment-only guidance confined to a marked preamble. Its rules take
+evidence from the same places — the diff, plus the touched file at
+head where the rule's wording asks for it. A tool reads the
+concatenation, so a repo file that drops the structure makes its own
+rules unreadable to that tool.
+
+A repo file may carry no rules at all. A preamble stating why a rule
+above does not fire in this repo is a legitimate whole file: it tells
+a reader that the silence is a decision rather than an omission.
