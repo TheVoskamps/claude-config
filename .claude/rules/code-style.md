@@ -85,8 +85,10 @@ under `rules/`, the new heading contains the old heading's title —
 the text after any leading ordinal — as a substring, unless the diff
 removes the section outright.
 
-Counterexample shape: renaming "Fix root causes, not symptoms" to
-"Root-cause discipline".
+Counterexample shape: renaming `core-principles.md`'s "Use shared
+constants" to "Shared constant discipline" — a title
+`rules/code-style.md` cites verbatim as the authority behind "No
+literal is duplicated across modules".
 
 Plugin skills and agent definitions in other repos quote these titles
 verbatim as prose pointers, and a worktree of this repo cannot edit

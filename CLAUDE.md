@@ -17,11 +17,12 @@ second edit point, now with per-line load mode. A file earns
 `@`-expansion only when it shapes judgment continuously — its
 applicability can't be recognized without the rule already in
 context. A file whose applicability announces itself at a crisp
-moment loads on demand instead, and its entry carries a kernel of
-exactly one sentence, wrapped to this file's width as needed, so the
-hard rule stays available even when the procedure doesn't load. The
-trigger clause that precedes the kernel runs longer where a file has
-more than one condition that should load it.
+moment loads on demand instead. Every such entry opens with the
+trigger that loads the file, which runs longer where a file has more
+than one condition that should load it. An entry may then add a
+kernel of exactly one sentence, wrapped to this file's width as
+needed, so that the file's hardest rule stays available even when the
+procedure doesn't load.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
