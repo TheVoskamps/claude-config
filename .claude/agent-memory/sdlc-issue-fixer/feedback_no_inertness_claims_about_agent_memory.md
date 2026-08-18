@@ -16,14 +16,11 @@ frontmatter in `~/.claude/plugins/cache/thevoskamps/<plugin>/<ver>/
 agents/`, and the installed version in
 `~/.claude/plugins/installed_plugins.json`.
 
-**Why:** PR #47's body claimed "nothing loads or resolves by section
-number, so nothing breaks" about two stale `sdlc-pr-reviewer` entries.
-Review disproved the claim. The right repair was to make the claim
-true rather than smaller: separate *loading* (real — that is how the
-entries are read at all) from *resolution* (nothing turns "§7" into a
-file read, so no run errors), and name
-`agent-memory-scrubber` — which runs last before `/pr-ready` — as the
-mechanism that fixes the wording. See
+**Why:** the repair for such a claim is to make it true rather than
+smaller. Separate *loading* (real — that is how the entries are read at
+all) from *resolution* (nothing turns a section number into a file
+read, so no run errors), and name `agent-memory-scrubber` — which runs
+last before `/pr-ready` — as the mechanism that fixes the wording. See
 [[agent-memory-is-tracked-repo-content]].
 
 **How to apply:** when a change makes any agent-memory content stale

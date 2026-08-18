@@ -21,9 +21,8 @@ dangling reference in a repo a worktree of this one cannot edit — the
 exact hazard `.claude/rules/repo-is-claude-config-source.md` →
 "Rules headings are quoted downstream" warns about.
 
-**How to apply:** treat the numbering as fixed. When a section is
-moved out and later sections shift up (PR #47 moved the old §7 into
-`rules/communication-style.md`, making §8 → §7), grep the plugin cache
-for citations of the shifted numbers before assuming the renumbering
-is safe. Only §1 has ever been cited so far, which is why the shift
-was harmless — that is a fact to re-verify, not to assume.
+**How to apply:** treat the numbering as fixed. When a section is moved
+out to its own rules file and the later sections shift up, grep the
+plugin cache for citations of every shifted number before assuming the
+renumbering is safe. A shift is harmless only when no shifted number is
+cited — that is a fact to re-verify each time, not to assume.
