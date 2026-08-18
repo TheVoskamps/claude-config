@@ -33,6 +33,10 @@ The corollary is that most lines need no comment at all, and a file
 whose comments are all constraint statements will be sparsely
 commented. That is the correct outcome, not an omission to fix.
 
+A file with no comments is making a claim about how much explanation
+its code needs. Match it, or change the file's convention deliberately
+and say so in the PR body.
+
 Comments are prose, so `rules/communication-style.md` → "Mechanics"
 applies to them: one idea per sentence, active voice, concrete verbs.
 
@@ -101,14 +105,13 @@ function the diff cut to two.
 ### Comment density matches the surrounding file
 
 No file the diff touches gains a comment-to-code ratio materially
-above the ratio the untouched parts of that same file already carry.
+above the ratio the untouched parts of that same file already carry,
+unless the PR body states that the diff changes that file's comment
+convention deliberately.
 
 Counterexample shape: a densely commented new function added to a file
-whose existing functions carry no comments at all.
-
-A file with no comments is making a claim about how much explanation
-its code needs. Match it, or change the file's convention deliberately
-and say so in the PR body.
+whose existing functions carry no comments at all, with no such
+statement in the PR body.
 
 ### Every TODO carries a tracker reference
 
@@ -136,7 +139,10 @@ whose other exports carry no doc comments.
 A repo extends or overrides this guide with
 `<repo>/.claude/rules/comment-style.md`, tracked by the same
 `.gitignore` negation pattern that tracks
-`<repo>/.claude/rules/repo-config.md`.
+`<repo>/.claude/rules/repo-config.md`. Its sibling guide has its own
+extension file at the fixed name
+`<repo>/.claude/rules/code-style.md`; the two files are independent,
+and a repo may carry either, both, or neither.
 
 Resolution is global-then-repo: this file first, the repo file
 appended as extension and override. Where the two conflict, the repo

@@ -45,8 +45,11 @@ suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
 disable`, or any equivalent.
 
 The authority is `rules/core-principles.md` → "Fix root causes, not
-symptoms"; this rule is its diff-checkable form. Removing an existing
-suppression is not a violation — only adding one is.
+symptoms"; this rule is the diff-checkable form of that section's
+suppression-directive case only. Passing it says nothing about the
+rest of that section — a diff can add no suppression and still paper
+over a root cause. Removing an existing suppression is not a violation
+— only adding one is.
 
 ### Every symbol the diff introduces is referenced
 
@@ -102,8 +105,10 @@ Every file the diff touches passes the formatter and linter the repo
 already declares in its own configuration, with that configuration
 unmodified by the diff.
 
-A diff that loosens the config to make itself pass is a
-counterexample, not a compliance.
+The authority is `rules/core-principles.md` → "Leave Markdown clean",
+generalized from Markdown to every language the repo lints: a diff
+that loosens the config to make itself pass is a counterexample, not a
+compliance.
 
 ### Public behaviour changes ship with a test
 
@@ -120,6 +125,9 @@ repo whose other flags are each tested.
 A repo extends or overrides this guide with
 `<repo>/.claude/rules/code-style.md`, tracked by the same `.gitignore`
 negation pattern that tracks `<repo>/.claude/rules/repo-config.md`.
+Its sibling guide has its own extension file at the fixed name
+`<repo>/.claude/rules/comment-style.md`; the two files are
+independent, and a repo may carry either, both, or neither.
 
 Resolution is global-then-repo: this file first, the repo file
 appended as extension and override. Where the two conflict, the repo
