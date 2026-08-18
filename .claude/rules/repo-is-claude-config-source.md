@@ -38,9 +38,9 @@ When a task's substance is in the body of a rules section, leave the
 heading alone. If the heading is genuinely wrong after the change,
 make the smallest edit that keeps the old text a substring of the new
 one, and say in the report-back that downstream quoters may need a
-follow-up. To find who quotes what, grep the plugin cache under
-`~/.claude/plugins/cache/thevoskamps/` — reading outside the repo is
-allowed, writing there is not.
+follow-up. The set of quoters is not enumerable from inside this repo,
+so treat the report-back as the handoff rather than trying to prove the
+rename is safe.
 
 ## What this means for editing
 
