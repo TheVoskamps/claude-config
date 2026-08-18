@@ -121,20 +121,7 @@ resource, add its name to the shared constants first. This is what
 keeps two stacks from disagreeing about the name of the thing they
 share, and makes renames a one-line change.
 
-## 7. No "number of" before a self-counting list
-
-Don't write "The four kinds are…" or "There are three options:"
-immediately before a list that enumerates them. The count is redundant
-with the list, and it rots the moment an item is added or removed — the
-prose says "four" while the list has five. Write "The forbidden forms
-are: A, B, C" and let the reader count.
-
-This applies to prose introducing an adjacent enumerated list. It does
-not forbid a count that carries independent meaning ("retry up to 3
-times", "exactly one parent per issue"), where the number is a
-constraint rather than a tally of a list already in view.
-
-## 8. Sweep the class
+## 7. Sweep the class
 
 When you find a defect of a given *class*, don't fix only the reported
 instance — sweep the in-scope files for every other instance of the

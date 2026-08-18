@@ -25,6 +25,7 @@ doesn't load.
 @~/.claude/rules/git-workflow.md
 @~/.claude/rules/escalation-discipline.md
 @~/.claude/rules/label-uncertainty.md
+@~/.claude/rules/communication-style.md
 rules/credential-surfaces.md — read when a command fails with an
   authentication error, before you report that failure.
 rules/install-discipline.md — read before running any install command,
