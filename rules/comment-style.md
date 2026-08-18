@@ -9,23 +9,12 @@ skills, agent definitions, and the like are source a model executes,
 so this guide governs the comments in them. Prose written for a human
 reader stays under `rules/communication-style.md`.
 
-The **preamble** below is judgment guidance for a human or an agent
-holding the whole change in its head. The **rules** under it are the
-machine-consumable part: each `###` heading under
-"Rules" is exactly one rule, phrased as a claim that a single quoted
-counterexample refutes.
-
-The evidence a rule quantifies over is the diff, plus the touched file
-at head where the rule's own wording asks for it. A rule about
-matching what a file already does cannot be settled from the diff
-alone: the convention it names lives in the lines the diff did not
-touch, so the counterexample is a pair — the added lines, and the
-lines they fail to match. Both halves are quotable, so such a rule
-stays disprovable. A rule that names neither piece of evidence is
-judgment guidance and belongs in the preamble.
-
-A tool enumerating rules from this file reads the `###` headings under
-"Rules" and nothing else.
+The structure this file follows — what belongs in the preamble, what
+counts as a rule, and the evidence a rule may quantify over — is
+stated once in `rules/code-style.md` → "Structure contract", and
+governs this file and its per-repo extension unchanged. That guide is
+already in context whenever this one is: you do not write comments
+without writing the code they sit on.
 
 ## Preamble (not a rule source)
 
@@ -156,32 +145,12 @@ whose other exports carry no doc comments.
 
 ## Per-repo extension
 
-A repo extends or overrides this guide with
-`<repo>/.claude/rules/comment-style.md`. In most repos that is an
-ordinary tracked file needing no special handling. In a repo whose
-`.gitignore` ignores by default and un-ignores what it wants tracked,
-git reaches a file only when every parent directory is un-ignored
-first, so un-ignoring the `.claude/rules/` directory is enough — one
-directory negation covers every file in it. A by-name negation line is
-needed only where a later pattern re-matches the file itself, such as
-a recursive `*` or `.claude/**` ignore that re-catches the directory's
-contents. Its sibling guide has its own extension file at the fixed
-name `<repo>/.claude/rules/code-style.md`; the two files are
-independent, and a repo may carry either, both, or neither.
+A repo extends or overrides this guide with the fixed name
+`<repo>/.claude/rules/comment-style.md`.
 
-Resolution is global-then-repo: this file first, the repo file
-appended as extension and override. Where the two conflict, the repo
-file wins — it is the more specific statement about the code actually
-in front of you.
-
-The repo file follows the same structure as this one: one rule per
-heading, each rule a claim that a quoted counterexample refutes,
-judgment-only guidance confined to a marked preamble. Its rules take
-evidence from the same places — the diff, plus the touched file at
-head where the rule's wording asks for it. A tool reads the
-concatenation, so a repo file that drops the structure makes its own
-rules unreadable to that tool.
-
-A repo file may carry no rules at all. A preamble stating why a rule
-above does not fire in this repo is a legitimate whole file: it tells
-a reader that the silence is a decision rather than an omission.
+Everything else about the extension — the sibling guide's own
+extension file, the global-then-repo resolution order, the repo file
+winning on conflict, the structure the repo file must follow, and the
+legitimacy of a repo file carrying no rules at all — is stated in
+`rules/code-style.md` → "Per-repo extension" and holds here with the
+filename above substituted.

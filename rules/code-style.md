@@ -9,10 +9,17 @@ skills, agent definitions, and the like are source a model executes,
 so this guide governs them. Prose written for a human reader stays
 under `rules/communication-style.md`.
 
-The **preamble** below is judgment guidance for a human or an agent
-holding the whole change in its head. The **rules** under it are the
-machine-consumable part: each `###` heading under
-"Rules" is exactly one rule, phrased as a claim that a single quoted
+## Structure contract
+
+This contract governs this guide, its sibling
+`rules/comment-style.md`, and any per-repo extension file of either.
+It is stated here once; the comment guide points at it rather than
+restating it.
+
+The **preamble** in a guide is judgment guidance for a human or an
+agent holding the whole change in its head. The **rules** under it are
+the machine-consumable part: each `###` heading under "Rules" is
+exactly one rule, phrased as a claim that a single quoted
 counterexample refutes.
 
 The evidence a rule quantifies over is the diff, plus the touched file
@@ -24,7 +31,7 @@ lines they fail to match. Both halves are quotable, so such a rule
 stays disprovable. A rule that names neither piece of evidence is
 judgment guidance and belongs in the preamble.
 
-A tool enumerating rules from this file reads the `###` headings under
+A tool enumerating rules from a guide reads the `###` headings under
 "Rules" and nothing else.
 
 ## Preamble (not a rule source)
@@ -46,11 +53,19 @@ change that satisfies every rule below and is wrong is still wrong.
 
 So fix root causes, not symptoms. Don't ignore a warning or an error,
 and don't paper over one: follow the error chain to its source and fix
-what you find there. If you find yourself proposing the same
-explanation a second time, the hypothesis is wrong and repeating it
-won't make it right — change what you are looking at: server logs,
-client and browser console, the actual code rather than your memory of
-it, and the assumptions underneath the hypothesis itself.
+what you find there.
+
+Read the complete error output before forming a hypothesis — don't
+truncate, don't assume. Then test the hypothesis and confirm it before
+declaring the fix works. "This should fix it" asserted without a
+passing run is a guess; see `rules/label-uncertainty.md` for how to
+label a claim you have not verified.
+
+If you find yourself proposing the same explanation a second time, the
+hypothesis is wrong and repeating it won't make it right — change what
+you are looking at: server logs, client and browser console, the
+actual code rather than your memory of it, and the assumptions
+underneath the hypothesis itself.
 
 Suppression is not a fix. `eslint-disable-next-line`, a blanket
 `# type: ignore`, a loosened linter config: each hides the problem and
@@ -181,31 +196,22 @@ repo whose other flags are each tested.
 
 ## Per-repo extension
 
-A repo extends or overrides this guide with
-`<repo>/.claude/rules/code-style.md`. In most repos that is an
-ordinary tracked file needing no special handling. In a repo whose
-`.gitignore` ignores by default and un-ignores what it wants tracked,
-git reaches a file only when every parent directory is un-ignored
-first, so un-ignoring the `.claude/rules/` directory is enough — one
-directory negation covers every file in it. A by-name negation line is
-needed only where a later pattern re-matches the file itself, such as
-a recursive `*` or `.claude/**` ignore that re-catches the directory's
-contents. Its sibling guide has its own extension file at the fixed
-name `<repo>/.claude/rules/comment-style.md`; the two files are
+A repo extends or overrides this guide with the fixed name
+`<repo>/.claude/rules/code-style.md`, and its sibling guide with the
+fixed name `<repo>/.claude/rules/comment-style.md`. The two files are
 independent, and a repo may carry either, both, or neither.
 
-Resolution is global-then-repo: this file first, the repo file
-appended as extension and override. Where the two conflict, the repo
-file wins — it is the more specific statement about the code actually
-in front of you.
+Resolution is global-then-repo: the global guide first, the repo file
+of the same name appended as extension and override. Where the two
+conflict, the repo file wins — it is the more specific statement about
+the code actually in front of you.
 
-The repo file follows the same structure as this one: one rule per
+The repo file follows the structure contract above: one rule per
 heading, each rule a claim that a quoted counterexample refutes,
-judgment-only guidance confined to a marked preamble. Its rules take
-evidence from the same places — the diff, plus the touched file at
-head where the rule's wording asks for it. A tool reads the
-concatenation, so a repo file that drops the structure makes its own
-rules unreadable to that tool.
+judgment-only guidance confined to a marked preamble, and evidence
+taken from the diff plus the touched file at head where the rule's
+wording asks for it. A tool reads the concatenation, so a repo file
+that drops the structure makes its own rules unreadable to that tool.
 
 A repo file may carry no rules at all. A preamble stating why a rule
 above does not fire in this repo is a legitimate whole file: it tells
