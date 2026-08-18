@@ -39,3 +39,10 @@ rules/ask-vs-discuss.md — read before presenting a multiple-choice
   not build understanding.
 rules/foreground-vs-background.md — read before continuing or
   resuming a stopped subagent. Kernel: never resume via SendMessage.
+rules/code-style.md — read before writing or reviewing code. Kernel:
+  your diff should be indistinguishable in style from the file it
+  lands in.
+rules/comment-style.md — read before writing or reviewing comments in
+  code. Kernel: a comment states a constraint the code can't show —
+  never provenance, next-line narration, or a correctness argument
+  aimed at the reviewer.
