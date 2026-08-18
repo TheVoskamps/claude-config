@@ -137,9 +137,12 @@ whose other exports carry no doc comments.
 ## Per-repo extension
 
 A repo extends or overrides this guide with
-`<repo>/.claude/rules/comment-style.md`, tracked by the same
-`.gitignore` negation pattern that tracks
-`<repo>/.claude/rules/repo-config.md`. Its sibling guide has its own
+`<repo>/.claude/rules/comment-style.md`, tracked the same way that
+repo already tracks `<repo>/.claude/rules/repo-config.md`. A
+`.gitignore` that un-ignores the whole `.claude/rules/` directory
+picks the new file up with no further change; one that negates
+`repo-config.md` by name needs its own negation line for this file.
+Its sibling guide has its own
 extension file at the fixed name
 `<repo>/.claude/rules/code-style.md`; the two files are independent,
 and a repo may carry either, both, or neither.
