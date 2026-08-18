@@ -124,13 +124,16 @@ repo whose other flags are each tested.
 
 A repo extends or overrides this guide with
 `<repo>/.claude/rules/code-style.md`, tracked the same way that repo
-already tracks `<repo>/.claude/rules/repo-config.md`. A `.gitignore`
-that un-ignores the whole `.claude/rules/` directory picks the new
-file up with no further change; one that negates `repo-config.md` by
-name needs its own negation line for this file. Its sibling guide has
-its own extension file at the fixed name
-`<repo>/.claude/rules/comment-style.md`; the two files are
-independent, and a repo may carry either, both, or neither.
+already tracks `<repo>/.claude/rules/repo-config.md`. Git reaches a
+file only when every parent directory is un-ignored, so a `.gitignore`
+that un-ignores the `.claude/rules/` directory and matches nothing
+inside it picks the new file up with no further change — that one
+directory negation already covers every sibling. A by-name negation
+line is needed only where some pattern still matches the file itself,
+such as a recursive `*` or `.claude/**` ignore that re-catches the
+directory's contents. Its sibling guide has its own extension file at
+the fixed name `<repo>/.claude/rules/comment-style.md`; the two files
+are independent, and a repo may carry either, both, or neither.
 
 Resolution is global-then-repo: this file first, the repo file
 appended as extension and override. Where the two conflict, the repo
