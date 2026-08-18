@@ -2,9 +2,9 @@
 
 Read before writing or reviewing comments in code.
 
-This file has two parts. The **preamble** is judgment guidance for a
-human or an agent holding the whole change in its head. The **rules**
-below it are the machine-consumable part: each `###` heading under
+The **preamble** below is judgment guidance for a human or an agent
+holding the whole change in its head. The **rules** under it are the
+machine-consumable part: each `###` heading under
 "Rules" is exactly one rule, phrased as a claim about a diff that a
 single quoted counterexample refutes. A tool enumerating rules from
 this file reads the `###` headings under "Rules" and nothing else.
