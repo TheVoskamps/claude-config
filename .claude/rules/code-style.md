@@ -23,10 +23,14 @@ itself, plus the linter this repo does declare — and a diff that adds
 a prose-testing harness is not a fix for that, it is a new thing to
 maintain that asserts nothing.
 
-The exception is the executable code this repo does carry: the shell
-under `.github/scripts/`, which is ordinary code with ordinary return
-values. The global test rule fires there in full, and the rule below
-says so.
+The exception is the executable code this repo does carry: shell
+scripts, which are ordinary code with ordinary return values. Under
+`.github/scripts/` the global test rule fires in full, because a
+self-test already covers that surface, and the rule below says so.
+`install.sh` and `plugins.sh` at the repo root carry no test suite,
+so the global rule's own "in repos that already have a test suite for
+that surface" clause leaves them out — a gap, not a licence to break
+them.
 
 The global guide's other rules apply unchanged. Some are easy to
 misread as code-only, since this repo's source is Markdown: "Files
