@@ -12,10 +12,12 @@ metadata:
 "nothing in the repo references X" must be grepped over it too, not
 just over `rules/`, `CLAUDE.md`, and `.claude/rules/`.
 
-**Why:** PR #47 renumbered `core-principles.md` §8 -> §7 and its body
-asserted "Nothing in the repo references §7 or §8". Two tracked
-`sdlc-pr-reviewer` memory files referenced both, so the merged record
-would have been false. Review caught it.
+**Why:** PR #47 renumbered `core-principles.md` §8 -> §7, and its body
+originally made an unqualified claim that nothing referenced those
+section numbers. Review disproved that by grepping
+`.claude/agent-memory/`, where two tracked `sdlc-pr-reviewer` entries
+cite both; a follow-up fix qualified the claim instead of dropping it.
+Absence claims are cheap to check and expensive to get wrong.
 
 **How to apply:** when a change renames a rules heading or renumbers a
 section, grep the whole worktree (excluding only `.git` and
