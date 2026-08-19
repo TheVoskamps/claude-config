@@ -9,3 +9,6 @@
 - [A shared contract is stated once](feedback_shared_contract_stated_once_not_stubbed.md)
   — sibling guides may share one statement and point at it; that is
   not the rejected stub shape.
+- [Move rules, keep judgment](feedback_move_rules_keep_judgment.md)
+  — consolidating out of an `@`-expanded file moves the diff-checkable
+  rules only; judgment that fires with no diff stays always-on.
