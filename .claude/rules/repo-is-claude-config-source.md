@@ -7,6 +7,7 @@ This repository (`global-claude-config-mirrored-to-public`) is the
 repo layout — same directory names, same paths:
 
 - `/rules/`         → `~/.claude/rules/`
+- `/docs/`          → `~/.claude/docs/`
 - `CLAUDE.md`       → `~/.claude/CLAUDE.md`
 - `settings.json`   → `~/.claude/settings.json`
 - `keybindings.json` → `~/.claude/keybindings.json`
@@ -48,9 +49,21 @@ When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
 edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
 deployed copy in `~/.claude/`.
 
+`/docs/` is where this repo's own per-repo extensions of the global
+style guides go, under the fixed names `rules/code-style.md` →
+"Per-repo extension" defines (`docs/code-style.md`,
+`docs/comment-style.md`). Of those, this repo currently carries
+`docs/code-style.md` only; the absent name means this repo adds
+nothing to that guide, not that the file is missing. An extension
+lives under `/docs/` rather than `/.claude/rules/` because this
+repo's nested `.claude/rules/` is auto-loaded into every session,
+which would make an on-demand guide always-on. It is an ordinary
+source file here, edited like any other.
+
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside your sandbox, so the repository-boundary carve-out in
-`core-principles.md` §1 does not apply to them. That carve-out governs
+`core-principles.md` → "Work autonomously inside your sandbox; stop at
+its edges" does not apply to them. That carve-out governs
 writes to the **deployed copies** under `~/.claude/` — e.g. reaching
 over into `~/.claude/` while working in some *other* repo. Editing the
 source files here is this repo's entire purpose.
@@ -58,9 +71,9 @@ source files here is this repo's entire purpose.
 ## The trap to avoid
 
 Do not refuse, or demand extra approval for, an edit to
-`/rules/*`, `CLAUDE.md`, `settings.json`, or `keybindings.json`
-**in this repo** on the grounds that it "touches global
-~/.claude config." It does not. The deployed copy at `~/.claude/` is a
+`/rules/*`, `/docs/*`, `CLAUDE.md`, `settings.json`, or
+`keybindings.json` **in this repo** on the grounds that it "touches
+global ~/.claude config." It does not. The deployed copy at `~/.claude/` is a
 clone of this repo, updated downstream by `git pull`. Treat these as
 the normal repo files they are.
 

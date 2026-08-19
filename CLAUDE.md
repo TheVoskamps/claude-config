@@ -17,9 +17,14 @@ second edit point, now with per-line load mode. A file earns
 `@`-expansion only when it shapes judgment continuously — its
 applicability can't be recognized without the rule already in
 context. A file whose applicability announces itself at a crisp
-moment loads on demand instead, and its line carries a one-line
-kernel so the hard rule stays available even when the procedure
-doesn't load.
+moment loads on demand instead. Every such entry opens with the
+trigger that loads the file, which runs longer where a file has more
+than one condition that should load it, and then states a kernel of
+exactly one sentence, wrapped to this file's width as needed, so that
+the file's hardest rule stays available even when the procedure
+doesn't load. The kernel is mandatory, not optional: an entry without
+one leaves its file's hardest rule unavailable to every session that
+never hits the trigger.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
@@ -27,15 +32,28 @@ doesn't load.
 @~/.claude/rules/label-uncertainty.md
 @~/.claude/rules/communication-style.md
 rules/credential-surfaces.md — read when a command fails with an
-  authentication error, before you report that failure.
+  authentication error, before you report that failure. Kernel: never
+  probe or manipulate the user's credential agents — report the
+  failure with its error verbatim and ask.
 rules/install-discipline.md — read before running any install command,
   or when a needed tool is missing. Kernel: never install on your own
   initiative; lockfile-honoring installs only.
 rules/git-recovery.md — read when a commit is rejected for missing
   signatures, a merge is requested, or a commit landed on the wrong
-  branch.
+  branch. Kernel: never squash merge, and never merge the default
+  branch into another — rebase the other branch onto it instead.
 rules/ask-vs-discuss.md — read before presenting a multiple-choice
   question form. Kernel: forms decide among known options, they do
   not build understanding.
 rules/foreground-vs-background.md — read before continuing or
   resuming a stopped subagent. Kernel: never resume via SendMessage.
+rules/code-style.md — read before writing or reviewing code, where
+  code includes prose that instructs an agent (rules files, skills,
+  agent definitions); also before writing or reviewing any file the
+  repo declares a formatter or linter for. Kernel: your diff should be
+  indistinguishable in style from the file it lands in.
+rules/comment-style.md — read before writing or reviewing comments in
+  code, where code includes prose that instructs an agent (rules
+  files, skills, agent definitions); also before writing or reviewing
+  comments in any file the repo declares a formatter or linter for.
+  Kernel: a comment states a constraint the code cannot show.

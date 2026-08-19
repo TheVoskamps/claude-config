@@ -20,7 +20,8 @@ whether to fix the repo (e.g. correct a bad script), install something,
 or take a different path.
 
 This file is the detail behind the install carve-out in
-`rules/core-principles.md` §1. It names the specific classes of
+`rules/core-principles.md` → "Work autonomously inside your sandbox;
+stop at its edges". It names the specific classes of
 install command so they survive reasoning like "but the build needs
 CDK, so installing CDK is implied."
 
