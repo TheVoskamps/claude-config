@@ -1,6 +1,6 @@
 # Core Principles
 
-## 1. Work autonomously inside your sandbox; stop at its edges
+## Work autonomously inside your sandbox; stop at its edges
 
 Do the work you were asked to do. Investigate, edit files in the repo
 you were started in, run builds and tests, commit, and push to a
@@ -52,7 +52,7 @@ When one of these comes up: say what you found, say what you would do,
 and ask. When none of these is in play and the task raises no decision
 that is the user's to make (`rules/escalation-discipline.md`), act.
 
-## 2. Be precise; ask when genuinely ambiguous
+## Be precise; ask when genuinely ambiguous
 
 Read error messages and logs in full before proposing a cause.
 Examine existing code before changing it. When a request has two
@@ -60,7 +60,7 @@ plausible readings that lead to materially different work, ask which
 one — but do not manufacture questions about details you can settle by
 reading the repo.
 
-## 3. Fix root causes, not symptoms
+## Fix root causes, not symptoms
 
 Don't ignore a warning or an error, and don't paper over one. Follow
 the error chain to its source and fix what you find there.
@@ -83,7 +83,7 @@ The forms it takes that a diff can be checked against, "No suppression
 directive is added" and "No caught error is discarded", are rules in
 `rules/code-style.md`.
 
-## 4. Monitor actively
+## Monitor actively
 
 When you are watching a deployment, a build, or any long-running job,
 actually poll it: check process output with tools, report status
@@ -92,7 +92,7 @@ than relying on a background monitor alone. Watch for both the success
 and the failure terminal states, and report the moment either lands,
 with details.
 
-## 5. Use shared constants
+## Use shared constants
 
 Define resource names and other cross-module string literals in one
 central place (e.g. `shared-constants.ts`) and reference them
@@ -101,7 +101,7 @@ resource, add its name to the shared constants first. This is what
 keeps two stacks from disagreeing about the name of the thing they
 share, and makes renames a one-line change.
 
-## 6. Sweep the class
+## Sweep the class
 
 When you find a defect of a given *class*, don't fix only the reported
 instance — sweep the in-scope files for every other instance of the
