@@ -12,7 +12,8 @@ surfaces: `.github/scripts/` (guard plus its `test-*.sh` companion)
 and `install.sh` / `plugins.sh` at the repo root, which have no
 companion tests and are exercised by no workflow.
 
-**Why:** PR 50's repo-level `.claude/rules/code-style.md` preamble
+**Why:** PR 50's repo-level style extension (now `docs/code-style.md`)
+preamble
 asserted the repo's only executable code was "the shell under
 `.github/scripts/`", to justify exempting the prose artifact from the
 global test rule. The root scripts falsify that as written, so the
