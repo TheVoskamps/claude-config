@@ -33,6 +33,15 @@ so the global rule's own "in repos that already have a test suite for
 that surface" clause leaves them out — a gap, not a licence to break
 them.
 
+A guide here states only its own subject. Mechanics that belong to
+another subject get cut rather than reworded more carefully: a code or
+comment style guide does not explain how `.gitignore` resolves, and a
+reader who needs that answer runs `git check-ignore`. A paragraph a
+review has corrected more than once is evidence the material does not
+belong in the file at all, so treat the repeat correction as the
+trigger to re-examine scope rather than as a prompt for more precise
+wording.
+
 The global guide's other rules apply unchanged. Some are easy to
 misread as code-only, since this repo's source is Markdown: "Files
 conform to the repo's declared formatter and linter" covers every
@@ -82,6 +91,24 @@ Counterexample shape: a new `rules/foo.md` with no `foo.md` line in
 
 That list is the only enumeration of the rules set. A rules file
 missing from it is a file no session ever loads.
+
+### No section moved out of a `rules/` file leaves a stub behind
+
+For every section the diff removes from one file under `rules/` and
+adds to another, the source file retains nothing of it: no stub
+heading, no one-line kernel, no "moved to X" pointer.
+
+Counterexample shape: a "Fix root causes, not symptoms" heading left
+behind in `core-principles.md` whose whole body is a line pointing at
+`rules/code-style.md`.
+
+A stub makes every reader load two files to learn one rule, and it
+drifts from the rule it points at. Two sibling guides sharing a single
+statement of a contract they both obey is a different shape and is
+allowed: nothing moved out, so neither file sends a reader chasing a
+pointer to reach its own rule. `rules/code-style.md` →
+"Structure contract", which `rules/comment-style.md` cites instead of
+restating, is that sanctioned shape.
 
 ### No heading title under `rules/` is rewritten in place
 
