@@ -147,13 +147,12 @@ whose other exports carry no doc comments.
 
 Before applying the rules above, look for
 `<repo>/docs/comment-style.md` in the repo you are working in, and
-read it if it is there. Nothing about that file announces itself — the
-fixed name is the whole discovery mechanism, so look for it rather
-than waiting for it to surface.
+read it if it is there.
 
-Everything else about the extension — the sibling guide's own
-extension file, the global-then-repo resolution order, the repo file
-winning on conflict, the structure the repo file must follow, and the
-legitimacy of a repo file carrying no rules at all — is stated in
+Everything else about the extension — why the fixed name is the whole
+discovery mechanism, the sibling guide's own extension file, the
+global-then-repo resolution order, the repo file winning on conflict,
+the structure the repo file must follow, and the legitimacy of a repo
+file carrying no rules at all — is stated in
 `rules/code-style.md` → "Per-repo extension" and holds here with the
 filename above substituted.

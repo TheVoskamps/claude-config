@@ -59,22 +59,10 @@ own change rather than as a silent rider on an unrelated one.
 
 Style is downstream of correctness, never a substitute for it. A
 change that satisfies every rule below and is wrong is still wrong.
-
-So fix root causes, not symptoms. Don't ignore a warning or an error,
-and don't paper over one: follow the error chain to its source and fix
-what you find there.
-
-Read the complete error output before forming a hypothesis — don't
-truncate, don't assume. Then test the hypothesis and confirm it before
-declaring the fix works. "This should fix it" asserted without a
-passing run is a guess; see `rules/label-uncertainty.md` for how to
-label a claim you have not verified.
-
-If you find yourself proposing the same explanation a second time, the
-hypothesis is wrong and repeating it won't make it right — change what
-you are looking at: server logs, client and browser console, the
-actual code rather than your memory of it, and the assumptions
-underneath the hypothesis itself.
+Root-cause discipline is `rules/core-principles.md` → "Fix root
+causes, not symptoms", which is loaded in every session. The rules
+below that cite it are the forms it takes that a diff can be checked
+against.
 
 Suppression is not a fix. `eslint-disable-next-line`, a blanket
 `# type: ignore`, a loosened linter config: each hides the problem and
@@ -118,10 +106,12 @@ suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
 `# type: ignore`, `# noqa`, `@SuppressWarnings`, `#pragma warning
 disable`, or any equivalent.
 
-This is the diff-checkable case of the preamble's
-suppression-is-not-a-fix paragraph, and no more: a diff can add no
-suppression and still paper over a root cause. Removing an existing
-suppression is not a violation — only adding one is.
+The authority is `rules/core-principles.md` → "Fix root causes, not
+symptoms", and the preamble's suppression-is-not-a-fix paragraph
+narrows it to suppression. This rule is the compile-time diff-checkable
+case of both, and no more: a diff can add no suppression and still
+paper over a root cause. Removing an existing suppression is not a
+violation — only adding one is.
 
 ### Every symbol the diff introduces is referenced
 
@@ -152,9 +142,10 @@ in a raised error, or returning it as a value the caller must handle.
 Counterexample shape: an empty catch block, or one whose entire body
 is a log call followed by falling through to the success path.
 
-A swallowed error is the runtime form of the suppression the preamble
-forbids at compile time: both make the symptom disappear and leave the
-cause in place.
+The authority is `rules/core-principles.md` → "Fix root causes, not
+symptoms". A swallowed error is the runtime form of the suppression
+the preamble forbids at compile time: both make the symptom disappear
+and leave the cause in place.
 
 ### Existing helpers are reused rather than reimplemented
 
