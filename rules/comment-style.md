@@ -145,8 +145,11 @@ whose other exports carry no doc comments.
 
 ## Per-repo extension
 
-A repo extends or overrides this guide with the fixed name
-`<repo>/.claude/rules/comment-style.md`.
+Before applying the rules above, look for
+`<repo>/docs/comment-style.md` in the repo you are working in, and
+read it if it is there. Nothing about that file announces itself — the
+fixed name is the whole discovery mechanism, so look for it rather
+than waiting for it to surface.
 
 Everything else about the extension — the sibling guide's own
 extension file, the global-then-repo resolution order, the repo file

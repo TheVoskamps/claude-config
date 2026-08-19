@@ -1,8 +1,9 @@
 # Code Style — this repo
 
-Extends `rules/code-style.md` for this repo. Read both: the global
-guide first, this file appended as extension and override. Where the
-two conflict, this file wins.
+This repo's extension of the global code style guide, at the fixed
+name that guide's "Per-repo extension" section tells its reader to
+look for. The global guide states the resolution order; this file only
+adds to it.
 
 ## Preamble (not a rule source)
 

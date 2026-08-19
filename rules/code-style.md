@@ -22,14 +22,23 @@ the machine-consumable part: each `###` heading under "Rules" is
 exactly one rule, phrased as a claim that a single quoted
 counterexample refutes.
 
-The evidence a rule quantifies over is the diff, plus the touched file
-at head where the rule's own wording asks for it. A rule about
-matching what a file already does cannot be settled from the diff
-alone: the convention it names lives in the lines the diff did not
-touch, so the counterexample is a pair — the added lines, and the
-lines they fail to match. Both halves are quotable, so such a rule
-stays disprovable. A rule that names neither piece of evidence is
-judgment guidance and belongs in the preamble.
+The evidence a rule quantifies over is anything a second reader can
+independently go and re-check: the diff, the repository at head, and
+stable external documentation such as a language's standard-library
+reference. The test is reproducibility, not location.
+
+A rule about matching what a file already does cannot be settled from
+the diff alone — the convention it names lives in the lines the diff
+did not touch — so its counterexample is a pair: the added lines, and
+the lines they fail to match. A rule about every call site quantifies
+over the whole repository. A rule about a helper that already exists
+quantifies over wherever that helper is documented. Each stays
+disprovable, because a disagreeing reader can go and look at the same
+evidence and get the same answer.
+
+What is excluded is a rule resting on the reviewer's taste with
+nothing a disagreeing reader could go and look at. That is judgment
+guidance and belongs in the preamble.
 
 A tool enumerating rules from a guide reads the `###` headings under
 "Rules" and nothing else.
@@ -196,22 +205,31 @@ repo whose other flags are each tested.
 
 ## Per-repo extension
 
-A repo extends or overrides this guide with the fixed name
-`<repo>/.claude/rules/code-style.md`, and its sibling guide with the
-fixed name `<repo>/.claude/rules/comment-style.md`. The two files are
-independent, and a repo may carry either, both, or neither.
+Before applying the rules above, look for `<repo>/docs/code-style.md`
+in the repo you are working in, and read it if it is there. Its
+sibling guide's extension carries the fixed name
+`<repo>/docs/comment-style.md`. The two files are independent, and a
+repo may carry either, both, or neither.
 
-Resolution is global-then-repo: the global guide first, the repo file
-of the same name appended as extension and override. Where the two
-conflict, the repo file wins — it is the more specific statement about
-the code actually in front of you.
+Nothing about a repo's extension file announces itself. Repo authors
+write those files, and nothing obliges them to point back here, so the
+fixed name is the whole discovery mechanism: look for it, and treat a
+missing file as "this repo adds nothing", not as "there is nothing to
+look for".
+
+Resolution is global-then-repo: this guide first, the repo file
+appended as extension and override. Where the two conflict, the repo
+file wins — it is the more specific statement about the code actually
+in front of you. That order is structural rather than conventional,
+because this guide is already loaded at the moment the instruction to
+fetch the repo file fires.
 
 The repo file follows the structure contract above: one rule per
 heading, each rule a claim that a quoted counterexample refutes,
-judgment-only guidance confined to a marked preamble, and evidence
-taken from the diff plus the touched file at head where the rule's
-wording asks for it. A tool reads the concatenation, so a repo file
-that drops the structure makes its own rules unreadable to that tool.
+judgment-only guidance confined to a marked preamble, and evidence a
+second reader can independently re-check. A tool reads the
+concatenation, so a repo file that drops the structure makes its own
+rules unreadable to that tool.
 
 A repo file may carry no rules at all. A preamble stating why a rule
 above does not fire in this repo is a legitimate whole file: it tells
