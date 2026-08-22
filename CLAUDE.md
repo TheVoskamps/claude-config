@@ -17,14 +17,10 @@ second edit point, now with per-line load mode. A file earns
 `@`-expansion only when it shapes judgment continuously — its
 applicability can't be recognized without the rule already in
 context. A file whose applicability announces itself at a crisp
-moment loads on demand instead. Every such entry opens with the
-trigger that loads the file, which runs longer where a file has more
-than one condition that should load it, and then states a kernel of
-exactly one sentence, wrapped to this file's width as needed, so that
-the file's hardest rule stays available even when the procedure
-doesn't load. The kernel is mandatory, not optional: an entry without
-one leaves its file's hardest rule unavailable to every session that
-never hits the trigger.
+moment loads on demand instead, and carries the trigger and kernel
+that `docs/rules/claude-code-markdown-instructions-style.md` →
+"Every on-demand file is reachable by a trigger and a kernel"
+requires.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
@@ -55,9 +51,9 @@ rules/comment-style.md — read before writing or reviewing comments in
   files, skills, agent definitions); also before writing or reviewing
   comments in any file the repo declares a formatter or linter for.
   Kernel: a comment states a constraint the code cannot show.
-docs/rules/claude-writing-style.md — read before writing or reviewing
-  markdown whose reader is a model: `CLAUDE.md`, rules files,
-  `SKILL.md` bodies, agent definitions. Kernel: a line earns its place
-  only when a reader acts differently for having read it and the
-  condition that put it there is still real, which is as much a
-  licence to delete as a test for what you add.
+docs/rules/claude-code-markdown-instructions-style.md — read before
+  writing or reviewing markdown whose reader is a model: `CLAUDE.md`,
+  rules files, `SKILL.md` bodies, agent definitions. Kernel: a line
+  earns its place only when a reader acts differently for having read
+  it and the condition that put it there is still real, which is as
+  much a licence to delete as a test for what you add.

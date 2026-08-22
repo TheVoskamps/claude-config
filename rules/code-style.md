@@ -11,7 +11,7 @@ under `rules/communication-style.md`.
 
 This guide asks whether such prose matches the file it lands in.
 Whether it earns its place at all, and how much of it there should be,
-is `docs/rules/claude-writing-style.md`.
+is `docs/rules/claude-code-markdown-instructions-style.md`.
 
 ## Structure contract
 

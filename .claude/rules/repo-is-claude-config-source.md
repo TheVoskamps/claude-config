@@ -50,15 +50,15 @@ edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
 deployed copy in `~/.claude/`.
 
 `/docs/rules/` holds on-demand rules files kept outside the `/rules/`
-set — `docs/rules/claude-writing-style.md` today. `CLAUDE.md`'s
-enumeration routes readers to them by trigger rather than by
-`@`-expansion, exactly as it does for the plain-path entries that sit
-under `/rules/`; the directory is a placement choice, not what makes a
-file on-demand. `/docs/rules/extensions/` under it holds this repo's
-own per-repo extensions of the global style guides, at the fixed names
-`rules/code-style.md` → "Per-repo extension" defines
-(`code-style.md`, `comment-style.md`). Of those, this repo currently
-carries `code-style.md` only; the absent name means this repo adds
+set — `docs/rules/claude-code-markdown-instructions-style.md` today.
+Which of the two directories a new file goes in decides how
+`CLAUDE.md` announces it, per `docs/rules/extensions/code-style.md` →
+"Every rules file the diff adds is listed in CLAUDE.md".
+`/docs/rules/extensions/` under it holds this repo's own per-repo
+extensions of the global style guides, at the fixed names
+`rules/code-style.md` → "Per-repo extension" defines (`code-style.md`,
+`comment-style.md`). Of those, this repo currently carries
+`code-style.md` only; the absent name means this repo adds
 nothing to that guide, not that the file is missing. Both kinds live
 under `/docs/` rather than `/.claude/rules/` because this repo's
 nested `.claude/rules/` is auto-loaded into every session, which

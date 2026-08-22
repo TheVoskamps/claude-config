@@ -1,4 +1,4 @@
-# Claude Writing Style
+# Claude Code Markdown Instructions Style
 
 Read before writing or reviewing markdown whose reader is a model:
 `CLAUDE.md`, rules files, `SKILL.md` bodies, agent definitions, and
