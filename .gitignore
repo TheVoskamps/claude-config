@@ -40,7 +40,7 @@
 # committed to this source tree. Re-ignore it here, AFTER the !/rules/
 # un-ignore above — gitignore is last-match-wins. The file exists at
 # ~/.claude/rules/ at runtime; it is simply never tracked.
-# See rules/repo-is-claude-config-source.md.
+# See .claude/rules/repo-is-claude-config-source.md.
 /rules/user-config.md
 
 # Self-contained installer that lands this repo onto ~/.claude.

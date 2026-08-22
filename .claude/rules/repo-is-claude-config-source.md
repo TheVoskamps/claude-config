@@ -46,8 +46,8 @@ rename is safe.
 ## What this means for editing
 
 When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
-edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
-deployed copy in `~/.claude/`.
+edit is **in this repo** under `/rules/`, `/docs/rules/`, or
+`CLAUDE.md` — NOT the deployed copy in `~/.claude/`.
 
 `/docs/rules/` holds on-demand rules files kept outside the `/rules/`
 set — `docs/rules/claude-code-markdown-instructions-style.md` today.
