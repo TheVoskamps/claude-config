@@ -49,11 +49,13 @@ When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
 edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
 deployed copy in `~/.claude/`.
 
-`/docs/rules/` is where the rules files go that `CLAUDE.md`'s
-enumeration routes readers to by trigger rather than by
-`@`-expansion, such as `docs/rules/claude-writing-style.md`.
-`/docs/rules/extensions/` under it holds this repo's own per-repo
-extensions of the global style guides, at the fixed names
+`/docs/rules/` holds on-demand rules files kept outside the `/rules/`
+set — `docs/rules/claude-writing-style.md` today. `CLAUDE.md`'s
+enumeration routes readers to them by trigger rather than by
+`@`-expansion, exactly as it does for the plain-path entries that sit
+under `/rules/`; the directory is a placement choice, not what makes a
+file on-demand. `/docs/rules/extensions/` under it holds this repo's
+own per-repo extensions of the global style guides, at the fixed names
 `rules/code-style.md` → "Per-repo extension" defines
 (`code-style.md`, `comment-style.md`). Of those, this repo currently
 carries `code-style.md` only; the absent name means this repo adds
