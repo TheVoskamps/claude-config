@@ -45,8 +45,6 @@ rules/git-recovery.md — read when a commit is rejected for missing
 rules/ask-vs-discuss.md — read before presenting a multiple-choice
   question form. Kernel: forms decide among known options, they do
   not build understanding.
-rules/foreground-vs-background.md — read before continuing or
-  resuming a stopped subagent. Kernel: never resume via SendMessage.
 rules/code-style.md — read before writing or reviewing code, where
   code includes prose that instructs an agent (rules files, skills,
   agent definitions); also before writing or reviewing any file the
