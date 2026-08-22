@@ -146,8 +146,8 @@ whose other exports carry no doc comments.
 ## Per-repo extension
 
 Before applying the rules above, look for
-`<repo>/docs/comment-style.md` in the repo you are working in, and
-read it if it is there.
+`<repo>/docs/rules/extensions/comment-style.md` in the repo you are
+working in, and read it if it is there.
 
 Everything else about the extension — why the fixed name is the whole
 discovery mechanism, the sibling guide's own extension file, the

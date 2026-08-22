@@ -49,16 +49,19 @@ When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
 edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
 deployed copy in `~/.claude/`.
 
-`/docs/` is where this repo's own per-repo extensions of the global
-style guides go, under the fixed names `rules/code-style.md` →
-"Per-repo extension" defines (`docs/code-style.md`,
-`docs/comment-style.md`). Of those, this repo currently carries
-`docs/code-style.md` only; the absent name means this repo adds
-nothing to that guide, not that the file is missing. An extension
-lives under `/docs/` rather than `/.claude/rules/` because this
-repo's nested `.claude/rules/` is auto-loaded into every session,
-which would make an on-demand guide always-on. It is an ordinary
-source file here, edited like any other.
+`/docs/rules/` is where the rules files go that `CLAUDE.md`'s
+enumeration routes readers to by trigger rather than by
+`@`-expansion, such as `docs/rules/claude-writing-style.md`.
+`/docs/rules/extensions/` under it holds this repo's own per-repo
+extensions of the global style guides, at the fixed names
+`rules/code-style.md` → "Per-repo extension" defines
+(`code-style.md`, `comment-style.md`). Of those, this repo currently
+carries `code-style.md` only; the absent name means this repo adds
+nothing to that guide, not that the file is missing. Both kinds live
+under `/docs/` rather than `/.claude/rules/` because this repo's
+nested `.claude/rules/` is auto-loaded into every session, which
+would make an on-demand guide always-on. They are ordinary source
+files here, edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside your sandbox, so the repository-boundary carve-out in

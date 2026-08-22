@@ -55,3 +55,9 @@ rules/comment-style.md — read before writing or reviewing comments in
   files, skills, agent definitions); also before writing or reviewing
   comments in any file the repo declares a formatter or linter for.
   Kernel: a comment states a constraint the code cannot show.
+docs/rules/claude-writing-style.md — read before writing or reviewing
+  markdown whose reader is a model: `CLAUDE.md`, rules files,
+  `SKILL.md` bodies, agent definitions. Kernel: a line earns its place
+  only when a reader acts differently for having read it and the
+  condition that put it there is still real, which is as much a
+  licence to delete as a test for what you add.

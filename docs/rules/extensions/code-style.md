@@ -82,9 +82,12 @@ repos and asserts the guard's exit code.
 
 ### Every rules file the diff adds is listed in CLAUDE.md
 
-Every file the diff adds under `rules/` appears in the canonical rules
-list in `CLAUDE.md`, either as an `@`-expanded line or as a plain-path
-line with a trigger and a one-sentence kernel.
+Every file the diff adds under `rules/` or `docs/rules/` appears in
+the canonical rules list in `CLAUDE.md`, either as an `@`-expanded
+line or as a plain-path line with a trigger and a one-sentence kernel.
+`docs/rules/extensions/` is outside this rule: the global guides
+discover their per-repo extensions by fixed name, not through the
+enumeration.
 
 Counterexample shape: a new `rules/foo.md` with no `foo.md` line in
 `CLAUDE.md`.

@@ -9,6 +9,10 @@ skills, agent definitions, and the like are source a model executes,
 so this guide governs them. Prose written for a human reader stays
 under `rules/communication-style.md`.
 
+This guide asks whether such prose matches the file it lands in.
+Whether it earns its place at all, and how much of it there should be,
+is `docs/rules/claude-writing-style.md`.
+
 ## Structure contract
 
 This contract governs this guide, its sibling
@@ -196,11 +200,12 @@ repo whose other flags are each tested.
 
 ## Per-repo extension
 
-Before applying the rules above, look for `<repo>/docs/code-style.md`
-in the repo you are working in, and read it if it is there. Its
-sibling guide's extension carries the fixed name
-`<repo>/docs/comment-style.md`. The two files are independent, and a
-repo may carry either, both, or neither.
+Before applying the rules above, look for
+`<repo>/docs/rules/extensions/code-style.md` in the repo you are
+working in, and read it if it is there. Its sibling guide's extension
+carries the fixed name
+`<repo>/docs/rules/extensions/comment-style.md`. The two files are
+independent, and a repo may carry either, both, or neither.
 
 Nothing about a repo's extension file announces itself. Repo authors
 write those files, and nothing obliges them to point back here, so the
