@@ -17,9 +17,7 @@ rule in those guides and still be a section that should not exist.
 The reader is a capable model with a finite context window, not a new
 hire who needs the procedure spelled out. Every line you add is a line
 every future reader pays for — in context it cannot then spend on the
-task, and in dilution of the lines that matter. Anthropic cut over 80%
-of Claude Code's own system prompt for this model generation with no
-measurable loss on their coding evaluations.
+task, and in dilution of the lines that matter.
 
 That cost is why the question to ask of a line is not "is this true?"
 but "does a reader act differently for having read it, and is the
@@ -101,8 +99,7 @@ Counterexample shape: a 1158-line `CLAUDE.md` gaining a section.
 
 What belongs there is what the repo is for, its conventions, and its
 gotchas; a procedure or a subtree-scoped rule is routed away per the
-rules above. Longer files consume more context and reduce adherence
-(<https://code.claude.com/docs/en/memory.md>).
+rules above. Longer files consume more context and reduce adherence.
 
 ### No example teaches what an interface can state
 
