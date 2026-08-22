@@ -99,7 +99,11 @@ Counterexample shape: a 1158-line `CLAUDE.md` gaining a section.
 
 What belongs there is what the repo is for, its conventions, and its
 gotchas; a procedure or a subtree-scoped rule is routed away per the
-rules above. Longer files consume more context and reduce adherence.
+rules above. Every one of those rules is judged a line at a time, so
+none of them ever visibly fails; a length is the one check here that
+takes no judgment, and it is what makes their accumulated drift
+observable. The number is a tripwire — what does the work is that
+some limit exists to trip.
 
 ### No example teaches what an interface can state
 

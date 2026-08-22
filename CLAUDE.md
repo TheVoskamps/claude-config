@@ -20,7 +20,11 @@ context. A file whose applicability announces itself at a crisp
 moment loads on demand instead, and carries the trigger and kernel
 that `docs/rules/claude-code-markdown-instructions-style.md` →
 "Every on-demand file is reachable by a trigger and a kernel"
-requires.
+requires. Applicability decides the directory and the directory
+decides the load mode: an always-on file belongs in `rules/`, an
+on-demand file in `docs/rules/`. Every entry below names its own
+file's path, so a plain-path entry still naming `rules/` marks a
+file whose move has yet to land.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
