@@ -208,7 +208,7 @@
       "autoUpdate": true
     }
   },
-  "model": "claude-opus-5",
+  "model": "opus[1m]",
   "effortLevel": "low",
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
