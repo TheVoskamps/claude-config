@@ -52,9 +52,6 @@ loads, or in the tool description of the tool it governs.
 Counterexample shape: a rules file restating a `CLAUDE.md` rule "for
 emphasis".
 
-A second copy is not reinforcement. It is a second thing to keep in
-sync, and the two say different things the moment either is edited.
-
 ### Guidance delegates judgment rather than enumerating cases
 
 Every behavior the diff specifies is stated as the principle behind
@@ -64,9 +61,6 @@ command.
 
 Counterexample shape: a section listing eight named situations that
 each resolve to "prefer the smaller diff".
-
-An enumeration constrains a reader who can already derive the cases,
-goes stale as new ones appear, and contradicts itself as it grows.
 
 ### Detail loads when it is needed
 
@@ -86,9 +80,6 @@ load it and a one-sentence statement of its hardest rule.
 Counterexample shape: a new on-demand guide with no line in the
 enumeration that routes readers to it.
 
-The kernel is what keeps the file's hardest rule available to a
-session that never fires the trigger.
-
 ### `CLAUDE.md` stays under 200 lines
 
 Every `CLAUDE.md` the diff touches is under 200 lines afterwards, or
@@ -96,14 +87,6 @@ the diff does not lengthen it — a file already past target takes an
 append only as part of a relocation or a displacement.
 
 Counterexample shape: a 1158-line `CLAUDE.md` gaining a section.
-
-What belongs there is what the repo is for, its conventions, and its
-gotchas; a procedure or a subtree-scoped rule is routed away per the
-rules above. Every one of those rules is judged a line at a time, so
-none of them ever visibly fails; a length is the one check here that
-takes no judgment, and it is what makes their accumulated drift
-observable. The number is a tripwire — what does the work is that
-some limit exists to trip.
 
 ### No example teaches what an interface can state
 
@@ -113,6 +96,3 @@ parameter, a type, or a stated constraint could carry instead.
 Counterexample shape: three worked invocations showing that a flag
 takes a comma-separated list, where naming the parameter
 `--issues <n,n,…>` says it once.
-
-Examples constrain the space a reader explores: a reader that
-pattern-matches yours stops at their edges.
