@@ -84,10 +84,20 @@ enumeration that routes readers to it.
 
 Every `CLAUDE.md` the diff touches is under 200 lines afterwards, or
 the diff does not lengthen it — a file already past target takes an
-append only as part of a relocation or a displacement. The budget
-holds what the repo is for, its conventions, and its gotchas.
+append only as part of a relocation or a displacement.
 
-Counterexample shape: a 1158-line `CLAUDE.md` gaining a section.
+Counterexample shape: a `CLAUDE.md` already past the limit gaining a
+section.
+
+### `CLAUDE.md` holds only purpose, conventions, and gotchas
+
+Every line the diff adds to a `CLAUDE.md` states what the repo is for,
+a convention it follows, or a gotcha it carries. Anything else belongs
+in a rules file, a skill, or an on-demand guide the enumeration routes
+to.
+
+Counterexample shape: a section narrating how the repo's build system
+came to be replaced.
 
 ### No example teaches what an interface can state
 
