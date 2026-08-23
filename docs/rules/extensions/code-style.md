@@ -110,19 +110,3 @@ allowed: nothing moved out, so neither file sends a reader chasing a
 pointer to reach its own rule. `rules/code-style.md` →
 "Structure contract", which `rules/comment-style.md` cites instead of
 restating, is that sanctioned shape.
-
-### No heading title under `rules/` is rewritten in place
-
-For every `##` or `###` heading the diff changes in an existing file
-under `rules/`, the new heading contains the old heading's title as a
-substring, unless the diff removes the section outright.
-
-Counterexample shape: renaming `core-principles.md`'s "Use shared
-constants" to "Shared constant discipline" — a title
-`rules/code-style.md` cites verbatim as the authority behind "No
-literal is duplicated across modules".
-
-Plugin skills and agent definitions in other repos quote these titles
-verbatim as prose pointers, and a worktree of this repo cannot edit
-those quoters. See `.claude/rules/repo-is-claude-config-source.md` →
-"Rules headings are quoted downstream".

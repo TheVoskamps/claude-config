@@ -84,7 +84,8 @@ enumeration that routes readers to it.
 
 Every `CLAUDE.md` the diff touches is under 200 lines afterwards, or
 the diff does not lengthen it — a file already past target takes an
-append only as part of a relocation or a displacement.
+append only as part of a relocation or a displacement. The budget
+holds what the repo is for, its conventions, and its gotchas.
 
 Counterexample shape: a 1158-line `CLAUDE.md` gaining a section.
 
