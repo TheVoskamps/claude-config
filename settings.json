@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "cleanupPeriodDays": 90,
   "env": {
     "CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS": "50",
@@ -217,6 +218,8 @@
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "theme": "dark",
+  "verbose": false,
+  "outputStyle": "Concise",
   "agentPushNotifEnabled": true,
   "autoMode": {
     "//version": "2026-07-26T05:06:02Z",
