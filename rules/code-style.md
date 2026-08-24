@@ -176,8 +176,8 @@ the repo already declares in its own configuration — including the
 lines the diff did not change, and including files the repo lints as
 prose rather than as code, such as Markdown.
 
-A diff that loosens the config to make itself pass is a
-counterexample, not a compliance, and so is an inline disable comment
+A diff that loosens the config to make itself pass violates this rule
+rather than satisfying it, and so does an inline disable comment
 (see "No suppression directive is added"). A config carve-out is
 legitimate only where a rule is genuinely undefined for the content —
 a line-length rule has no meaning inside a code fence or a table cell,
