@@ -23,8 +23,7 @@ restating it.
 The **preamble** in a guide is judgment guidance for a human or an
 agent holding the whole change in its head. The **rules** under it are
 the machine-consumable part: each `###` heading under "Rules" is
-exactly one rule, phrased as a claim that a single quoted
-counterexample refutes.
+exactly one rule, phrased as a falsifiable claim.
 
 The evidence a rule quantifies over is anything a second reader can
 independently go and re-check: the diff, the repository at head, and
@@ -33,7 +32,7 @@ reference. The test is reproducibility, not location.
 
 A rule about matching what a file already does cannot be settled from
 the diff alone — the convention it names lives in the lines the diff
-did not touch — so its counterexample is a pair: the added lines, and
+did not touch — so it is checked against a pair: the added lines, and
 the lines they fail to match. A rule about every call site quantifies
 over the whole repository. A rule about a helper that already exists
 quantifies over wherever that helper is documented. Each stays
@@ -221,11 +220,10 @@ because this guide is already loaded at the moment the instruction to
 fetch the repo file fires.
 
 The repo file follows the structure contract above: one rule per
-heading, each rule a claim that a quoted counterexample refutes,
-judgment-only guidance confined to a marked preamble, and evidence a
-second reader can independently re-check. A tool reads the
-concatenation, so a repo file that drops the structure makes its own
-rules unreadable to that tool.
+heading, each rule a falsifiable claim, judgment-only guidance
+confined to a marked preamble, and evidence a second reader can
+independently re-check. A tool reads the concatenation, so a repo file
+that drops the structure makes its own rules unreadable to that tool.
 
 A repo file may carry no rules at all. A preamble stating why a rule
 above does not fire in this repo is a legitimate whole file: it tells

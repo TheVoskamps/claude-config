@@ -41,17 +41,11 @@ wrong: a constraint, a decision, a gotcha, a fact the file system does
 not already show. A line whose removal leaves a reader's behavior
 unchanged is a counterexample.
 
-Counterexample shape: "This project is written in TypeScript" in a
-`CLAUDE.md` sitting beside a `tsconfig.json`.
-
 ### No instruction is stated twice in one context
 
 No instruction the diff adds repeats one already reachable in the same
 context — elsewhere in the same file, in another file the session
 loads, or in the tool description of the tool it governs.
-
-Counterexample shape: a rules file restating a `CLAUDE.md` rule "for
-emphasis".
 
 ### Guidance delegates judgment rather than enumerating cases
 
@@ -60,17 +54,11 @@ it, not as a list of cases, unless the cases are themselves the
 content — a fixed option set, a required output shape, a literal
 command.
 
-Counterexample shape: a section listing eight named situations that
-each resolve to "prefer the smaller diff".
-
 ### Detail loads when it is needed
 
 Every multi-step procedure the diff adds lives in a skill, and every
 piece of guidance scoped to part of a tree lives in a path-scoped rule
 or an on-demand file — not in always-loaded prose.
-
-Counterexample shape: a nine-step release procedure pasted into
-`CLAUDE.md`.
 
 ### Every on-demand file is reachable by a trigger and a kernel
 
@@ -78,17 +66,11 @@ Every file the diff adds that is not auto-loaded is announced where
 its readers already look, with the condition that should make them
 load it and a one-sentence statement of its hardest rule.
 
-Counterexample shape: a new on-demand guide with no line in the
-enumeration that routes readers to it.
-
 ### `CLAUDE.md` stays under 200 lines
 
 Every `CLAUDE.md` the diff touches is under 200 lines afterwards, or
 the diff does not lengthen it — a file already past target takes an
 append only as part of a relocation or a displacement.
-
-Counterexample shape: a `CLAUDE.md` already past the limit gaining a
-section.
 
 ### `CLAUDE.md` holds purpose, gotchas, and a routing table
 
@@ -96,15 +78,7 @@ Every line the diff adds to a `CLAUDE.md` states what the repo is for,
 states a gotcha it carries, or routes a reader to the file holding the
 rest. A convention goes in a rules file the routing table reaches.
 
-Counterexample shape: a `CLAUDE.md` section fixing the repo's import
-ordering, where its routing table already reaches a code-style rules
-file.
-
 ### No example teaches what an interface can state
 
 No example the diff adds demonstrates a behavior that a name, a
 parameter, a type, or a stated constraint could carry instead.
-
-Counterexample shape: three worked invocations showing that a flag
-takes a comma-separated list, where naming the parameter
-`--issues <n,n,…>` says it once.
