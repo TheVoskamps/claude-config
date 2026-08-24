@@ -62,6 +62,11 @@
 # tracked even though its sibling repo-config.md is.
 /.claude/rules/user-config.md
 
+# Subagent memory entries. Ignoring them keeps a worktree removable
+# with plain `git worktree remove`, and enforces the never-staged
+# invariant structurally.
+/.claude/agent-memory/
+
 # Always ignore local/temp/backup/lock files anywhere under .claude/,
 # even inside whitelisted directories
 /**/*.local.*
