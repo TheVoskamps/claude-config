@@ -9,10 +9,10 @@ skills, agent definitions, and the like are source a model executes,
 so this guide governs the comments in them. Prose written for a human
 reader stays under `rules/communication-style.md`.
 
-The structure this file follows — what belongs in the preamble, what
-counts as a rule, and the evidence a rule may quantify over — is
-stated once in `rules/code-style.md` → "Structure contract", and
-governs this file and its per-repo extension unchanged. That guide is
+The structure this file follows — what counts as a rule, and the
+evidence a rule may quantify over — is stated once in
+`rules/code-style.md` → "Structure contract", and governs this file
+and its per-repo extension unchanged. That guide is
 already in context whenever this one is: you do not write comments
 without writing the code they sit on.
 
@@ -146,8 +146,8 @@ whose other exports carry no doc comments.
 ## Per-repo extension
 
 Before applying the rules above, look for
-`<repo>/docs/comment-style.md` in the repo you are working in, and
-read it if it is there.
+`<repo>/docs/rules/extensions/comment-style.md` in the repo you are
+working in, and read it if it is there.
 
 Everything else about the extension — why the fixed name is the whole
 discovery mechanism, the sibling guide's own extension file, the

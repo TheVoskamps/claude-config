@@ -1,30 +1,15 @@
 # Global Claude Configuration
 
-This file provides core guidance to Claude Code across all projects.
+> **Reading this file with the Read tool?** The `@~/` lines below are
+> not auto-expanded for you — read each one yourself.
 
-> **If you are reading this file with the Read tool** — typically
-> because you are a subagent and your agent definition told you to
-> load global rules — the `@~/` lines below are not auto-expanded for
-> you the way they are at main-session startup. Read each `@~/` line
-> yourself, so every reader ends up with the same always-on set. The
-> plain-path lines are never loaded up front, by main session or
-> subagent — each loads only on the trigger stated inline, whichever
-> reader the trigger fires for.
-
-The list below is the single canonical enumeration of the rules set,
-kept as one list so a future rules file joins the fleet's diet with no
-second edit point, now with per-line load mode. A file earns
-`@`-expansion only when it shapes judgment continuously — its
-applicability can't be recognized without the rule already in
-context. A file whose applicability announces itself at a crisp
-moment loads on demand instead. Every such entry opens with the
-trigger that loads the file, which runs longer where a file has more
-than one condition that should load it, and then states a kernel of
-exactly one sentence, wrapped to this file's width as needed, so that
-the file's hardest rule stays available even when the procedure
-doesn't load. The kernel is mandatory, not optional: an entry without
-one leaves its file's hardest rule unavailable to every session that
-never hits the trigger.
+Applicability decides the directory and the directory decides the load
+mode: an always-on file belongs in `rules/`, an on-demand file in
+`docs/rules/`, and an on-demand entry carries the trigger and kernel
+that `docs/rules/claude-code-markdown-instructions-style.md` →
+"Every on-demand file is reachable by a trigger and a kernel"
+requires. Every entry below names its own file's path, so a plain-path
+entry still naming `rules/` marks a file whose move has yet to land.
 
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
@@ -55,3 +40,9 @@ rules/comment-style.md — read before writing or reviewing comments in
   files, skills, agent definitions); also before writing or reviewing
   comments in any file the repo declares a formatter or linter for.
   Kernel: a comment states a constraint the code cannot show.
+docs/rules/claude-code-markdown-instructions-style.md — read before
+  writing or reviewing markdown whose reader is a model: `CLAUDE.md`,
+  rules files, `SKILL.md` bodies, agent definitions. Kernel: a line
+  earns its place only when a reader acts differently for having read
+  it and the condition that put it there is still real, which is as
+  much a licence to delete as a test for what you add.

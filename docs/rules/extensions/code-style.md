@@ -82,9 +82,10 @@ repos and asserts the guard's exit code.
 
 ### Every rules file the diff adds is listed in CLAUDE.md
 
-Every file the diff adds under `rules/` appears in the canonical rules
-list in `CLAUDE.md`, either as an `@`-expanded line or as a plain-path
-line with a trigger and a one-sentence kernel.
+Every file the diff adds directly in `rules/` appears in the canonical
+rules list in `CLAUDE.md` as an `@`-expanded line, and every file the
+diff adds directly in `docs/rules/` appears there as a plain-path line
+with a trigger and a one-sentence kernel.
 
 Counterexample shape: a new `rules/foo.md` with no `foo.md` line in
 `CLAUDE.md`.
@@ -110,18 +111,19 @@ pointer to reach its own rule. `rules/code-style.md` →
 "Structure contract", which `rules/comment-style.md` cites instead of
 restating, is that sanctioned shape.
 
-### No heading title under `rules/` is rewritten in place
+### No rule the diff adds argues why it is right
 
-For every `##` or `###` heading the diff changes in an existing file
-under `rules/`, the new heading contains the old heading's title as a
-substring, unless the diff removes the section outright.
+Every rule the diff adds to a guide in this repo states the behavior it
+requires and stops, carrying no paragraph defending the rule itself.
 
-Counterexample shape: renaming `core-principles.md`'s "Use shared
-constants" to "Shared constant discipline" — a title
-`rules/code-style.md` cites verbatim as the authority behind "No
-literal is duplicated across modules".
+Counterexample shape: a rule claim followed by a paragraph naming the
+cost the rule avoids.
 
-Plugin skills and agent definitions in other repos quote these titles
-verbatim as prose pointers, and a worktree of this repo cannot edit
-those quoters. See `.claude/rules/repo-is-claude-config-source.md` →
-"Rules headings are quoted downstream".
+### An instruction file with no section heading uses `##` headings
+
+Every Markdown file the diff adds or flattens whose instructions sit
+directly under the `#` title carries each of those instructions as a
+`##` heading.
+
+Counterexample shape: a guide whose `#` title is followed by a `###`
+instruction heading.

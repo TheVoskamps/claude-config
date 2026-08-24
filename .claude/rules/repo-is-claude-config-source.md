@@ -25,40 +25,27 @@ by the `@thevoskamps` marketplace plugins, declared in the
 A task to "update skill X", "change agent Z", or "edit a hook" is an
 edit in the corresponding plugin repo, not here.
 
-## Rules headings are quoted downstream
-
-Section headings in `rules/*.md` are load-bearing outside this repo:
-`@thevoskamps` plugin skills and agent definitions cite them verbatim
-as prose pointers, and those plugins live in separate repos a worktree
-of this repo cannot edit. A heading rename here lands as a dangling
-reference over there, unnoticed until a reader greps for a string that
-no longer exists. Treat a heading rename as an API change, not a
-wording tweak.
-
-When a task's substance is in the body of a rules section, leave the
-heading alone. If the heading is genuinely wrong after the change,
-make the smallest edit that keeps the old text a substring of the new
-one, and say in the report-back that downstream quoters may need a
-follow-up. The set of quoters is not enumerable from inside this repo,
-so treat the report-back as the handoff rather than trying to prove the
-rename is safe.
-
 ## What this means for editing
 
 When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
-edit is **in this repo** under `/rules/` or `CLAUDE.md` — NOT the
-deployed copy in `~/.claude/`.
+edit is **in this repo** under `/rules/`, `/docs/rules/`, or
+`CLAUDE.md` — NOT the deployed copy in `~/.claude/`.
 
-`/docs/` is where this repo's own per-repo extensions of the global
-style guides go, under the fixed names `rules/code-style.md` →
-"Per-repo extension" defines (`docs/code-style.md`,
-`docs/comment-style.md`). Of those, this repo currently carries
-`docs/code-style.md` only; the absent name means this repo adds
-nothing to that guide, not that the file is missing. An extension
-lives under `/docs/` rather than `/.claude/rules/` because this
-repo's nested `.claude/rules/` is auto-loaded into every session,
-which would make an on-demand guide always-on. It is an ordinary
-source file here, edited like any other.
+`/docs/rules/` holds on-demand rules files kept outside the `/rules/`
+set — `docs/rules/claude-code-markdown-instructions-style.md` today.
+Which of the two directories a new file goes in decides how
+`CLAUDE.md` announces it, per `docs/rules/extensions/code-style.md` →
+"Every rules file the diff adds is listed in CLAUDE.md".
+`/docs/rules/extensions/` under it holds this repo's own per-repo
+extensions of the global style guides, at the fixed names
+`rules/code-style.md` → "Per-repo extension" defines (`code-style.md`,
+`comment-style.md`). Of those, this repo currently carries
+`code-style.md` only; the absent name means this repo adds
+nothing to that guide, not that the file is missing. Both kinds live
+under `/docs/` rather than `/.claude/rules/` because this repo's
+nested `.claude/rules/` is auto-loaded into every session, which
+would make an on-demand guide always-on. They are ordinary source
+files here, edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside your sandbox, so the repository-boundary carve-out in
