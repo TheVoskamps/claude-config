@@ -27,6 +27,12 @@ is about to be added: a writer that can only append cannot maintain a
 document. Deleting a section you did not write, because its condition
 is gone, is the ordinary maintenance of these files.
 
+The test defaults to deletion: when you cannot tell whether a line
+earns its place, it does not, and judgment is needed only to keep it.
+Adding a line to an instruction file is what fires the test — state
+what a reader does differently for that line, and if you cannot state
+it, the line does not go in.
+
 Where a section's value is arguable, cut it rather than reword it.
 Rewording preserves the length and hides the doubt; cutting resolves
 it, and version control keeps the text if you were wrong.
