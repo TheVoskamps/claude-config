@@ -20,10 +20,8 @@ This contract governs this guide, its sibling
 It is stated here once; the comment guide points at it rather than
 restating it.
 
-The **preamble** in a guide is judgment guidance for a human or an
-agent holding the whole change in its head. The **rules** under it are
-the machine-consumable part: each `###` heading under "Rules" is
-exactly one rule, phrased as a falsifiable claim.
+Each `###` heading in a guide is exactly one rule, phrased as a
+falsifiable claim.
 
 The evidence a rule quantifies over is anything a second reader can
 independently go and re-check: the diff, the repository at head, and
@@ -40,11 +38,10 @@ disprovable, because a disagreeing reader can go and look at the same
 evidence and get the same answer.
 
 What is excluded is a rule resting on the reviewer's taste with
-nothing a disagreeing reader could go and look at. That is judgment
-guidance and belongs in the preamble.
+nothing a disagreeing reader could go and look at.
 
-A tool enumerating rules from a guide reads the `###` headings under
-"Rules" and nothing else.
+A tool enumerating rules from a guide reads its `###` headings and
+nothing else.
 
 ## Preamble (not a rule source)
 
@@ -220,10 +217,10 @@ because this guide is already loaded at the moment the instruction to
 fetch the repo file fires.
 
 The repo file follows the structure contract above: one rule per
-heading, each rule a falsifiable claim, judgment-only guidance
-confined to a marked preamble, and evidence a second reader can
-independently re-check. A tool reads the concatenation, so a repo file
-that drops the structure makes its own rules unreadable to that tool.
+heading, each rule a falsifiable claim, and evidence a second reader
+can independently re-check. A tool reads the concatenation, so a repo
+file that drops the structure makes its own rules unreadable to that
+tool.
 
 A repo file may carry no rules at all. A preamble stating why a rule
 above does not fire in this repo is a legitimate whole file: it tells
