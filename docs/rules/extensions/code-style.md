@@ -110,3 +110,20 @@ allowed: nothing moved out, so neither file sends a reader chasing a
 pointer to reach its own rule. `rules/code-style.md` →
 "Structure contract", which `rules/comment-style.md` cites instead of
 restating, is that sanctioned shape.
+
+### No rule the diff adds argues why it is right
+
+Every rule the diff adds to a guide in this repo states the behavior it
+requires and stops, carrying no paragraph defending the rule itself.
+
+Counterexample shape: a rule claim followed by a paragraph naming the
+cost the rule avoids.
+
+### An instruction file with no section heading uses `##` headings
+
+Every Markdown file the diff adds or flattens whose instructions sit
+directly under the `#` title carries each of those instructions as a
+`##` heading.
+
+Counterexample shape: a guide whose `#` title is followed by a `###`
+instruction heading.
