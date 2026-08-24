@@ -7,6 +7,7 @@ This repository (`global-claude-config-mirrored-to-public`) is the
 repo layout — same directory names, same paths:
 
 - `/rules/`         → `~/.claude/rules/`
+- `/output-styles/` → `~/.claude/output-styles/`
 - `/docs/`          → `~/.claude/docs/`
 - `CLAUDE.md`       → `~/.claude/CLAUDE.md`
 - `settings.json`   → `~/.claude/settings.json`

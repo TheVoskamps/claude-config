@@ -15,7 +15,6 @@ entry still naming `rules/` marks a file whose move has yet to land.
 @~/.claude/rules/git-workflow.md
 @~/.claude/rules/escalation-discipline.md
 @~/.claude/rules/label-uncertainty.md
-@~/.claude/rules/communication-style.md
 rules/credential-surfaces.md — read when a command fails with an
   authentication error, before you report that failure. Kernel: never
   probe or manipulate the user's credential agents — report the

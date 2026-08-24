@@ -219,7 +219,7 @@
   "tui": "fullscreen",
   "theme": "dark",
   "verbose": false,
-  "outputStyle": "Concise",
+  "outputStyle": "Crisp",
   "agentPushNotifEnabled": true,
   "autoMode": {
     "//version": "2026-07-26T05:06:02Z",

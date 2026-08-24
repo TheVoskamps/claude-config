@@ -7,7 +7,8 @@ linter for, whatever that file's language.
 "Code" here includes prose written to instruct an agent: rules files,
 skills, agent definitions, and the like are source a model executes,
 so this guide governs the comments in them. Prose written for a human
-reader stays under `rules/communication-style.md`.
+reader is not governed here: keep it terse and self-contained, and
+state no count the reader can derive from what is already shown.
 
 The structure this file follows — what counts as a rule, and the
 evidence a rule may quantify over — is stated once in
@@ -44,10 +45,8 @@ A file with no comments is making a claim about how much explanation
 its code needs. Match it, or change the file's convention deliberately
 and say so in the PR body.
 
-A comment's text is prose, so `rules/communication-style.md` →
-"Mechanics" governs how it is written — one idea per sentence, active
-voice, concrete verbs — while this guide governs whether it belongs at
-all.
+A comment's text is prose: one idea per sentence, active voice,
+concrete verbs. This guide governs whether the comment belongs at all.
 
 ## Rules
 
