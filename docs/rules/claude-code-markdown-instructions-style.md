@@ -11,21 +11,18 @@ code, and governs whether a diff matches the file it lands in — its
 naming, its structure, the linter it must pass.
 `rules/comment-style.md` governs the comments inside it. This guide
 governs what neither does: whether the content earns its place at
-all, and how much of it there should be. A section can satisfy every
-rule in those guides and still be a section that should not exist.
+all, and how much of it there should be.
 
 The reader is a capable model with a finite context window, not a new
-hire who needs the procedure spelled out. Every line you add is a line
-every future reader pays for — in context it cannot then spend on the
-task, and in dilution of the lines that matter.
+hire who needs the procedure spelled out.
 
-That cost is why the question to ask of a line is not "is this true?"
-but "does a reader act differently for having read it, and is the
-condition that put it here still real?" Call that the **retention
-test**. It applies to what is already in the file as often as to what
-is about to be added: a writer that can only append cannot maintain a
-document. Deleting a section you did not write, because its condition
-is gone, is the ordinary maintenance of these files.
+The question to ask of a line is not "is this true?" but "does a
+reader act differently for having read it, and is the condition that
+put it here still real?" Call that the **retention test**. It applies
+to what is already in the file as often as to what is about to be
+added: a writer that can only append cannot maintain a document.
+Deleting a section you did not write, because its condition is gone,
+is the ordinary maintenance of these files.
 
 The test defaults to deletion: when you cannot tell whether a line
 earns its place, it does not, and judgment is needed only to keep it.
@@ -34,8 +31,6 @@ what a reader does differently for that line, and if you cannot state
 it, the line does not go in.
 
 Where a section's value is arguable, cut it rather than reword it.
-Rewording preserves the length and hides the doubt; cutting resolves
-it, and version control keeps the text if you were wrong.
 
 ## Rules
 
