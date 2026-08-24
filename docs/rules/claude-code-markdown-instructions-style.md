@@ -38,8 +38,7 @@ Where a section's value is arguable, cut it rather than reword it.
 
 Every line the diff adds states something a reader would otherwise get
 wrong: a constraint, a decision, a gotcha, a fact the file system does
-not already show. A line whose removal leaves a reader's behavior
-unchanged is a counterexample.
+not already show. Removing one of them changes what a reader does.
 
 ### No instruction is stated twice in one context
 
