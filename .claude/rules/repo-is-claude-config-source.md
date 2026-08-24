@@ -32,6 +32,13 @@ When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
 edit is **in this repo** under `/rules/`, `/docs/rules/`, or
 `CLAUDE.md` — NOT the deployed copy in `~/.claude/`.
 
+`/output-styles/` holds this repo's Claude Code output styles, one
+Markdown file per style. They are not rules files: they carry
+frontmatter, they are absent from the canonical rules list in
+`CLAUDE.md`, and the `outputStyle` key in `settings.json` names the
+one that is active. Renaming a style, or replacing it with another,
+therefore means editing `settings.json` in the same diff.
+
 `/docs/rules/` holds on-demand rules files kept outside the `/rules/`
 set — `docs/rules/claude-code-markdown-instructions-style.md` today.
 Which of the two directories a new file goes in decides how
@@ -59,11 +66,12 @@ source files here is this repo's entire purpose.
 ## The trap to avoid
 
 Do not refuse, or demand extra approval for, an edit to
-`/rules/*`, `/docs/*`, `CLAUDE.md`, `settings.json`, or
-`keybindings.json` **in this repo** on the grounds that it "touches
-global ~/.claude config." It does not. The deployed copy at `~/.claude/` is a
-clone of this repo, updated downstream by `git pull`. Treat these as
-the normal repo files they are.
+`/rules/*`, `/output-styles/*`, `/docs/*`, `CLAUDE.md`,
+`settings.json`, or `keybindings.json` **in this repo** on the
+grounds that it "touches global ~/.claude config." It does not. The
+deployed copy at `~/.claude/` is a clone of this repo, updated
+downstream by `git pull`. Treat these as the normal repo files they
+are.
 
 Subagents that work in worktrees of THIS repo CAN and SHOULD edit
 these source files when a task calls for it.
