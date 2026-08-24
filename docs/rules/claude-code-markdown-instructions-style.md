@@ -90,15 +90,15 @@ append only as part of a relocation or a displacement.
 Counterexample shape: a `CLAUDE.md` already past the limit gaining a
 section.
 
-### `CLAUDE.md` holds only purpose, conventions, and gotchas
+### `CLAUDE.md` holds purpose, gotchas, and a routing table
 
 Every line the diff adds to a `CLAUDE.md` states what the repo is for,
-a convention it follows, or a gotcha it carries. Anything else belongs
-in a rules file, a skill, or an on-demand guide the enumeration routes
-to.
+states a gotcha it carries, or routes a reader to the file holding the
+rest. A convention goes in a rules file the routing table reaches.
 
-Counterexample shape: a section narrating how the repo's build system
-came to be replaced.
+Counterexample shape: a `CLAUDE.md` section fixing the repo's import
+ordering, where its routing table already reaches a code-style rules
+file.
 
 ### No example teaches what an interface can state
 
