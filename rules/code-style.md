@@ -6,8 +6,9 @@ that file's language.
 
 "Code" here includes prose written to instruct an agent: rules files,
 skills, agent definitions, and the like are source a model executes,
-so this guide governs them. Prose written for a human reader stays
-under `rules/communication-style.md`.
+so this guide governs them. Prose written for a human reader is not
+governed here: keep it terse and self-contained, and state no count
+the reader can derive from what is already shown.
 
 This guide asks whether such prose matches the file it lands in.
 Whether it earns its place at all, and how much of it there should be,

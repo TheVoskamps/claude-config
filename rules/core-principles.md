@@ -110,12 +110,11 @@ same class and fix them together.
 In-scope means the files the change touches, or the unit under review:
 the PR diff, the file you're editing, the module you're refactoring —
 not the whole repo unboundedly. The trigger is a *class* of defect, not
-a one-off typo: a stale "number of" count (see
-`rules/communication-style.md` → "No derivable numbers"), a dangling
-cross-reference after a rename, a forbidden command form, a missing
-null check on a shared helper. When you make a structural change —
-rename, move, merge a file — the cross-references to it are exactly
-such a class.
+a one-off typo: a stale "number of" count restating a list the reader
+can count for themselves, a dangling cross-reference after a rename, a
+forbidden command form, a missing null check on a shared helper. When
+you make a structural change — rename, move, merge a file — the
+cross-references to it are exactly such a class.
 
 Sweeping as you go is cheaper than the alternative. Fixing one
 instance, getting a review comment about the next, fixing that, getting
