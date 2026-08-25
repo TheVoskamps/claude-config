@@ -111,6 +111,17 @@ pointer to reach its own rule. The code guide's "Structure contract",
 which the comment guide cites instead of restating, is that sanctioned
 shape.
 
+### A relocated file keeps its `settings.json` allowlist coverage
+
+For every file the diff moves between this repo's top-level
+directories, `settings.json`'s `permissions.allow` carries a glob
+matching the deployed `~/.claude/` path of the new location, or the
+PR body flags the path left uncovered.
+
+Counterexample shape: a guide moved from `rules/` to `docs/rules/` in
+a diff whose only allowlist entry covering it is still
+`Read(~/.claude/rules/**)`.
+
 ### No rule the diff adds argues why it is right
 
 Every rule the diff adds to a guide in this repo states the behavior it
