@@ -84,7 +84,7 @@
       "Read(~/.claude/plugins/**)",
       "Read(~/.claude/rules/**)",
       "Read(~/.claude/skills/*/**)",
-      "Read(.claude/rules/repo-config.md)",
+      "Read(.issues/repo-config.md)",
       "Read(.claude/worktrees/**)",
       "Edit(.claude/worktrees/**)",
       "Read(.claude/tmp/**)",

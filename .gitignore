@@ -50,18 +50,23 @@
 # a settings.json (companion to install.sh).
 !/plugins.sh
 
-# Per-repo config for /issue-address and friends. Lives in the
-# *nested* .claude/ (this repo's root IS ~/.claude, so .claude/ here
-# is the per-repo config for using ~/.claude on itself). Each parent
-# must be un-ignored before the file becomes visible to git.
+# The *nested* .claude/ (this repo's root IS ~/.claude, so .claude/
+# here is the per-repo config for using ~/.claude on itself). Each
+# parent must be un-ignored before a file inside becomes visible to
+# git.
 !/.claude/
 !/.claude/rules/
-!/.claude/rules/repo-config.md
+
+# Per-repo config for the /issue-* verbs and friends, which read it
+# from .issues/ rather than the nested .claude/rules/.
+!/.issues/
+!/.issues/repo-config.md
+!/.issues/.markdownlint.jsonc
 # Repo-level user-config (deployed by /user-config) holds this user's
-# PRIVATE per-repo values. Re-ignore it AFTER the !/.claude/rules/
+# PRIVATE per-repo values. Re-ignore it AFTER the !/.issues/
 # un-ignore above — gitignore is last-match-wins — so it is never
 # tracked even though its sibling repo-config.md is.
-/.claude/rules/user-config.md
+/.issues/user-config.md
 
 # Subagent memory entries. Ignoring them keeps a worktree removable
 # with plain `git worktree remove`, and enforces the never-staged
