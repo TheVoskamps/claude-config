@@ -14,7 +14,7 @@
 !/CONTRIBUTORS
 # On-demand rules files under docs/rules/, plus this repo's own
 # per-repo style-guide extensions under docs/rules/extensions/ at the
-# fixed names rules/code-style.md defines (today, code-style.md
+# fixed names docs/rules/code-style.md defines (today, code-style.md
 # alone). Not under .claude/rules/, which is
 # auto-loaded recursively and would make an on-demand guide always-on.
 !/docs/
