@@ -32,8 +32,8 @@ cheaply undo, so each requires explicit approval before you act:
 
 - **Host-level and dependency installs.** A global install
   (`brew install`, `npm install -g`, `pipx install`) writes outside the
-  sandbox, and a dependency install a subagent runs on its own
-  initiative resolves a version the project never declared.
+  sandbox, and a dependency install that resolves a version the
+  project has not already pinned changes what the project declares.
 
 - **Destructive or irreversible operations.** `git push --force`,
   `git push --mirror`, history rewrites, deleting remote branches,
