@@ -30,9 +30,8 @@ cheaply undo, so each requires explicit approval before you act:
   primary clone's path, or your edit silently lands on the wrong
   branch outside your worktree.
 
-- **Host-level and dependency installs.** A global install
-  (`brew install`, `npm install -g`, `pipx install`) writes outside the
-  sandbox.
+- **Host-level and dependency installs.** These change state that
+  outlives the task and that the user, not the repo, owns.
 
 - **Destructive or irreversible operations.** `git push --force`,
   `git push --mirror`, history rewrites, deleting remote branches,
