@@ -138,9 +138,3 @@ command only — it does not carry to the next tool or the next task.
   requires its own approval.)
 - Running already-installed tooling. Detecting "tool X is missing" is
   fine; deciding to install it on your own initiative is not.
-
-## Relationship to other rules
-
-`rules/credential-surfaces.md` is this file's sibling: same shape
-("user-owned surfaces you must not touch on your own initiative"),
-different surface. It covers credential agents, not installs.

@@ -6,9 +6,8 @@ than inventing a workaround — when you hit one of these:
 - **An environmental mismatch the task does not describe.** The host
   Python rejects a dependency, the deployment target's runtime differs
   from the host's, a required tool is missing, a credential has
-  expired and no allowed refresh command exists (see
-  `rules/credential-surfaces.md`), a base image won't pull, a port is
-  occupied.
+  expired and no allowed refresh command exists, a base image won't
+  pull, a port is occupied.
 - **A rule that contradicts another rule, or that doesn't fit the
   situation.** The task body tells you to write to `/tmp/` but the
   agent rules forbid it; a rule says "verify in a venv" but the host
@@ -32,9 +31,6 @@ set. Other rules reference it rather than restating it.
    systemic (fixes a class of future runs rather than just this one),
    say which.
 3. **What you would do** if forced to pick. Then ask.
-
-`rules/credential-surfaces.md` narrows this shape for authentication
-failures, where naming a remediation is itself out of bounds.
 
 ## When not to escalate
 

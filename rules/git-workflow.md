@@ -167,8 +167,3 @@ and getting explicit permission first — they can destroy work that is
 not yours. `--force-with-lease` and `--force-if-includes` are fine
 without it, e.g. after rebasing a branch onto the default branch's
 HEAD, because they refuse to clobber commits you haven't seen.
-
-If a commit is rejected for missing signatures, a merge is requested,
-or a commit lands on the wrong branch, see
-`rules/git-recovery.md` — read on demand for those rare events rather
-than carried here.

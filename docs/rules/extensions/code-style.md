@@ -93,23 +93,23 @@ Counterexample shape: a new `rules/foo.md` with no `foo.md` line in
 That list is the only enumeration of the rules set. A rules file
 missing from it is a file no session ever loads.
 
-### No section moved out of a `rules/` file leaves a stub behind
+### No section moved out of a rules file leaves a stub behind
 
-For every section the diff removes from one file under `rules/` and
-adds to another, the source file retains nothing of it: no stub
-heading, no one-line kernel, no "moved to X" pointer.
+For every section the diff removes from one file under `rules/` or
+`docs/rules/` and adds to another, the source file retains nothing of
+it: no stub heading, no one-line kernel, no "moved to X" pointer.
 
 Counterexample shape: a "Fix root causes, not symptoms" heading left
 behind in `core-principles.md` whose whole body is a line pointing at
-`rules/code-style.md`.
+the code guide.
 
 A stub makes every reader load two files to learn one rule, and it
 drifts from the rule it points at. Two sibling guides sharing a single
 statement of a contract they both obey is a different shape and is
 allowed: nothing moved out, so neither file sends a reader chasing a
-pointer to reach its own rule. `rules/code-style.md` →
-"Structure contract", which `rules/comment-style.md` cites instead of
-restating, is that sanctioned shape.
+pointer to reach its own rule. The code guide's "Structure contract",
+which the comment guide cites instead of restating, is that sanctioned
+shape.
 
 ### No rule the diff adds argues why it is right
 

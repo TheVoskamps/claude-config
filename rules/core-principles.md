@@ -30,10 +30,7 @@ cheaply undo, so each requires explicit approval before you act:
   primary clone's path, or your edit silently lands on the wrong
   branch outside your worktree.
 
-- **Host-level and dependency installs.** See
-  `rules/install-discipline.md`, which scopes exactly which install
-  commands are forbidden on your own initiative and which are always
-  allowed.
+- **Host-level and dependency installs.**
 
 - **Destructive or irreversible operations.** `git push --force`,
   `git push --mirror`, history rewrites, deleting remote branches,
@@ -43,8 +40,7 @@ cheaply undo, so each requires explicit approval before you act:
   are not destructive and need no approval; see
   `rules/git-workflow.md` for the default-branch case.
 
-- **The user's credential agents.** See
-  `rules/credential-surfaces.md`. Running a command that happens to
+- **The user's credential agents.** Running a command that happens to
   prompt for credentials is fine; probing or manipulating the agent
   behind it is not.
 
@@ -79,9 +75,6 @@ underneath the hypothesis itself.
 
 This judgment applies wherever an error does — a failed deploy, an
 expired credential, a misread log — not only where a diff is in play.
-The forms it takes that a diff can be checked against, "No suppression
-directive is added" and "No caught error is discarded", are rules in
-`rules/code-style.md`.
 
 ## Monitor actively
 
