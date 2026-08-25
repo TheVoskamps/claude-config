@@ -81,6 +81,7 @@
       "WebFetch(domain:karpenter.sh)",
       "WebSearch",
       "Read(~/.claude/CLAUDE.md)",
+      "Read(~/.claude/docs/**)",
       "Read(~/.claude/plugins/**)",
       "Read(~/.claude/rules/**)",
       "Read(~/.claude/skills/*/**)",

@@ -39,16 +39,16 @@ frontmatter, they are absent from the canonical rules list in
 one that is active. Renaming a style, or replacing it with another,
 therefore means editing `settings.json` in the same diff.
 
-`/docs/rules/` holds on-demand rules files kept outside the `/rules/`
-set — `docs/rules/claude-code-markdown-instructions-style.md` today.
-Which of the two directories a new file goes in decides how
-`CLAUDE.md` announces it, per `docs/rules/extensions/code-style.md` →
+`/docs/rules/` holds the on-demand rules files kept outside the
+`/rules/` set. Which of the two directories a new file goes in decides
+how `CLAUDE.md` announces it, per
+`docs/rules/extensions/code-style.md` →
 "Every rules file the diff adds is listed in CLAUDE.md".
 `/docs/rules/extensions/` under it holds this repo's own per-repo
 extensions of the global style guides, at the fixed names
-`rules/code-style.md` → "Per-repo extension" defines (`code-style.md`,
-`comment-style.md`). Of those, this repo currently carries
-`code-style.md` only; the absent name means this repo adds
+`docs/rules/code-style.md` → "Per-repo extension" defines
+(`code-style.md`, `comment-style.md`). Of those, this repo currently
+carries `code-style.md` only; the absent name means this repo adds
 nothing to that guide, not that the file is missing. Both kinds live
 under `/docs/` rather than `/.claude/rules/` because this repo's
 nested `.claude/rules/` is auto-loaded into every session, which
@@ -57,8 +57,8 @@ files here, edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside your sandbox, so the repository-boundary carve-out in
-`core-principles.md` → "Work autonomously inside your sandbox; stop at
-its edges" does not apply to them. That carve-out governs
+`rules/core-principles.md` → "Work autonomously inside your sandbox;
+stop at its edges" does not apply to them. That carve-out governs
 writes to the **deployed copies** under `~/.claude/` — e.g. reaching
 over into `~/.claude/` while working in some *other* repo. Editing the
 source files here is this repo's entire purpose.

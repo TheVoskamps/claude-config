@@ -12,8 +12,8 @@ state no count the reader can derive from what is already shown.
 
 The structure this file follows — what counts as a rule, and the
 evidence a rule may quantify over — is stated once in
-`rules/code-style.md` → "Structure contract", and governs this file
-and its per-repo extension unchanged. That guide is
+`docs/rules/code-style.md` → "Structure contract", and governs this
+file and its per-repo extension unchanged. That guide is
 already in context whenever this one is: you do not write comments
 without writing the code they sit on.
 
@@ -152,6 +152,6 @@ Everything else about the extension — why the fixed name is the whole
 discovery mechanism, the sibling guide's own extension file, the
 global-then-repo resolution order, the repo file winning on conflict,
 the structure the repo file must follow, and the legitimacy of a repo
-file carrying no rules at all — is stated in
-`rules/code-style.md` → "Per-repo extension" and holds here with the
-filename above substituted.
+file carrying no rules at all — is stated in the code guide's
+"Per-repo extension" section and holds here with the filename above
+substituted.
