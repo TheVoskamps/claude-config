@@ -75,7 +75,7 @@ actual code rather than your memory of it, and the assumptions
 underneath the hypothesis itself.
 
 This judgment applies wherever an error does — a failed deploy, an
-expired credential, a misread log — not only where a diff is in play.
+expired credential, a misread log.
 
 ## Monitor actively
 
@@ -106,12 +106,12 @@ the PR diff, the file you're editing, the module you're refactoring —
 not the whole repo unboundedly. The trigger is a *class* of defect, not
 a one-off typo: a stale "number of" count restating a list the reader
 can count for themselves, a dangling cross-reference after a rename, a
-forbidden command form, a missing null check on a shared helper. When
+clause left stranded when the reference it was built around is deleted,
+a forbidden command form, a missing null check on a shared helper. When
 you make a structural change — rename, move, merge a file — the
-cross-references to it are exactly such a class.
+cross-references to it are exactly such a class, and so is the prose
+that survives one you remove.
 
 Sweeping as you go is cheaper than the alternative. Fixing one
 instance, getting a review comment about the next, fixing that, getting
-another: each round-trip costs a review cycle. A retro on the
-marketplace repo saw one PR churn three review rounds chasing a single
-class of defect one instance at a time.
+another: each round-trip costs a review cycle.
