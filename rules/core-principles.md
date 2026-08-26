@@ -48,9 +48,7 @@ Don't ignore a warning or an error, and don't paper over one. Follow
 the error chain to its source and fix what you find there.
 
 Read the complete error output before forming a hypothesis. Test the
-hypothesis and confirm it before declaring the fix works; see
-`rules/label-uncertainty.md` for how to label a claim you have not
-verified.
+hypothesis and confirm it before declaring the fix works.
 
 If you find yourself proposing the same explanation a second time,
 change what you are looking at: server logs, client and browser
