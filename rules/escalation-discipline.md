@@ -22,9 +22,6 @@ to the human, not to you — surface it and stop.
 
 ## The report shape
 
-This is the canonical shape for every stop-and-report in this rules
-set. Other rules reference it rather than restating it.
-
 1. **The exact error or rule conflict, verbatim.** Quote the output;
    do not paraphrase.
 2. **The options you see** — two to four, no more. If one of them is
