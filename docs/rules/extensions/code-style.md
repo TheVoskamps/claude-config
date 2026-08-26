@@ -1,10 +1,5 @@
 # Code Style — this repo
 
-This repo's extension of the global code style guide, at the fixed
-name that guide's "Per-repo extension" section tells its reader to
-look for. The global guide states the resolution order; this file only
-adds to it.
-
 ## Preamble (not a rule source)
 
 This repo's main artifact carries no tests, and will not gain any.

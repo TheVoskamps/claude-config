@@ -24,12 +24,6 @@ session. After one bare `cd`, every subsequent command runs in the
 new CWD without re-stating it. If the local directory (re)setting is
 wrong, tell the user.
 
-> **Subagent / `isolation: worktree` context.** The rules for
-> Task-tool subagents — cwd-does-not-persist, the worktree command
-> forms, and end-of-run worktree/branch cleanup — live with the
-> orchestrator and its agents in the `sdlc` plugin, not here. This
-> file covers only the main session.
-
 ## Commit messages
 
 - First line: present-tense imperative verb and summary (e.g. "Add

@@ -10,10 +10,6 @@ so this guide governs them. Prose written for a human reader is not
 governed here: keep it terse and self-contained, and state no count
 the reader can derive from what is already shown.
 
-This guide asks whether such prose matches the file it lands in.
-Whether it earns its place at all, and how much of it there should be,
-is `docs/rules/claude-code-markdown-instructions-style.md`.
-
 ## Structure contract
 
 This contract governs this guide, its sibling comment guide, and any

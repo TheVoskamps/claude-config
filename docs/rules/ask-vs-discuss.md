@@ -1,8 +1,5 @@
 # Ask vs. Discuss
 
-Applies to the interactive main session. A subagent, which does not
-ask the user questions, can skip this file.
-
 When the user wants to *discuss* — to explore and converge on what
 the problem actually is, surface intent, or test whether you've
 framed it correctly — a tabbed multiple-choice form
