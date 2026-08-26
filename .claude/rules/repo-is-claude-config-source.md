@@ -96,14 +96,11 @@ and it succeeds silently because that file really exists there. Your
 worktree-relative `git diff` then shows nothing, which is easy to
 misread as a failed write.
 
-`Edit`/`Write`/`Read`/`MultiEdit` require an **absolute** `file_path`.
-Anchor that absolute path to **your worktree root**, obtained from
-`git rev-parse --show-toplevel`, never to the canonical
-`global-claude-config-mirrored-to-public` path that appears in
-`CLAUDE.md`, the environment block, or a spawn prompt. Concretely: the
-file to edit is `$(git rev-parse --show-toplevel)/rules/foo.md`, which
-inside a worktree resolves to
+`Edit`/`Write`/`Read`/`MultiEdit` require an **absolute** `file_path`,
+anchored per `rules/git-workflow.md` → "Anchor absolute paths to the
+checkout you are in". The carried-in path that rule forbids is, here,
+the canonical `global-claude-config-mirrored-to-public` path printed
+in `CLAUDE.md`, the environment block, and spawn prompts. Concretely:
+the file to edit is `$(git rev-parse --show-toplevel)/rules/foo.md`,
+which inside a worktree resolves to
 `<primary-clone>/.claude/worktrees/agent-<id>/rules/foo.md`.
-
-This is a known hazard (see issue #188 and upstream
-anthropics/claude-code#62547).
