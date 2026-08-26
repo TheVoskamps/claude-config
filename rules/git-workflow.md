@@ -12,6 +12,17 @@ repo root needs permission, per the boundary rule in
 `rules/core-principles.md` → "Work autonomously inside your sandbox;
 stop at its edges".
 
+## Anchor absolute paths to the checkout you are in
+
+Derive every absolute path you hand a file tool from
+`git rev-parse --show-toplevel`, never from a repo path you carried in
+from a prompt, an environment block, or your own memory. Worktrees
+nest under the primary clone at `.claude/worktrees/<name>/`, so the
+same relative path resolves under both roots and a write built from
+the wrong one lands in the primary clone, on whatever branch it holds.
+That write reports success; the tell is a `git diff` in your worktree
+that shows nothing.
+
 ## cwd persists across Bash calls
 
 The working directory **persists across Bash calls** in the main
