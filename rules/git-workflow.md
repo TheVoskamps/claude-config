@@ -16,12 +16,7 @@ stop at its edges".
 
 Derive every absolute path you hand a file tool from
 `git rev-parse --show-toplevel`, never from a repo path you carried in
-from a prompt, an environment block, or your own memory. Worktrees
-nest under the primary clone at `.claude/worktrees/<name>/`, so the
-same relative path resolves under both roots and a write built from
-the wrong one lands in the primary clone, on whatever branch it holds.
-That write reports success; the tell is a `git diff` in your worktree
-that shows nothing.
+from a prompt, an environment block, or your own memory.
 
 ## cwd persists across Bash calls
 
