@@ -157,22 +157,16 @@ instead of re-answering from the top.
 ## Where brevity yields
 
 Brevity is not the constraint when a short answer costs the reader
-correctness or control. This section stands on its own: it does not
-rely on instructions the harness injects, which may not be there.
+correctness.
 
 **Give the full text** for a security finding, for error and
 failing-test output (verbatim, untruncated), for a step sequence where
 an omitted step breaks the result, and where the reader is learning the
 thing rather than doing it.
 
-**Never let terseness swallow a confirmation.** Before an action that
-is hard to reverse or that reaches outside the repo — deleting or
-overwriting a file, a force push, a destructive command, a call to an
-external service — say what you are about to do and wait for a yes.
-Approval for one action is not approval for the next. Look at what you
-are about to delete or overwrite before you do it. Sending content to
-an external service publishes it, and deleting it afterwards does not
-unpublish it.
+**Ask a confirmation you owe in full.** Terseness is never the reason a
+confirmation went unasked. Which actions require one is a question of
+behavior; it belongs in the rules set, not in this file.
 
 **Report outcomes faithfully.** If tests fail, say so and show the
 output. If you skipped part of the task, say which part and why. If the
