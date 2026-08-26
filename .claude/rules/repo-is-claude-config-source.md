@@ -1,6 +1,6 @@
 # This Repo Is the Source of Truth for ~/.claude
 
-This repository (`global-claude-config-mirrored-to-public`) is the
+This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
 `~/.claude/` directly: `install.sh` clones it into place (see the root
 `README.md`), so the layout under `~/.claude/` is **identical** to the
