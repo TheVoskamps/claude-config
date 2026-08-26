@@ -129,9 +129,9 @@ name, a queue name, an env var key, a route path, a feature flag — is
 written literally in more than one module in the diff. It is defined
 once and imported.
 
-The authority is `rules/core-principles.md` → "Use shared constants".
-Literals confined to a single module, and literals with no
-cross-module meaning, are outside this rule.
+The authority is "Use shared constants" below. Literals confined to a
+single module, and literals with no cross-module meaning, are outside
+this rule.
 
 ### No caught error is discarded
 
@@ -193,6 +193,25 @@ suite for that surface.
 
 Counterexample shape: a new CLI flag with no test exercising it, in a
 repo whose other flags are each tested.
+
+### Use shared constants
+
+Every resource name and other cross-module string literal the diff
+introduces is defined once in the project's central constants module
+(e.g. `shared-constants.ts`) and referenced from every use site, under
+the naming convention that module's existing entries already follow.
+
+Counterexample shape: a new queue name declared inline in the stack
+that creates it, with the consuming module repeating the string.
+
+### Sweep the class
+
+For every defect the diff fixes, the diff also fixes every other
+instance of that same class of defect within the files the diff
+touches or the unit under review.
+
+Counterexample shape: a diff that repairs one dangling cross-reference
+to a renamed file and leaves a second one in another file it edits.
 
 ## Per-repo extension
 
