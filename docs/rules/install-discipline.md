@@ -90,11 +90,10 @@ the time it's visible it's already done.
 
 ## When a project-local command fails
 
-Stop and report, per the report shape in
-`rules/escalation-discipline.md`. Do not run a recovery: the user
-picks the fix. Alongside the verbatim error, name the root cause when
-the error makes it evident, the missing tool, and the project's
-declared way to invoke it.
+Stop and report. Do not run a recovery: the user picks the fix.
+Alongside the verbatim error, name the root cause when the error makes
+it evident, the missing tool, and the project's declared way to invoke
+it.
 
 What that adds up to in the common case — `npm ci` (or the language
 equivalent) ran, and the tool still isn't there:

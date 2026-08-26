@@ -58,10 +58,8 @@ When a normal command fails with an auth error:
 
 ## Reporting an auth failure
 
-An auth failure narrows the general report shape in
-`rules/escalation-discipline.md`: here, naming options and a
-recommendation is itself out of bounds. So the report has the
-following parts and nothing else:
+Naming options or a recommendation is itself out of bounds here. So
+the report has the following parts and nothing else:
 
 1. A bare statement that the operation failed.
 2. The literal error output, verbatim, in a code block.
@@ -80,8 +78,8 @@ Forbidden in that report:
   report rather than a command you ran yourself, say so — "the
   subagent reported:" — and don't present it as something you
   observed. If the claim is load-bearing and cheaply checkable (did
-  the push land? `git ls-remote`), verify the territory first, per
-  `rules/label-uncertainty.md`.
+  the push land? `git ls-remote`), check it against the live state
+  yourself first.
 
 The failure mode this prevents: dressing a second-hand or
 unobserved error up as firsthand fact, then inventing a

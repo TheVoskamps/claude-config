@@ -1,8 +1,7 @@
 # Git Recovery
 
 Read this file when one of its named errors appears, or when a merge
-is requested. These are rare-event procedures, not everyday judgment —
-`rules/git-workflow.md` covers the everyday commit/push rules.
+is requested. These are rare-event procedures, not everyday judgment.
 
 ## Commit signing
 

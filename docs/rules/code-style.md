@@ -58,10 +58,10 @@ own change rather than as a silent rider on an unrelated one.
 
 Style is downstream of correctness, never a substitute for it. A
 change that satisfies every rule below and is wrong is still wrong.
-Root-cause discipline is `rules/core-principles.md` → "Fix root
-causes, not symptoms", which is loaded in every session. The rules
-below that cite it are the forms it takes that a diff can be checked
-against.
+Fix the root cause of an error rather than its symptom. The rules
+below that this paragraph governs — "No suppression directive is
+added" and "No caught error is discarded" — are its diff-checkable
+cases, not its whole content.
 
 Suppression is not a fix. `eslint-disable-next-line`, a blanket
 `# type: ignore`, a loosened linter config: each hides the problem and
@@ -105,12 +105,10 @@ suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
 `# type: ignore`, `# noqa`, `@SuppressWarnings`, `#pragma warning
 disable`, or any equivalent.
 
-The authority is `rules/core-principles.md` → "Fix root causes, not
-symptoms", and the preamble's suppression-is-not-a-fix paragraph
-narrows it to suppression. This rule is the compile-time diff-checkable
-case of both, and no more: a diff can add no suppression and still
-paper over a root cause. Removing an existing suppression is not a
-violation — only adding one is.
+The authority is the preamble's suppression-is-not-a-fix paragraph.
+This rule is its compile-time diff-checkable case, and no more: a diff
+can add no suppression and still paper over a root cause. Removing an
+existing suppression is not a violation — only adding one is.
 
 ### Every symbol the diff introduces is referenced
 
@@ -141,10 +139,9 @@ in a raised error, or returning it as a value the caller must handle.
 Counterexample shape: an empty catch block, or one whose entire body
 is a log call followed by falling through to the success path.
 
-The authority is `rules/core-principles.md` → "Fix root causes, not
-symptoms". A swallowed error is the runtime form of the suppression
-the preamble forbids at compile time: both make the symptom disappear
-and leave the cause in place.
+A swallowed error is the runtime form of the suppression the preamble
+forbids at compile time: both make the symptom disappear and leave the
+cause in place.
 
 ### Existing helpers are reused rather than reimplemented
 
