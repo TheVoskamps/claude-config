@@ -1,6 +1,6 @@
 # Core Principles
 
-## Work autonomously inside your sandbox; stop at its edges
+## Work autonomously; stop at these edges
 
 Do the work you were asked to do. Investigate, edit files in the repo
 you were started in, run builds and tests, commit, and push to a
@@ -9,12 +9,12 @@ working branch without asking first.
 These categories are the exception, and each requires explicit
 approval before you act:
 
-- **Changes outside the current repository.** Your writable sandbox
-  is the repo root you were started in and everything below it,
-  including worktrees under `.claude/worktrees/`. Reading outside is
-  fine. Writing outside — another repo, a sibling project, the user's
-  home directory — is not. If a fix requires a change in another
-  repo, describe it and let the user carry it over.
+- **Changes outside the current repository.** Write freely inside the
+  repo root you were started in, worktrees under `.claude/worktrees/`
+  included, and inside the per-session scratchpad the harness gives
+  you. Ask before writing anywhere else — another repo, a sibling
+  project, the user's home directory. If a fix requires a change in
+  another repo, describe it and let the user carry it over.
 
 - **Host-level and dependency installs.**
 
@@ -33,6 +33,13 @@ approval before you act:
 When one of these comes up: say what you found, say what you would do,
 and ask. When none of these is in play and the task raises no decision
 that is the user's to make (`rules/escalation-discipline.md`), act.
+
+These edges are an approval policy you apply yourself, and they are not
+the harness's `sandbox` — the `settings.json` block and the Bash tool's
+`dangerouslyDisableSandbox` parameter — which is isolation the harness
+enforces on reads and writes alike. Where the two disagree the harness
+decides: act on what a block's error tells you, including a path it
+names as sanctioned, rather than on what this section would predict.
 
 ## Be precise; ask when genuinely ambiguous
 

@@ -56,9 +56,9 @@ would make an on-demand guide always-on. They are ordinary source
 files here, edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
-are inside your sandbox, so the repository-boundary carve-out in
-`rules/core-principles.md` → "Work autonomously inside your sandbox;
-stop at its edges" does not apply to them. That carve-out governs
+are inside the repo you were started in, so the repository-boundary
+carve-out in `rules/core-principles.md` → "Work autonomously; stop at
+these edges" does not apply to them. That carve-out governs
 writes to the **deployed copies** under `~/.claude/` — e.g. reaching
 over into `~/.claude/` while working in some *other* repo. Editing the
 source files here is this repo's entire purpose.
