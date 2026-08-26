@@ -17,8 +17,7 @@ is `docs/rules/claude-code-markdown-instructions-style.md`.
 ## Structure contract
 
 This contract governs this guide, its sibling comment guide, and any
-per-repo extension file of either. It is stated here once; the comment
-guide points at it rather than restating it.
+per-repo extension file of either.
 
 Each `###` heading in a guide is exactly one rule, phrased as a
 falsifiable claim.

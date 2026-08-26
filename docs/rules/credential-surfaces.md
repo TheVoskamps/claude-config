@@ -60,9 +60,8 @@ When a normal command fails with an auth error:
 
 An auth failure narrows the general report shape in
 `rules/escalation-discipline.md`: here, naming options and a
-recommendation is itself out of bounds, because both reach into the
-credential surface. So the report has the following parts and nothing
-else:
+recommendation is itself out of bounds. So the report has the
+following parts and nothing else:
 
 1. A bare statement that the operation failed.
 2. The literal error output, verbatim, in a code block.

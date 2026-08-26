@@ -16,8 +16,6 @@ approval before you act:
   project, the user's home directory. If a fix requires a change in
   another repo, describe it and let the user carry it over.
 
-- **Host-level and dependency installs.**
-
 - **Destructive or irreversible operations.** `git push --force`,
   `git push --mirror`, history rewrites, deleting remote branches,
   deleting cloud resources, dropping databases. `--force-with-lease`
@@ -25,10 +23,6 @@ approval before you act:
   you have not seen. `git commit` and `git push` to a working branch
   are not destructive and need no approval; see
   `rules/git-workflow.md` for the default-branch case.
-
-- **The user's credential agents.** Running a command that happens to
-  prompt for credentials is fine; probing or manipulating the agent
-  behind it is not.
 
 When one of these comes up: say what you found, say what you would do,
 and ask. When none of these is in play and the task raises no decision

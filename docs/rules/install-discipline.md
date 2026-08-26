@@ -19,12 +19,6 @@ improvise a recovery that touches either surface. The user will decide
 whether to fix the repo (e.g. correct a bad script), install something,
 or take a different path.
 
-This file is the detail behind the install carve-out in
-`rules/core-principles.md` → "Work autonomously; stop at these edges".
-It names the specific classes of install command so they survive
-reasoning like "but the build needs CDK, so installing CDK is
-implied."
-
 ## Host integrity — forbidden for everyone
 
 The following commands write outside the current repo/worktree and
