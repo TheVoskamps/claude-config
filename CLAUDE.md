@@ -55,3 +55,7 @@ rules/comment-style.md — read before writing or reviewing comments in
   files, skills, agent definitions); also before writing or reviewing
   comments in any file the repo declares a formatter or linter for.
   Kernel: a comment states a constraint the code cannot show.
+rules/issue-drafting.md — read before drafting or filing an issue,
+  through any path. Kernel: invoke `irene-tools:writing-issues`
+  before composing any issue body, and never draft until its gate
+  items are confirmed with the human.
