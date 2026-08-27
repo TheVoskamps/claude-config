@@ -10,15 +10,10 @@ so this guide governs them. Prose written for a human reader is not
 governed here: keep it terse and self-contained, and state no count
 the reader can derive from what is already shown.
 
-This guide asks whether such prose matches the file it lands in.
-Whether it earns its place at all, and how much of it there should be,
-is `docs/rules/claude-code-markdown-instructions-style.md`.
-
 ## Structure contract
 
 This contract governs this guide, its sibling comment guide, and any
-per-repo extension file of either. It is stated here once; the comment
-guide points at it rather than restating it.
+per-repo extension file of either.
 
 Each `###` heading in a guide is exactly one rule, phrased as a
 falsifiable claim.
@@ -59,10 +54,10 @@ own change rather than as a silent rider on an unrelated one.
 
 Style is downstream of correctness, never a substitute for it. A
 change that satisfies every rule below and is wrong is still wrong.
-Root-cause discipline is `rules/core-principles.md` → "Fix root
-causes, not symptoms", which is loaded in every session. The rules
-below that cite it are the forms it takes that a diff can be checked
-against.
+Fix the root cause of an error rather than its symptom. The rules
+below that this paragraph governs — "No suppression directive is
+added" and "No caught error is discarded" — are its diff-checkable
+cases, not its whole content.
 
 Suppression is not a fix. `eslint-disable-next-line`, a blanket
 `# type: ignore`, a loosened linter config: each hides the problem and
@@ -106,12 +101,10 @@ suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
 `# type: ignore`, `# noqa`, `@SuppressWarnings`, `#pragma warning
 disable`, or any equivalent.
 
-The authority is `rules/core-principles.md` → "Fix root causes, not
-symptoms", and the preamble's suppression-is-not-a-fix paragraph
-narrows it to suppression. This rule is the compile-time diff-checkable
-case of both, and no more: a diff can add no suppression and still
-paper over a root cause. Removing an existing suppression is not a
-violation — only adding one is.
+The authority is the preamble's suppression-is-not-a-fix paragraph.
+This rule is its compile-time diff-checkable case, and no more: a diff
+can add no suppression and still paper over a root cause. Removing an
+existing suppression is not a violation — only adding one is.
 
 ### Every symbol the diff introduces is referenced
 
@@ -129,8 +122,8 @@ name, a queue name, an env var key, a route path, a feature flag — is
 written literally in more than one module in the diff. It is defined
 once and imported.
 
-The authority is `rules/core-principles.md` → "Use shared constants".
-Literals confined to a single module, and literals with no
+The authority is "Shared resource names live in the constants module"
+below. Literals confined to a single module, and literals with no
 cross-module meaning, are outside this rule.
 
 ### No caught error is discarded
@@ -142,10 +135,9 @@ in a raised error, or returning it as a value the caller must handle.
 Counterexample shape: an empty catch block, or one whose entire body
 is a log call followed by falling through to the success path.
 
-The authority is `rules/core-principles.md` → "Fix root causes, not
-symptoms". A swallowed error is the runtime form of the suppression
-the preamble forbids at compile time: both make the symptom disappear
-and leave the cause in place.
+A swallowed error is the runtime form of the suppression the preamble
+forbids at compile time: both make the symptom disappear and leave the
+cause in place.
 
 ### Existing helpers are reused rather than reimplemented
 
@@ -193,6 +185,25 @@ suite for that surface.
 
 Counterexample shape: a new CLI flag with no test exercising it, in a
 repo whose other flags are each tested.
+
+### Shared resource names live in the constants module
+
+Every resource name and other cross-module string literal the diff
+introduces is defined once in the project's central constants module
+(e.g. `shared-constants.ts`) and referenced from every use site, under
+the naming convention that module's existing entries already follow.
+
+Counterexample shape: a new queue name declared inline in the stack
+that creates it, with the consuming module repeating the string.
+
+### A defect fix covers every in-scope instance of its class
+
+For every defect the diff fixes, the diff also fixes every other
+instance of that same class of defect within the files the diff
+touches or the unit under review.
+
+Counterexample shape: a diff that repairs one dangling cross-reference
+to a renamed file and leaves a second one in another file it edits.
 
 ## Per-repo extension
 

@@ -1,8 +1,5 @@
 # Ask vs. Discuss
 
-Applies to the interactive main session. A subagent, which does not
-ask the user questions, can skip this file.
-
 When the user wants to *discuss* — to explore and converge on what
 the problem actually is, surface intent, or test whether you've
 framed it correctly — a tabbed multiple-choice form
@@ -44,6 +41,5 @@ form.
 A form that arrives too early feels efficient but is the opposite: it
 locks in a frame the user never got to challenge, and the cost
 surfaces later, when work built on the wrong frame has to be undone.
-A plain question is cheap to answer and cheap to be wrong about. The
-distinction is the same one in `rules/label-uncertainty.md` —
-don't present provisional understanding as if it were settled.
+A plain question is cheap to answer and cheap to be wrong about. Don't
+present provisional understanding as if it were settled.

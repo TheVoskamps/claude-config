@@ -1,10 +1,5 @@
 # Code Style — this repo
 
-This repo's extension of the global code style guide, at the fixed
-name that guide's "Per-repo extension" section tells its reader to
-look for. The global guide states the resolution order; this file only
-adds to it.
-
 ## Preamble (not a rule source)
 
 This repo's main artifact carries no tests, and will not gain any.
@@ -99,9 +94,9 @@ For every section the diff removes from one file under `rules/` or
 `docs/rules/` and adds to another, the source file retains nothing of
 it: no stub heading, no one-line kernel, no "moved to X" pointer.
 
-Counterexample shape: a "Fix root causes, not symptoms" heading left
-behind in `core-principles.md` whose whole body is a line pointing at
-the code guide.
+Counterexample shape: a "Use shared constants" heading left behind in
+`core-principles.md` whose whole body is a line pointing at the code
+guide's "Shared resource names live in the constants module".
 
 A stub makes every reader load two files to learn one rule, and it
 drifts from the rule it points at. Two sibling guides sharing a single

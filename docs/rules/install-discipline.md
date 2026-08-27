@@ -19,12 +19,6 @@ improvise a recovery that touches either surface. The user will decide
 whether to fix the repo (e.g. correct a bad script), install something,
 or take a different path.
 
-This file is the detail behind the install carve-out in
-`rules/core-principles.md` → "Work autonomously inside your sandbox;
-stop at its edges". It names the specific classes of
-install command so they survive reasoning like "but the build needs
-CDK, so installing CDK is implied."
-
 ## Host integrity — forbidden for everyone
 
 The following commands write outside the current repo/worktree and
@@ -96,11 +90,10 @@ the time it's visible it's already done.
 
 ## When a project-local command fails
 
-Stop and report, per the report shape in
-`rules/escalation-discipline.md`. Do not run a recovery: the user
-picks the fix. Alongside the verbatim error, name the root cause when
-the error makes it evident, the missing tool, and the project's
-declared way to invoke it.
+Stop and report. Do not run a recovery: the user picks the fix.
+Alongside the verbatim error, name the root cause when the error makes
+it evident, the missing tool, and the project's declared way to invoke
+it.
 
 What that adds up to in the common case — `npm ci` (or the language
 equivalent) ran, and the tool still isn't there:
