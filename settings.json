@@ -69,6 +69,7 @@
       "Bash(pnpm run cdk synth:*)",
       "Bash(pnpm synth:*)",
       "Bash(pnpm why:*)",
+      "Bash(sdlc-agent-result-persist:*)",
       "Bash(set -e:*)",
       "Bash(tail:*)",
       "Bash(wc:*)",
