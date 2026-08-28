@@ -36,8 +36,9 @@ These forms stay spelled out, because each reads as project-local:
 The only install a subagent may run on its own initiative is the
 project's **deterministic-from-lockfile install**: `npm ci`,
 `pnpm install --frozen-lockfile`, `yarn install --frozen-lockfile`,
-`pip install -r requirements.txt` inside an active venv, `cargo build`
-against a committed `Cargo.lock`, or the project's equivalent.
+`pip install -r requirements.txt --no-deps` inside an active venv,
+`cargo build` against a committed `Cargo.lock`, or the project's
+equivalent.
 
 Anything that resolves a version the lockfile does not already pin is
 forbidden as recovery, even when a tool is missing and an install
