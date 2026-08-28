@@ -27,14 +27,16 @@ time:
   form.** Re-read the definition, and the assumption underneath the
   call, before the retry. A second failure at the same call is a
   trigger, not a cue to guess again.
+- **You are about to hand the user a hypothesis they will act on, and
+  a check would cost a tool call or two.** Run the check instead of
+  shipping the label. Two tool calls beat an hour spent on a wrong
+  model.
 
 ## Verify the territory, not the map
 
-The state you reason about is mutated outside your context window by
-independent writers: parallel Claude sessions, the human, CI,
-Dependabot, merge queues. A cached issue field, a CI badge, a lockfile,
-a `Read` window, your own memory of a value — each is a *map* of the
-*territory* as of when you last looked.
+Parallel Claude sessions, the human, CI, Dependabot, and merge queues
+mutate state outside your context window, so a cached issue field, a
+lockfile, a `Read` window, or your memory of a value is a stale *map*.
 
 The triggers above therefore fire on a **load-bearing assertion** — one
 the user will act on, or one you will branch your own behavior on —
@@ -56,21 +58,18 @@ N lines. Before asserting that a file *lacks* something ("no X block",
 
 Positive claims ("found X at line N") need one match. Negative claims
 ("X is absent") need full coverage; a partial Read can never
-substantiate one. This bites hardest on config files that grow over
-time (`repo-config.md`, `settings.json`, `CLAUDE.md`,
-`pyproject.toml`, `.env`), where new sections get appended below the
-part you remember.
+substantiate one. Config files that grow over time — `repo-config.md`,
+`settings.json`, `CLAUDE.md`, `pyproject.toml` — bite hardest: new
+sections get appended below the part you remember.
 
 ## Label what you have not verified
 
 When explaining why something is happening, distinguish what you know
 from what you suspect from what you are guessing.
 
-The trap: mid-explanation you reach for a plausible-sounding cause, and
-the instinct is to make it sound authoritative — "this is a known X
-interaction", "the docs warn about Y", "standard behavior". That reads
-as analysis but is confident speculation, and the user cannot tell the
-difference in your output.
+The trap: mid-explanation you reach for a plausible cause and dress it
+as authority — "a known X interaction", "the docs warn about Y",
+"standard behavior". That reads as analysis; the user cannot tell.
 
 Before promoting a hypothesis to a stated fact, ask whether you have a
 source. A source is one of:
