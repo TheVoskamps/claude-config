@@ -65,8 +65,7 @@ expired credential, a misread log.
 implementation existed, to ship sooner. The decision is on the record.
 
 **Bug** is everything else that misbehaves against its own spec — code,
-config, rules files, docs, and prose that instructs an agent alike. A
-defect in a config, rules, or docs file is a Bug.
+config, rules files, docs, and prose that instructs an agent alike.
 
 The absence of a deliberate decision is what makes it a Bug. "It does
 not crash" and "the fix is cleanup" are not evidence of Tech Debt. Work
