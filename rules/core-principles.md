@@ -69,9 +69,9 @@ expired credential, a misread log.
   code, config, rules files, docs, and prose that instructs an agent
   alike.
 
-The absence of a deliberate decision is what makes it a Bug. "It does
-not crash" and "the fix is cleanup" are not evidence of Tech Debt. Work
-you have been doing wrong all along and discovered later is a Bug.
+"It does not crash" and "the fix is cleanup" are not evidence of Tech
+Debt. Work you have been doing wrong all along and discovered later is
+a Bug.
 
 When the user states a type, that is the type. Do not argue it.
 
