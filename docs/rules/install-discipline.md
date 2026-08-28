@@ -1,6 +1,6 @@
 # Install Discipline
 
-Two distinct integrity concerns govern when you may install something.
+Distinct integrity concerns govern when you may install something.
 Keep them separate — they have different scopes and different failure
 modes:
 
@@ -9,7 +9,7 @@ modes:
 | **Host integrity** | The user's machine — home dir, package managers, PATH, system prefs | Any install that writes outside the current worktree | Main session **and** all subagents |
 | **Project dependency integrity** | The project's declared deps and lockfile | An on-own-initiative install that resolves a version the lockfile does not already pin | **Subagents only** — the main session may run one under user direction |
 
-The two axes are independent. `npm install -g eslint` violates host
+The axes are independent. `npm install -g eslint` violates host
 integrity. `npm install eslint` leaves the host alone but violates
 project dependency integrity when a subagent runs it on its own
 initiative. `npm ci` violates neither and is always allowed.
@@ -22,7 +22,7 @@ package manager (`brew`, `mas`, `gem`, `cargo`, `go`, `pipx`, …),
 their PATH, or their system preferences. Installing a tool the task
 needs is the paradigm case.
 
-Two forms stay spelled out, because each reads as project-local:
+These forms stay spelled out, because each reads as project-local:
 
 - `npm install -g`, `npm i -g`, `pnpm add -g`, `yarn global add` —
   the global flag on an otherwise project-local package manager.

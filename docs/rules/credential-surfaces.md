@@ -18,8 +18,8 @@ continues. If the user is slow to respond, wait.
 
 ## What's forbidden
 
-Two evasions stay spelled out, because neither touches the credential
-agent:
+These evasions stay spelled out, because none of them touches the
+credential agent:
 
 - Switching a git remote between SSH and HTTPS, swapping AWS
   profiles, or rewriting remote URLs to dodge an auth failure.
