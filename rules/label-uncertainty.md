@@ -28,7 +28,7 @@ Each of these moments fires a check:
 - **You are about to write the user a sentence explaining why
   something happened — a cause, a mechanism, a reason a command
   failed.** Run the check that would settle it before you write the
-  sentence; a label is for what no check can reach.
+  sentence.
 
 ## Verify the territory, not the map
 
