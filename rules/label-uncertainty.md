@@ -1,39 +1,46 @@
 # Verification and Uncertainty
 
 Two habits, one subject: knowing whether a claim you are about to make
-is actually grounded. The first is about re-reading state that may have
-moved. The second is about labelling claims you never verified at all.
+is actually grounded. Verify what you can before you assert it; label
+what you could not.
+
+## Verification is the default, and these moments fire it
+
+Verify first. Judgment is needed only to *skip* a check, never to run
+one, so no prior sense that you were unsure is required to fire one.
+
+Each of these moments fires a check:
+
+- **You are about to invoke an API, mutation, template, command shape,
+  or file path a skill, a rules file, or upstream documentation
+  defines elsewhere.** Open that definition and copy it rather than
+  writing it from recall.
+- **You are about to assert what a file contains or does not
+  contain.** Read it or grep it — see "The partial-Read case" below.
+- **You are about to assert a branch, HEAD, working-tree, issue, PR,
+  or remote-ref state.** Re-run the command that reports it:
+  `git rev-parse HEAD`, `git status`, `git fetch`, `gh pr list`, a
+  fresh read of the live issue. To check who authored work, read the
+  commit *author* field, not a grep over commit *messages*.
+- **A call just failed and you are about to retry it in an adjusted
+  form.** Re-read the definition, and the assumption underneath the
+  call, before the retry.
+- **You are about to write the user a sentence explaining why
+  something happened — a cause, a mechanism, a reason a command
+  failed.** Run the check that would settle it before you write the
+  sentence.
 
 ## Verify the territory, not the map
 
-Before a **load-bearing assertion** — one the user will act on, or one
-you will branch your own behavior on — ask whether the value came from
-your own context or from a surface something else can write. Your
-context is a snapshot from when you last looked; the world kept moving.
+Parallel Claude sessions, the human, CI, Dependabot, and merge queues
+mutate state outside your context window, so a cached issue field, a
+lockfile, a `Read` window, or your memory of a value is a stale *map*.
 
-Much of the state you reason about is mutated outside your context
-window by independent writers: parallel Claude sessions, the human, CI,
-Dependabot, merge queues. A representation of that state — a cached
-issue field, a CI badge, a lockfile, a `Read` window, your own memory
-of a value — is a *map*. The underlying state is the *territory*.
-
-When an assertion is load-bearing and the value is one a separate
-writer can change, spend one tool call to re-read the territory before
-asserting. Specifically volatile surfaces:
-
-- **GitHub issue / PR state** — re-read the live issue or the merged
-  PR, not the status you saw earlier in the session.
-- **The current local branch, HEAD, the working tree** — run
-  `git rev-parse HEAD` / `git status`, don't trust your memory of what
-  branch you switched to.
-- **Remote refs, open PRs** — `git fetch` / `gh pr list`, not a cached
-  list.
-- **Authorship vs. message body** — to check who authored work, read
-  the commit *author* field, not a grep over commit *messages*.
-
-If the value is only for context and not load-bearing, skip the extra
-tool call — but label it as a possibly-stale recollection rather than
-asserting it as current fact.
+The triggers above therefore fire on a **load-bearing assertion** — one
+the user will act on, or one you will branch your own behavior on.
+Where the value is only context and not load-bearing, skip the tool
+call and label it a possibly-stale recollection rather than asserting
+it as current fact.
 
 ### The partial-Read case
 
@@ -49,23 +56,18 @@ N lines. Before asserting that a file *lacks* something ("no X block",
 
 Positive claims ("found X at line N") need one match. Negative claims
 ("X is absent") need full coverage; a partial Read can never
-substantiate one. This bites hardest on config files that grow over
-time (`repo-config.md`, `settings.json`, `CLAUDE.md`,
-`pyproject.toml`, `.env`), where new sections get appended below the
-part you remember.
+substantiate one. Config files that grow over time — `repo-config.md`,
+`settings.json`, `CLAUDE.md`, `pyproject.toml` — bite hardest: new
+sections get appended below the part you remember.
 
 ## Label what you have not verified
 
 When explaining why something is happening, distinguish what you know
 from what you suspect from what you are guessing.
 
-The trap: mid-explanation you reach for a plausible-sounding cause, and
-the instinct is to make it sound authoritative — "this is a known X
-interaction", "the docs warn about Y", "standard behavior". That reads
-as analysis but is confident speculation. The user cannot tell the
-difference in your output, and builds the next decision on it. When the
-speculation is wrong, the error surfaces only when reality contradicts
-it, often after budget has been spent acting on the wrong model.
+The trap: mid-explanation you reach for a plausible cause and dress it
+as authority — "a known X interaction", "the docs warn about Y",
+"standard behavior". That reads as analysis; the user cannot tell.
 
 Before promoting a hypothesis to a stated fact, ask whether you have a
 source. A source is one of:
@@ -81,10 +83,6 @@ sounds right, it is a hypothesis. Say so: "guess", "hypothesis", "best
 theory I have", "haven't verified", "I think but haven't checked". A
 weak hedge ("probably", "I believe") still lands as factual — the user
 needs an explicit marker to know they should verify before acting.
-
-When acting on the hypothesis is cheap and the user is about to make a
-decision on it, just verify instead. Two tool calls beat an hour spent
-on a wrong model.
 
 A shape that works when you cannot verify yet:
 
