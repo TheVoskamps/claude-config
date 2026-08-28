@@ -45,9 +45,6 @@ forbidden as recovery, even when a tool is missing and an install
 from a binary, tarball, or wheel placed into `node_modules/`,
 `site-packages/`, or any other dependency tree by hand.
 
-`npm install <pkg>` without `-g` stays spelled out: it leaves the host
-alone, so nothing but this axis marks it as forbidden.
-
 ## When a project-local command fails
 
 Stop and report. Do not run a recovery: the user picks the fix.
