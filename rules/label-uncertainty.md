@@ -25,8 +25,7 @@ time:
   commit *author* field, not a grep over commit *messages*.
 - **A call just failed and you are about to retry it in an adjusted
   form.** Re-read the definition, and the assumption underneath the
-  call, before the retry. A second failure at the same call is a
-  trigger, not a cue to guess again.
+  call, before the retry.
 - **You are about to hand the user a hypothesis they will act on, and
   a check would cost a tool call or two.** Run the check instead of
   shipping the label.
@@ -38,10 +37,10 @@ mutate state outside your context window, so a cached issue field, a
 lockfile, a `Read` window, or your memory of a value is a stale *map*.
 
 The triggers above therefore fire on a **load-bearing assertion** — one
-the user will act on, or one you will branch your own behavior on —
-however certain you feel. Where the value is only context and not
-load-bearing, skip the tool call and label it a possibly-stale
-recollection rather than asserting it as current fact.
+the user will act on, or one you will branch your own behavior on.
+Where the value is only context and not load-bearing, skip the tool
+call and label it a possibly-stale recollection rather than asserting
+it as current fact.
 
 ### The partial-Read case
 
