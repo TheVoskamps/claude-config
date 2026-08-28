@@ -1,8 +1,7 @@
-# Issue references
+# Issue References
 
 Read this file before writing a PR body or a commit message that
-references an issue. It fires only when one of those two is being
-written; a session that opens no PR never needs it.
+references an issue.
 
 ## Closing keyword: PR body only, own issues only
 
