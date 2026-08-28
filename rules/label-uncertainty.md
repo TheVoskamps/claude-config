@@ -29,8 +29,7 @@ time:
   trigger, not a cue to guess again.
 - **You are about to hand the user a hypothesis they will act on, and
   a check would cost a tool call or two.** Run the check instead of
-  shipping the label. Two tool calls beat an hour spent on a wrong
-  model.
+  shipping the label.
 
 ## Verify the territory, not the map
 
