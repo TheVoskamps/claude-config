@@ -25,6 +25,10 @@ docs/rules/git-recovery.md — read when a commit is rejected for missing
   signatures, a merge is requested, or a commit landed on the wrong
   branch. Kernel: never squash merge, and never merge the default
   branch into another — rebase the other branch onto it instead.
+docs/rules/issue-references.md — read before writing a PR body or a
+  commit message that references an issue. Kernel: every issue in the
+  branch's own set gets its own closing keyword in the PR body, and no
+  closing keyword ever appears in a commit message.
 docs/rules/ask-vs-discuss.md — read before presenting a multiple-choice
   question form. Kernel: forms decide among known options, they do
   not build understanding.
