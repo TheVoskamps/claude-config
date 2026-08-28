@@ -9,8 +9,7 @@ what you could not.
 Verify first. Judgment is needed only to *skip* a check, never to run
 one, so no prior sense that you were unsure is required to fire one.
 
-Each of these moments fires a check, whatever your confidence at the
-time:
+Each of these moments fires a check:
 
 - **You are about to invoke an API, mutation, template, command shape,
   or file path a skill, a rules file, or upstream documentation
@@ -26,9 +25,10 @@ time:
 - **A call just failed and you are about to retry it in an adjusted
   form.** Re-read the definition, and the assumption underneath the
   call, before the retry.
-- **You are about to hand the user a hypothesis they will act on, and
-  a check would cost a tool call or two.** Run the check instead of
-  shipping the label.
+- **You are about to write the user a sentence explaining why
+  something happened — a cause, a mechanism, a reason a command
+  failed.** Run the check that would settle it before you write the
+  sentence; a label is for what no check can reach.
 
 ## Verify the territory, not the map
 
