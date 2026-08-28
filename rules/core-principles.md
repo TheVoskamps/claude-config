@@ -59,6 +59,12 @@ assumptions underneath the hypothesis itself.
 This judgment applies wherever an error does — a failed deploy, an
 expired credential, a misread log.
 
+## When deciding between Tech Debt and Bug
+
+Tech Debt is a shortcut someone took knowing a better implementation
+existed. Everything else that misbehaves against its own spec is a
+Bug.
+
 ## Monitor actively
 
 When you are watching a deployment, a build, or any long-running job,
