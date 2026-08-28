@@ -61,19 +61,9 @@ expired credential, a misread log.
 
 ## Type an issue Tech Debt only when the shortcut was deliberate
 
-- **Tech Debt.** A shortcut someone took deliberately, knowing a
-  better implementation existed, to ship sooner. The decision is on
-  the record.
-
-- **Bug.** Everything else that misbehaves against its own spec —
-  code, config, rules files, docs, and prose that instructs an agent
-  alike.
-
-"It does not crash" and "the fix is cleanup" are not evidence of Tech
-Debt. Work you have been doing wrong all along and discovered later is
-a Bug.
-
-When the user states a type, that is the type. Do not argue it.
+Tech Debt is a shortcut someone took knowing a better implementation
+existed. Everything else that misbehaves against its own spec is a
+Bug.
 
 ## Monitor actively
 
