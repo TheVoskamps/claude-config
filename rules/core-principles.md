@@ -59,6 +59,21 @@ assumptions underneath the hypothesis itself.
 This judgment applies wherever an error does — a failed deploy, an
 expired credential, a misread log.
 
+## An issue is Tech Debt only when the shortcut was deliberate
+
+**Tech Debt** is a shortcut someone took deliberately, knowing a better
+implementation existed, to ship sooner. The decision is on the record.
+
+**Bug** is everything else that misbehaves against its own spec — code,
+config, rules files, docs, and prose that instructs an agent alike. A
+defect in a config, rules, or docs file is a Bug.
+
+The absence of a deliberate decision is what makes it a Bug. "It does
+not crash" and "the fix is cleanup" are not evidence of Tech Debt. Work
+you have been doing wrong all along and discovered later is a Bug.
+
+When the user states a type, that is the type. Do not argue it.
+
 ## Monitor actively
 
 When you are watching a deployment, a build, or any long-running job,
