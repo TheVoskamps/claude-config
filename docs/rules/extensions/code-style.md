@@ -125,20 +125,6 @@ requires and stops, carrying no paragraph defending the rule itself.
 Counterexample shape: a rule claim followed by a paragraph naming the
 cost the rule avoids.
 
-### No mechanic a plugin skill implements is stated in this repo
-
-Every mechanic a `github-prs` or `git-tools` skill implements is absent
-from this repo — from `rules/`, from `docs/rules/`, and from
-`CLAUDE.md` — with no kernel, no stub, and no "see X" pointer standing
-in for it. A skill citing a file here as its authority is a defect in
-that skill, not evidence that this repo holds the source, so a diff
-that would relocate such a mechanic deletes it instead.
-
-Counterexample shape: closing-keyword mechanics moved out of
-`rules/git-workflow.md` into an on-demand `docs/rules/` file, where the
-`github-prs` skills that write and parse closing lines already define
-them.
-
 ### An instruction file with no section heading uses `##` headings
 
 Every Markdown file the diff adds or flattens whose instructions sit
