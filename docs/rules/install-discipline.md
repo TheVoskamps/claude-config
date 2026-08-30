@@ -35,10 +35,17 @@ These forms stay spelled out, because each reads as project-local:
 
 The only install a subagent may run on its own initiative is the
 project's **deterministic-from-lockfile install**: `npm ci`,
-`pnpm install --frozen-lockfile`, `yarn install --frozen-lockfile`, or
-`cargo build` against a committed `Cargo.lock`. The list is closed —
-an install it does not name goes to the escalation path below, and
-every `pip install` form is among them, `--no-deps` or not.
+`pnpm install --frozen-lockfile`, `yarn install --frozen-lockfile`,
+`cargo build` against a committed `Cargo.lock`, or
+`pip install --require-hashes -r requirements.txt`. The list is
+closed — an install it does not name goes to the escalation path
+below, and every other `pip install` form is among them, `--no-deps`
+or not. `--require-hashes` is what earns the Python member its place:
+it makes pip demand a hash for every dependency, transitive ones
+included, and pinned to a URL, a path, or `==`, so an unpinned
+requirements file fails the install rather than resolving a version.
+`--no-deps` only suppresses transitive resolution, leaving the
+top-level version free to drift.
 
 Anything that resolves a version the lockfile does not already pin is
 forbidden as recovery, even when a tool is missing and an install
