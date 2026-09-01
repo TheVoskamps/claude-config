@@ -50,7 +50,7 @@ should learn who wrote a line, not be able to guess it from the style.
 A file the diff creates has no surrounding lines of its own, so the
 codebase around it is what it matches.
 
-That instinct is not itself checkable, which is why it lives here
+That expectation is not itself checkable, which is why it lives here
 rather than below. It resolves the cases the rules do not reach: an
 unfamiliar language, a file with two competing idioms in it, a
 convention that is clearly a mistake but is nevertheless the

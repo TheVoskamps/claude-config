@@ -40,8 +40,8 @@ for more precise wording.
 The global guide's other rules apply unchanged. Some are easy to
 misread as code-only, since this repo's source is Markdown: "Files
 conform to the repo's declared formatter and linter" covers every
-Markdown file here, and the governing principle covers a rules file's
-heading shape as much as a function's.
+Markdown file here, and the global guide's preamble covers a rules
+file's heading shape as much as a function's.
 
 ## Rules
 
