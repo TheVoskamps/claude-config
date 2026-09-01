@@ -4,14 +4,13 @@ Read before writing or reviewing markdown whose reader is a model:
 `CLAUDE.md`, rules files, `SKILL.md` bodies, agent definitions, and
 any other prose a session loads as instruction.
 
-## Questions of fit and of comments go to the sibling guides
+## Questions of fit go to the code guide
 
-Take whether a diff matches the file it lands in — its naming, its
-structure, the linter it must pass — to the code guide, which
-already claims prose-that-instructs-an-agent as code. Take the
-comments inside it to the comment guide. This guide governs
-what neither does: whether the content earns its place at all, and how
-much of it there should be.
+Take whether a diff matches the codebase it lands in — its naming, its
+structure, the comments inside it, the linter it must pass — to the
+code guide, which already claims prose-that-instructs-an-agent as
+code. This guide governs what that one does not: whether the content
+earns its place at all, and how much of it there should be.
 
 ## A line earns its place by the retention test
 
