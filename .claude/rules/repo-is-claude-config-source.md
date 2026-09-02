@@ -35,22 +35,17 @@ therefore means editing `settings.json` in the same diff.
 
 `/docs/rules/` holds the on-demand rules files kept outside the
 `/rules/` set. Which of the two directories a new file goes in decides
-how `CLAUDE.md` announces it, per
-`docs/rules/extensions/claude-code-markdown-instructions-style.md` →
-"Every rules file the diff adds is listed in CLAUDE.md".
+how `CLAUDE.md` announces it, per `CLAUDE.md`'s own lead.
 `/docs/rules/extensions/` under it holds this repo's own per-repo
 extensions of the global style guides, each at the fixed name its
-guide defines: `code-style.md` and `documentation-style.md` per
-`docs/rules/code-style.md` → "Per-repo extension", and
-`claude-code-markdown-instructions-style.md` per
-`docs/rules/claude-code-markdown-instructions-style.md` → "Per-repo
-extension". Of those, this repo carries the code and
-markdown-instructions files; the absent name means this repo adds
-nothing to that guide, not that the file is missing. Both
-kinds live under `/docs/` rather than `/.claude/rules/` because this
-repo's nested `.claude/rules/` is auto-loaded into every session,
-which would make an on-demand guide always-on. They are ordinary
-source files here, edited like any other.
+guide's lead names: `code-style.md`, `documentation-style.md`, and
+`claude-code-markdown-instructions-style.md`. Of those, this repo
+carries the code and markdown-instructions files; the absent name
+means this repo adds nothing to that guide, not that the file is
+missing. Both kinds live under `/docs/` rather than `/.claude/rules/`
+because this repo's nested `.claude/rules/` is auto-loaded into every
+session, which would make an on-demand guide always-on. They are
+ordinary source files here, edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside the repo you were started in, so the repository-boundary

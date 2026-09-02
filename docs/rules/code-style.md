@@ -5,6 +5,10 @@ compiles — source in any language, a shell script, a build file, a
 config a tool parses — and the inline comments inside such a file.
 That is this guide's whole remit.
 
+Read `<repo>/docs/rules/extensions/code-style.md` after this guide when
+the repo you are working in carries that file; it extends and overrides
+what is here, and its absence means the repo adds nothing.
+
 ## Structure contract
 
 This contract governs this guide, the documentation guide, and any
@@ -181,25 +185,3 @@ stale invariant, a stale count of the things below it.
 
 Every `TODO`, `FIXME`, `HACK`, or `XXX` marker the diff adds names the
 tracker issue that will resolve it.
-
-## Per-repo extension
-
-Before applying the rules above, look for
-`<repo>/docs/rules/extensions/code-style.md` in the repo you are
-working in, and read it if it is there. The documentation guide's
-extension carries the fixed name
-`<repo>/docs/rules/extensions/documentation-style.md`. The two files
-are independent, and a repo may carry either, both, or neither.
-
-Nothing about a repo's extension file announces itself, so the fixed
-name is the whole discovery mechanism: look for it, and treat a
-missing file as "this repo adds nothing", not as "there is nothing to
-look for".
-
-Resolution is global-then-repo: this guide first, the repo file
-appended as extension and override. Where the two conflict, the repo
-file wins.
-
-The repo file follows the structure contract above. It may carry no
-rules at all: a preamble stating why a rule above does not fire in
-this repo is a legitimate whole file.

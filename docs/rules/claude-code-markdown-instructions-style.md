@@ -8,6 +8,12 @@ remit, and it covers those files whole — what earns a place in them,
 how much of it there should be, and the shape and linting of what
 lands.
 
+Read
+`<repo>/docs/rules/extensions/claude-code-markdown-instructions-style.md`
+after this guide when the repo you are working in carries that file; it
+extends and overrides what is here, and its absence means the repo adds
+nothing.
+
 ## A line earns its place by the retention test
 
 Ask of a line not "is this true?" but "does a reader act differently
@@ -54,7 +60,9 @@ or an on-demand file — not in always-loaded prose.
 
 Every file the diff adds that is not auto-loaded is announced where
 its readers already look, with the condition that should make them
-load it and a one-sentence statement of its hardest rule.
+load it and a one-sentence statement of its hardest rule. A
+routing-table entry carries that trigger and that kernel and no
+justification.
 
 ## `CLAUDE.md` stays under 200 lines
 
@@ -73,16 +81,23 @@ rest. A convention goes in a rules file the routing table reaches.
 No example the diff adds demonstrates a behavior that a name, a
 parameter, a type, or a stated constraint could carry instead.
 
-## Per-repo extension
+## Every Markdown file the diff touches passes the repo's markdownlint
 
-Before applying the sections above, look for
-`<repo>/docs/rules/extensions/claude-code-markdown-instructions-style.md`
-in the repo you are working in, and read it if it is there. Nothing
-about it announces itself, so the fixed name is the whole discovery
-mechanism: treat a missing file as "this repo adds nothing", not as
-"there is nothing to look for".
+Every Markdown file the diff touches passes the markdownlint config
+the repo declares, in whole and including the lines the diff did not
+change, in repos that declare one.
 
-Resolution is global-then-repo: this guide first, the repo file
-appended as extension and override. Where the two conflict, the repo
-file wins. The repo file carries each of its own rules as a `##`
-heading phrased as a falsifiable claim, as this guide does.
+## No section moved out of an instruction file leaves a stub behind
+
+For every section the diff removes from one instruction file and adds
+to another, the source file retains nothing of it: no stub heading, no
+one-line kernel, no "moved to X" pointer. Two sibling files sharing a
+single statement of a contract they both obey is a different shape and
+is allowed: nothing moved out, so neither file sends a reader chasing a
+pointer to reach its own rule.
+
+## An instruction file with no section heading uses `##` headings
+
+Every Markdown file the diff adds or flattens whose instructions sit
+directly under the `#` title carries each of those instructions as a
+`##` heading.

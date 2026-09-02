@@ -7,9 +7,14 @@ JSDoc, a Python docstring, godoc, rustdoc, or any other annotation a
 tool extracts into a generated API reference. That is this guide's
 whole remit.
 
-The structure this file follows and the per-repo extension it obeys
-are stated once in `docs/rules/code-style.md` → "Structure contract"
-and → "Per-repo extension", and govern this file unchanged.
+Read `<repo>/docs/rules/extensions/documentation-style.md` after this
+guide when the repo you are working in carries that file; it extends
+and overrides what is here, and its absence means the repo adds
+nothing.
+
+The structure this file follows is stated once in
+`docs/rules/code-style.md` → "Structure contract", and governs this
+file unchanged.
 
 ## Preamble (not a rule source)
 
@@ -32,3 +37,9 @@ maintainer reading the file is the entry that reader depends on.
 Every doc comment the diff adds or changes on a symbol that can raise,
 reject, or return an error names each such outcome and the condition
 that produces it.
+
+### Every Markdown file the diff touches passes the repo's markdownlint
+
+Every Markdown file the diff touches passes the markdownlint config
+the repo declares, in whole and including the lines the diff did not
+change, in repos that declare one.
