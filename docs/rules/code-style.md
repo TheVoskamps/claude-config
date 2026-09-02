@@ -52,10 +52,10 @@ whether the real problem is configuration (parser settings,
 `tsconfig`, plugin resolution). Web search is fair game for
 understanding the rule you are hitting.
 
-The rules below that these two paragraphs govern — "No suppression
-directive is added", "No caught error is discarded", and "Files
-conform to the repo's declared formatter and linter" — are their
-diff-checkable cases, not their whole content.
+The rules below that the correctness and suppression paragraphs above
+govern — "No suppression directive is added", "No caught error is
+discarded", and "Files conform to the repo's declared formatter and
+linter" — are their diff-checkable cases, not their whole content.
 
 ## Comments (not a rule source)
 

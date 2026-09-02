@@ -5,8 +5,9 @@
 The files this guide reaches here are the shell scripts — `install.sh`
 and `plugins.sh` at the repo root, and the scripts under
 `.github/scripts/` — the workflows under `.github/workflows/`, and the
-JSON the harness parses: `settings.json`, `keybindings.json`, and
-`.markdownlint.jsonc`.
+JSON configs a tool parses: `settings.json` and `keybindings.json`,
+which the harness reads, and the `.markdownlint.jsonc` files, which
+markdownlint reads.
 
 Under `.github/scripts/` the global test rule fires in full, because a
 self-test already covers that surface, and the rule below says so.
