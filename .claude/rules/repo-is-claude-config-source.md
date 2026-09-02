@@ -39,13 +39,11 @@ how `CLAUDE.md` announces it, per `CLAUDE.md`'s own lead.
 `/docs/rules/extensions/` under it holds this repo's own per-repo
 extensions of the global style guides, each at the fixed name its
 guide's lead names: `code-style.md`, `documentation-style.md`, and
-`claude-code-markdown-instructions-style.md`. Of those, this repo
-carries the code and markdown-instructions files; the absent name
-means this repo adds nothing to that guide, not that the file is
-missing. Both kinds live under `/docs/` rather than `/.claude/rules/`
-because this repo's nested `.claude/rules/` is auto-loaded into every
-session, which would make an on-demand guide always-on. They are
-ordinary source files here, edited like any other.
+`claude-code-markdown-instructions-style.md`. Both kinds live under
+`/docs/` rather than `/.claude/rules/` because this repo's nested
+`.claude/rules/` is auto-loaded into every session, which would make
+an on-demand guide always-on. They are ordinary source files here,
+edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside the repo you were started in, so the repository-boundary

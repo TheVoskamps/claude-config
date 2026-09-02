@@ -32,12 +32,6 @@ maintainer reading the file is the entry that reader depends on.
 
 ## Rules
 
-### Every doc comment names the symbol's failure modes
-
-Every doc comment the diff adds or changes on a symbol that can raise,
-reject, or return an error names each such outcome and the condition
-that produces it.
-
 ### Every Markdown file the diff touches passes the repo's markdownlint
 
 Every Markdown file the diff touches passes the markdownlint config
