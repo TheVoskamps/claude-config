@@ -27,15 +27,6 @@ independently go and re-check: the diff, the repository at head, and
 stable external documentation such as a language's standard-library
 reference. The test is reproducibility, not location.
 
-A rule about matching what a file already does cannot be settled from
-the diff alone — the convention it names lives in the lines the diff
-did not touch — so it is checked against a pair: the added lines, and
-the lines they fail to match. A rule about every call site quantifies
-over the whole repository. A rule about a helper that already exists
-quantifies over wherever that helper is documented. Each stays
-disprovable, because a disagreeing reader can go and look at the same
-evidence and get the same answer.
-
 What is excluded is a rule resting on the reviewer's taste with
 nothing a disagreeing reader could go and look at.
 
@@ -200,9 +191,7 @@ stale invariant, a stale count of the things below it.
 ### Every TODO carries a tracker reference
 
 Every `TODO`, `FIXME`, `HACK`, or `XXX` marker the diff adds names the
-tracker issue that will resolve it. The marker points at future work
-rather than recording past work, which is why it is the one place a
-tracker reference belongs in a comment.
+tracker issue that will resolve it.
 
 ## Per-repo extension
 

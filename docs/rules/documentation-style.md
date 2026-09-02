@@ -32,9 +32,3 @@ code guide's preamble.
 Every doc comment the diff adds or changes on a symbol that can raise,
 reject, or return an error names each such outcome and the condition
 that produces it.
-
-### No doc comment describes implementation instead of contract
-
-No doc comment the diff adds names a private helper, an internal
-invariant, or a step of the algorithm in place of the behavior its
-caller depends on.
