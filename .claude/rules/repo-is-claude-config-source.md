@@ -2,9 +2,9 @@
 
 This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
-`~/.claude/` directly: `install.sh` clones it into place (see the root
-`README.md`), so the layout under `~/.claude/` is **identical** to the
-repo layout — same directory names, same paths:
+`~/.claude/` directly: `install.sh` moves a clone of it into place
+(see the root `README.md`), so the layout under `~/.claude/` is
+**identical** to the repo layout — same directory names, same paths:
 
 - `/rules/`         → `~/.claude/rules/`
 - `/output-styles/` → `~/.claude/output-styles/`

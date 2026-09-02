@@ -44,9 +44,9 @@ error_exit() { echo "Error: $1" >&2; exit 1; }
 # --- Identity of the source repo -------------------------------------------
 # The `<owner>/<repo>` paths accepted when detecting an already-installed
 # clone, lowercased so the comparison in `claude_dir_is_our_clone` is
-# case-insensitive. The two pre-rename names stay listed because a
-# `~/.claude` cloned before either rename keeps the origin it was cloned
-# with; nothing rewrites it, so dropping them would strand those installs.
+# case-insensitive. The pre-rename names stay listed because a `~/.claude`
+# cloned before a rename keeps the origin it was cloned with; nothing
+# rewrites it, so dropping them would strand those installs.
 
 GITHUB_SOURCE_REPOS=(
     "thevoskamps/claude-config"
@@ -108,13 +108,13 @@ origin_url() {
 }
 
 # Reduce a git remote URL to a lowercased bare `<owner>/<repo>`, across the
-# three spellings git emits: scp-like SSH, `ssh://`, and `https://`.
+# spellings git emits: scp-like SSH, `ssh://`, and `https://`.
 #
 # The host is discarded rather than matched. An SSH origin may name a
 # `~/.ssh/config` host alias instead of github.com, and the question the
 # guard asks is which repo `~/.claude` came from, not which host served it.
 # Lowercasing is what makes the later comparison case-insensitive, as GitHub
-# treats owner and repo names.
+# itself treats owner and repo names.
 normalize_repo_path() {
     local url="$1"
     if [[ "$url" == *://* ]]; then
