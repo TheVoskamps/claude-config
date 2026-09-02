@@ -4,9 +4,10 @@
 > not auto-expanded for you — read each one yourself.
 
 Applicability decides the directory and the directory decides the load
-mode: an always-on file belongs in `rules/`, an on-demand file in
-`docs/rules/`, and an on-demand entry carries the trigger and kernel
-that `docs/rules/claude-code-markdown-instructions-style.md` →
+mode: an always-on file belongs in `rules/` and is listed below as an
+`@` line, an on-demand file in `docs/rules/`, and an on-demand entry
+carries the trigger and kernel that
+`docs/rules/claude-code-markdown-instructions-style.md` →
 "Every on-demand file is reachable by a trigger and a kernel"
 requires. Every entry below names its own file's path.
 
