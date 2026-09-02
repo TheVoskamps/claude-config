@@ -28,21 +28,23 @@ docs/rules/git-recovery.md — read when a commit is rejected for missing
 docs/rules/ask-vs-discuss.md — read before presenting a multiple-choice
   question form. Kernel: forms decide among known options, they do
   not build understanding.
-docs/rules/code-style.md — read before writing or reviewing code and
-  the comments in it, where code includes prose that instructs an agent
-  (rules files, skills, agent definitions); also before writing or
-  reviewing any file the repo declares a formatter or linter for.
-  Kernel: your diff should be indistinguishable in style from the
-  codebase it lands in, and a comment states a constraint the code
-  cannot show.
+docs/rules/code-style.md — read before writing or reviewing a file a
+  computer interprets or compiles — source in any language, a shell
+  script, a build file, a config a tool parses — and the inline
+  comments in it. Kernel: your diff should be indistinguishable in
+  style from the code it lands in, and a comment states a constraint
+  the code cannot show.
 docs/rules/documentation-style.md — read before writing or reviewing a
-  doc comment: TSDoc, JSDoc, a docstring, or any other annotation a
-  tool extracts into a generated API reference. Kernel: a doc comment
-  is the symbol's published contract, written for a caller who will
-  never open the file.
+  file no computer interprets or compiles and no session loads as
+  instruction (a README, a changelog, a design doc), or a doc comment:
+  TSDoc, JSDoc, a docstring, or any other annotation a tool extracts
+  into a generated API reference. Kernel: a doc comment is the symbol's
+  published contract, written for a caller who will never open the
+  file.
 docs/rules/claude-code-markdown-instructions-style.md — read before
-  writing or reviewing markdown whose reader is a model: `CLAUDE.md`,
-  rules files, `SKILL.md` bodies, agent definitions. Kernel: a line
-  earns its place only when a reader acts differently for having read
-  it and the condition that put it there is still real, which is as
-  much a licence to delete as a test for what you add.
+  writing or reviewing Markdown a model loads as instructions:
+  `CLAUDE.md`, files under `rules/` and `docs/rules/`, `SKILL.md`
+  bodies, agent definitions, output styles. Kernel: a line earns its
+  place only when a reader acts differently for having read it and the
+  condition that put it there is still real, which is as much a licence
+  to delete as a test for what you add.

@@ -1,16 +1,12 @@
 # Claude Code Markdown Instructions Style
 
-Read before writing or reviewing markdown whose reader is a model:
-`CLAUDE.md`, rules files, `SKILL.md` bodies, agent definitions, and
-any other prose a session loads as instruction.
-
-## Questions of fit go to the code guide
-
-Take whether a diff matches the codebase it lands in — its naming, its
-structure, the comments inside it, the linter it must pass — to the
-code guide, which already claims prose-that-instructs-an-agent as
-code. This guide governs what that one does not: whether the content
-earns its place at all, and how much of it there should be.
+Read before writing or reviewing Markdown a model loads as
+instructions: `CLAUDE.md`, files under `rules/` and `docs/rules/`,
+`SKILL.md` bodies, agent definitions, output styles, and any other
+prose a session loads as instruction. That is this guide's whole
+remit, and it covers those files whole — what earns a place in them,
+how much of it there should be, and the shape and linting of what
+lands.
 
 ## A line earns its place by the retention test
 
@@ -76,3 +72,17 @@ rest. A convention goes in a rules file the routing table reaches.
 
 No example the diff adds demonstrates a behavior that a name, a
 parameter, a type, or a stated constraint could carry instead.
+
+## Per-repo extension
+
+Before applying the sections above, look for
+`<repo>/docs/rules/extensions/claude-code-markdown-instructions-style.md`
+in the repo you are working in, and read it if it is there. Nothing
+about it announces itself, so the fixed name is the whole discovery
+mechanism: treat a missing file as "this repo adds nothing", not as
+"there is nothing to look for".
+
+Resolution is global-then-repo: this guide first, the repo file
+appended as extension and override. Where the two conflict, the repo
+file wins. The repo file carries each of its own rules as a `##`
+heading phrased as a falsifiable claim, as this guide does.

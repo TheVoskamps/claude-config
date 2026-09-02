@@ -1,29 +1,29 @@
 # Documentation Style
 
-Read before writing or reviewing a doc comment — TSDoc, JSDoc, a
-Python docstring, godoc, rustdoc — or any other annotation a tool
-extracts into a generated API reference.
+Read before writing or reviewing a file no computer interprets or
+compiles and no session loads as instruction — a README, a changelog,
+a design doc — and before writing or reviewing a doc comment: TSDoc,
+JSDoc, a Python docstring, godoc, rustdoc, or any other annotation a
+tool extracts into a generated API reference. That is this guide's
+whole remit.
 
 The structure this file follows and the per-repo extension it obeys
 are stated once in `docs/rules/code-style.md` → "Structure contract"
-and → "Per-repo extension", and govern this file unchanged. That guide
-is already in context whenever this one is: you do not write a doc
-comment without writing the symbol it documents.
+and → "Per-repo extension", and govern this file unchanged.
 
 ## Preamble (not a rule source)
+
+Prose written for a human reader is terse and self-contained, and
+states no count the reader can derive from what is already shown.
 
 A doc comment is the symbol's published contract. Its reader is a
 caller who will never open the file, so it states what calling the
 symbol correctly requires: what comes back, what can go wrong, and
 what the caller must guarantee before calling.
 
-The code guide's comment kernel — a comment states a constraint the
-code cannot show — therefore does not govern here. A caller reading
-the generated reference cannot see the code at all, so a restatement
-of the signature that would be redundant to a maintainer is the entry
-that reader depends on. Whether a symbol carries a doc comment at all,
-and in which tag vocabulary, is a matter of fit and is settled by the
-code guide's preamble.
+A caller reading the generated reference cannot see the code at all,
+so a restatement of the signature that would be redundant to a
+maintainer reading the file is the entry that reader depends on.
 
 ## Rules
 

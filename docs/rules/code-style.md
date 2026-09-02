@@ -1,18 +1,9 @@
 # Code Style
 
-Read before writing or reviewing code, and before writing or reviewing
-the comments in it — and before writing or reviewing any file a repo
-declares a formatter or linter for, whatever that file's language.
-
-"Code" here includes prose written to instruct an agent: rules files,
-skills, agent definitions, and the like are source a model executes,
-so this guide governs them and the comments in them. Prose written for
-a human reader is not governed here: keep it terse and self-contained,
-and state no count the reader can derive from what is already shown.
-
-A doc comment that a tool extracts into a generated API reference has
-a different reader, and `docs/rules/documentation-style.md` governs
-it.
+Read before writing or reviewing a file a computer interprets or
+compiles — source in any language, a shell script, a build file, a
+config a tool parses — and the inline comments inside such a file.
+That is this guide's whole remit.
 
 ## Structure contract
 
@@ -81,8 +72,7 @@ The audience is a maintainer arriving in two years with no memory of
 this change, not the reviewer reading it this week. That single
 substitution settles most cases: the reviewer wants to know why you
 made the change, and the maintainer wants to know what will break if
-they undo it. Write for the maintainer, and put what the reviewer
-needs in the PR body.
+they undo it.
 
 A comment's text is prose: one idea per sentence, active voice,
 concrete verbs. The rules below govern whether the comment belongs at
@@ -126,9 +116,8 @@ value or overload the diff adds.
 ### Files conform to the repo's declared formatter and linter
 
 Every file the diff touches passes, in whole, the formatter and linter
-the repo already declares in its own configuration — including the
-lines the diff did not change, and including files the repo lints as
-prose rather than as code, such as Markdown.
+the repo already declares in its own configuration, including the
+lines the diff did not change.
 
 A diff that loosens the config to make itself pass violates this rule
 rather than satisfying it, and so does an inline disable comment
