@@ -4,8 +4,8 @@
 #
 # Clone this repo somewhere, then run this script from inside that clone:
 #
-#     git clone git@github.com:TheVoskamps/global-claude-config-mirrored-to-public.git
-#     cd global-claude-config-mirrored-to-public
+#     git clone git@github.com:TheVoskamps/claude-config.git
+#     cd claude-config
 #     ./install.sh
 #
 # What it does, in order:
@@ -41,11 +41,18 @@ info()    { echo "-> $1"; }
 success() { echo "[ok] $1"; }
 error_exit() { echo "Error: $1" >&2; exit 1; }
 
-# --- Origin URLs of the source repo ----------------------------------------
-# Accepted forms when detecting an already-installed clone.
+# --- Identity of the source repo -------------------------------------------
+# The `<owner>/<repo>` paths accepted when detecting an already-installed
+# clone, lowercased so the comparison in `claude_dir_is_our_clone` is
+# case-insensitive. The two pre-rename names stay listed because a
+# `~/.claude` cloned before either rename keeps the origin it was cloned
+# with; nothing rewrites it, so dropping them would strand those installs.
 
-GITHUB_SOURCE_URL_SSH="git@github.com:TheVoskamps/global-claude-config-mirrored-to-public.git"
-GITHUB_SOURCE_URL_HTTPS="https://github.com/TheVoskamps/global-claude-config-mirrored-to-public.git"
+GITHUB_SOURCE_REPOS=(
+    "thevoskamps/claude-config"
+    "thevoskamps/global-claude-config-mirrored-to-public"
+    "thevoskamps/global-claude-config"
+)
 
 # --- Re-exec off a temp copy -----------------------------------------------
 # Step 5 MOVES the clone (the directory this script lives in) onto
@@ -100,11 +107,37 @@ origin_url() {
     git -C "$dir" config --get remote.origin.url 2>/dev/null || true
 }
 
+# Reduce a git remote URL to a lowercased bare `<owner>/<repo>`, across the
+# three spellings git emits: scp-like SSH, `ssh://`, and `https://`.
+#
+# The host is discarded rather than matched. An SSH origin may name a
+# `~/.ssh/config` host alias instead of github.com, and the question the
+# guard asks is which repo `~/.claude` came from, not which host served it.
+# Lowercasing is what makes the later comparison case-insensitive, as GitHub
+# treats owner and repo names.
+normalize_repo_path() {
+    local url="$1"
+    if [[ "$url" == *://* ]]; then
+        url="${url#*://}"
+        url="${url#*/}"
+    else
+        url="${url#*:}"
+    fi
+    url="${url%/}"
+    url="${url%.git}"
+    printf '%s' "$url" | tr '[:upper:]' '[:lower:]'
+}
+
 # Return 0 if `$CLAUDE_DIR` is already a clone of the source repo.
 claude_dir_is_our_clone() {
-    local url
+    local url path candidate
     url=$(origin_url "$CLAUDE_DIR")
-    [[ "$url" == "$GITHUB_SOURCE_URL_SSH" ]] || [[ "$url" == "$GITHUB_SOURCE_URL_HTTPS" ]]
+    path=$(normalize_repo_path "$url")
+    [[ -n "$path" ]] || return 1
+    for candidate in "${GITHUB_SOURCE_REPOS[@]}"; do
+        [[ "$path" == "$candidate" ]] && return 0
+    done
+    return 1
 }
 
 # --- Additive overlay ------------------------------------------------------
