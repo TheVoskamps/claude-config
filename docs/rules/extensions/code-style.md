@@ -4,10 +4,12 @@
 
 The files this guide reaches here are the shell scripts — `install.sh`
 and `plugins.sh` at the repo root, and the scripts under
-`.github/scripts/` — the workflows under `.github/workflows/`, and the
-JSON configs a tool parses: `settings.json` and `keybindings.json`,
-which the harness reads, and the `.markdownlint.jsonc` files, which
-markdownlint reads.
+`.github/scripts/` — the configs GitHub parses under `.github/`: the
+workflows, `dependabot.yml`, `codeql/codeql-config.yml`, and
+`CODEOWNERS` — and the configs another tool parses: `settings.json`
+and `keybindings.json`, which the harness reads, the
+`.markdownlint.jsonc` files, which markdownlint reads, and
+`.gitignore`, which git reads.
 
 Under `.github/scripts/` the global test rule fires in full, because a
 self-test already covers that surface, and the rule below says so.
