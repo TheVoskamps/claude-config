@@ -6,6 +6,7 @@
 @~/.claude/rules/core-principles.md
 @~/.claude/rules/git-workflow.md
 @~/.claude/rules/escalation-discipline.md
+@~/.claude/rules/human-turn.md
 @~/.claude/rules/label-uncertainty.md
 docs/rules/credential-surfaces.md — read when a command fails with an
   authentication error, before you report that failure. Kernel: never
