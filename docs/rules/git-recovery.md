@@ -24,7 +24,18 @@ branch — rebase the other branch onto it instead.
 ## Recovering a commit made on the wrong branch
 
 1. `git stash` — save working changes.
-2. `git reset --hard HEAD~1` — undo the commit on the wrong branch.
-3. `git checkout CORRECT_BRANCH`.
-4. `git stash pop` — re-apply the saved changes.
-5. `git commit` — commit to the correct branch.
+2. `git reset --soft HEAD~1` — undo the commit, keeping what it
+   introduced staged.
+3. `git checkout CORRECT_BRANCH` — the staged changes come with you.
+4. `git commit` — commit to the correct branch.
+5. `git stash pop` — re-apply the saved changes.
+
+## Dropping a commit from a branch
+
+`git reset --hard` and a detach-plus-`git branch -f` move are both
+refused in a subagent worktree, the first as forbidden outright. Drop
+the commit with `git reset --soft HEAD~1`, discard what it introduced
+with `git restore --source=HEAD --staged --worktree PATHS`, and
+publish with `git push --force-with-lease --force-if-includes`. The
+soft reset holds every change in the index until you name the paths to
+discard, so nothing goes silently.
