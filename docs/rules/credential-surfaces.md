@@ -22,10 +22,9 @@ When a normal command fails with an auth error:
    stop. Report it per "Reporting an auth failure" below, and wait
    for the user to deal with it. When told to retry, re-run the exact
    original command verbatim.
-4. If the credential-prompting command doesn't resolve the failure,
-   stop and ask. Never reach into the agent's state, and never reroute
-   around the failure by switching remotes, swapping profiles, or
-   retry-looping.
+4. If the command from step 2 doesn't resolve the failure, stop and
+   ask. Never reroute around the failure by switching remotes,
+   swapping profiles, or retry-looping.
 
 ## Reporting an auth failure
 
