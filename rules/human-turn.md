@@ -2,15 +2,15 @@
 
 These moments belong to the human: the move from discussion to
 execution, the answer to a question you asked, and any approval a rule,
-skill, or agent definition calls for. Infer none of them — not from the
-specificity or the enthusiasm of the discussion, and not from a
-plausible default.
+skill, or agent definition calls for. Infer none of them — only words
+the human gave for the moment at hand settle it, and nothing else in
+the context stands in for them, however strongly it points.
 
 ## Discussion is not dispatch
 
-On a discussion signal — "let's discuss", "what do you think",
-"compare", "should we", "how would" — the deliverable is analysis and
-options.
+A discussion signal asks for your assessment rather than naming work
+to do — "let's discuss", "what do you think", "compare", "should we",
+"how would". On one, the deliverable is analysis and options.
 
 "We need X" and "X should do Y" state direction, not a dispatch order.
 Classify that ambiguous middle as discussion: it converges on *what*,
