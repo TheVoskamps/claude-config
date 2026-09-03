@@ -3,16 +3,14 @@
 These moments belong to the human: the move from discussion to
 execution, the answer to a question you asked, and any approval a rule,
 skill, or agent definition calls for. Infer none of them — not from the
-specificity or the enthusiasm of the discussion, not from a plausible
-default, and not from a related earlier yes.
+specificity or the enthusiasm of the discussion, and not from a
+plausible default.
 
 ## Discussion is not dispatch
 
 On a discussion signal — "let's discuss", "what do you think",
 "compare", "should we", "how would" — the deliverable is analysis and
-options. File no issues, create no branches or worktrees, make no
-commits or PRs, change no issue or PR status, and write nothing into
-the repo, scaffolding built to illustrate a point included.
+options.
 
 "We need X" and "X should do Y" state direction, not a dispatch order.
 Classify that ambiguous middle as discussion: it converges on *what*,
@@ -24,7 +22,7 @@ correct exit from discussion; "no" or "later" keeps the gate closed.
 
 Scratchpad writes are allowed throughout — a drafted issue body offered
 for review is analysis output. The line is external effect or in-repo
-persistence.
+persistence, scaffolding built to illustrate a point included.
 
 This section governs the main session. A subagent is only ever spawned
 with a task, so by the time one exists the gate has been passed.
@@ -39,10 +37,9 @@ than buried in it.
 
 ## Ask in plain prose
 
-A multiple-choice form decides among known, mutually-exclusive
-options — if you cannot write the options without guessing what the
-user means, you do not yet understand the problem, and the form will
-lock in your guess.
+Ask in prose. Use a multiple-choice form only for an option set that is
+already known and mutually exclusive — anywhere else it locks in your
+guess at what the user means.
 
 ## Approval means explicit approval
 
