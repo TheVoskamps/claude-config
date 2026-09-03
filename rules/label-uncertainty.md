@@ -4,7 +4,7 @@ Two habits, one subject: knowing whether a claim you are about to make
 is actually grounded. Verify what you can before you assert it; label
 what you could not.
 
-## Verification is the default, and these moments fire it
+## Verification is the default
 
 Verify first. Judgment is needed only to *skip* a check, never to run
 one, so no prior sense that you were unsure is required to fire one.
