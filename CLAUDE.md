@@ -26,9 +26,6 @@ docs/rules/git-recovery.md — read when a commit is rejected for missing
   signatures, a merge is requested, or a commit landed on the wrong
   branch. Kernel: never squash merge, and never merge the default
   branch into another — rebase the other branch onto it instead.
-docs/rules/ask-vs-discuss.md — read before presenting a multiple-choice
-  question form. Kernel: forms decide among known options, they do
-  not build understanding.
 docs/rules/code-style.md — read before writing or reviewing a file a
   computer interprets or compiles — source in any language, a shell
   script, a build file, a config a tool parses — and the inline
