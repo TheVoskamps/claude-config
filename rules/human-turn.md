@@ -1,6 +1,6 @@
 # The Human's Turn
 
-Three moments belong to the human: the move from discussion to
+These moments belong to the human: the move from discussion to
 execution, the answer to a question you asked, and any approval a rule,
 skill, or agent definition calls for. Infer none of them — not from the
 specificity or the enthusiasm of the discussion, not from a plausible
