@@ -24,6 +24,11 @@ approval before you act:
   are not destructive and need no approval; see
   `rules/git-workflow.md` for the default-branch case.
 
+- **Anything the task did not name.** A ruling, a remark, or a
+  review finding settles the thing in front of you; it does not
+  change what the task is. When work outside the task turns up,
+  say what it is and ask what to do.
+
 When one of these comes up: say what you found, say what you would do,
 and ask. When none of these is in play and the task raises no decision
 that is the user's to make (`rules/escalation-discipline.md`), act.
