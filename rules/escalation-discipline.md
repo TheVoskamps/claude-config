@@ -3,22 +3,17 @@
 Some problems are not yours to solve. Stop and report back — rather
 than inventing a workaround — when you hit one of these:
 
-- **An environmental mismatch the task does not describe.** The host
-  Python rejects a dependency, the deployment target's runtime differs
-  from the host's, a required tool is missing, a credential has
-  expired and no allowed refresh command exists, a base image won't
-  pull, a port is occupied.
+- **An environmental mismatch the task does not describe**, such as a
+  required tool that is missing or a runtime that rejects a
+  dependency.
 - **A rule that contradicts another rule, or that doesn't fit the
-  situation.** The task body tells you to write to `/tmp/` but the
-  agent rules forbid it; a rule says "verify in a venv" but the host
-  can't build the deps.
-- **A fix that requires more than the task describes.** The failing
-  test is unrelated to your change; a wheel build breaks for reasons
-  that have nothing to do with the version bump you were asked for.
+  situation**, such as a task body that directs you somewhere the
+  agent rules forbid.
+- **A fix that requires more than the task describes**, such as a
+  failing test unrelated to your change.
 
-These are not implementation noise to solve and move on from. Each is a
-decision about which canonical path to take, and the decision belongs
-to the human, not to you — surface it and stop.
+Each is a decision about which canonical path to take, and the
+decision belongs to the human, not to you.
 
 ## The report shape
 
@@ -31,16 +26,9 @@ to the human, not to you — surface it and stop.
 
 ## When not to escalate
 
-You do not need to escalate every error. All of these must hold:
-
-- The error is *not* about the fix you're working on, so it isn't your
-  change that's wrong.
-- The problem has *more than one reasonable resolution*, so picking
-  one silently makes a non-trivial decision on the human's behalf.
-- The resolution would *shape future runs*, not just this one.
-
-Routine errors that fail any of those — a typo you made, a test you
-broke, a lint error in your own diff — you keep solving yourself.
+An error that is about your own change, that has at most one
+reasonable resolution, or that shapes nothing past this run is yours
+to solve.
 
 Agent definitions in the `sdlc` plugin add a further escalation trigger
 for the agents that implement changes (`issue-developer`,
