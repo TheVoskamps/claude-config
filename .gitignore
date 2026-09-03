@@ -34,15 +34,6 @@
 !/settings.json
 !/keybindings.json
 
-# The user-global user-config (issue #220) is deployed to
-# ~/.claude/rules/user-config.md at runtime by /global-user-config, but
-# it holds a user's PRIVATE machine-wide values. It must never be
-# committed to this source tree. Re-ignore it here, AFTER the !/rules/
-# un-ignore above — gitignore is last-match-wins. The file exists at
-# ~/.claude/rules/ at runtime; it is simply never tracked.
-# See .claude/rules/repo-is-claude-config-source.md.
-/rules/user-config.md
-
 # Self-contained installer that lands this repo onto ~/.claude.
 !/install.sh
 
@@ -57,15 +48,14 @@
 !/.claude/
 !/.claude/rules/
 
-# Per-repo config for the /issue-* verbs and friends, which read it
-# from .issues/ rather than the nested .claude/rules/.
+# Per-repo config the thevoskamps/issues plugin reads.
 !/.issues/
 !/.issues/repo-config.md
 !/.issues/.markdownlint.jsonc
-# Repo-level user-config (deployed by /user-config) holds this user's
-# PRIVATE per-repo values. Re-ignore it AFTER the !/.issues/
-# un-ignore above — gitignore is last-match-wins — so it is never
-# tracked even though its sibling repo-config.md is.
+# The repo-level user-config the thevoskamps/issues plugin reads holds
+# private values and must never be tracked. Re-ignore it AFTER the
+# !/.issues/ un-ignore above — gitignore is last-match-wins — so it
+# stays ignored even though its sibling repo-config.md is tracked.
 /.issues/user-config.md
 
 # Subagent memory entries. Ignoring them keeps a worktree removable
