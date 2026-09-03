@@ -4,9 +4,10 @@
 > not auto-expanded for you — read each one yourself.
 
 Applicability decides the directory and the directory decides the load
-mode: an always-on file belongs in `rules/`, an on-demand file in
-`docs/rules/`, and an on-demand entry carries the trigger and kernel
-that `docs/rules/claude-code-markdown-instructions-style.md` →
+mode: an always-on file belongs in `rules/` and is listed below as an
+`@` line, an on-demand file in `docs/rules/`, and an on-demand entry
+carries the trigger and kernel that
+`docs/rules/claude-code-markdown-instructions-style.md` →
 "Every on-demand file is reachable by a trigger and a kernel"
 requires. Every entry below names its own file's path.
 
@@ -28,19 +29,23 @@ docs/rules/git-recovery.md — read when a commit is rejected for missing
 docs/rules/ask-vs-discuss.md — read before presenting a multiple-choice
   question form. Kernel: forms decide among known options, they do
   not build understanding.
-docs/rules/code-style.md — read before writing or reviewing code, where
-  code includes prose that instructs an agent (rules files, skills,
-  agent definitions); also before writing or reviewing any file the
-  repo declares a formatter or linter for. Kernel: your diff should be
-  indistinguishable in style from the file it lands in.
-docs/rules/comment-style.md — read before writing or reviewing comments
-  in code, where code includes prose that instructs an agent (rules
-  files, skills, agent definitions); also before writing or reviewing
-  comments in any file the repo declares a formatter or linter for.
-  Kernel: a comment states a constraint the code cannot show.
+docs/rules/code-style.md — read before writing or reviewing a file a
+  computer interprets or compiles — source in any language, a shell
+  script, a build file, a config a tool parses — and the inline
+  comments in it. Kernel: your diff should be indistinguishable in
+  style from the code it lands in, and a comment states a constraint
+  the code cannot show.
+docs/rules/documentation-style.md — read before writing or reviewing a
+  file no computer interprets or compiles and no session loads as
+  instruction (a README, a changelog, a design doc), or a doc comment:
+  TSDoc, JSDoc, a docstring, or any other annotation a tool extracts
+  into a generated API reference. Kernel: a doc comment is the symbol's
+  published contract, written for a caller who will never open the
+  file.
 docs/rules/claude-code-markdown-instructions-style.md — read before
-  writing or reviewing markdown whose reader is a model: `CLAUDE.md`,
-  rules files, `SKILL.md` bodies, agent definitions. Kernel: a line
-  earns its place only when a reader acts differently for having read
-  it and the condition that put it there is still real, which is as
-  much a licence to delete as a test for what you add.
+  writing or reviewing Markdown a model loads as instructions:
+  `CLAUDE.md`, files under `rules/` and `docs/rules/`, `SKILL.md`
+  bodies, agent definitions, output styles. Kernel: a line earns its
+  place only when a reader acts differently for having read it and the
+  condition that put it there is still real, which is as much a licence
+  to delete as a test for what you add.

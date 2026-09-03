@@ -1,17 +1,18 @@
 # Claude Code Markdown Instructions Style
 
-Read before writing or reviewing markdown whose reader is a model:
-`CLAUDE.md`, rules files, `SKILL.md` bodies, agent definitions, and
-any other prose a session loads as instruction.
+Read before writing or reviewing Markdown a model loads as
+instructions: `CLAUDE.md`, files under `rules/` and `docs/rules/`,
+`SKILL.md` bodies, agent definitions, output styles, and any other
+prose a session loads as instruction. That is this guide's whole
+remit, and it covers those files whole — what earns a place in them,
+how much of it there should be, and the shape and linting of what
+lands.
 
-## Questions of fit and of comments go to the sibling guides
-
-Take whether a diff matches the file it lands in — its naming, its
-structure, the linter it must pass — to the code guide, which
-already claims prose-that-instructs-an-agent as code. Take the
-comments inside it to the comment guide. This guide governs
-what neither does: whether the content earns its place at all, and how
-much of it there should be.
+Read
+`<repo>/docs/rules/extensions/claude-code-markdown-instructions-style.md`
+after this guide when the repo you are working in carries that file; it
+extends and overrides what is here, and its absence means the repo adds
+nothing.
 
 ## A line earns its place by the retention test
 
@@ -59,7 +60,9 @@ or an on-demand file — not in always-loaded prose.
 
 Every file the diff adds that is not auto-loaded is announced where
 its readers already look, with the condition that should make them
-load it and a one-sentence statement of its hardest rule.
+load it and a one-sentence statement of its hardest rule. A
+routing-table entry carries that trigger and that kernel and no
+justification.
 
 ## `CLAUDE.md` stays under 200 lines
 
@@ -77,3 +80,24 @@ rest. A convention goes in a rules file the routing table reaches.
 
 No example the diff adds demonstrates a behavior that a name, a
 parameter, a type, or a stated constraint could carry instead.
+
+## Every Markdown file the diff touches passes the repo's markdownlint
+
+Every Markdown file the diff touches passes the markdownlint config
+the repo declares, in whole and including the lines the diff did not
+change, in repos that declare one.
+
+## No section moved out of an instruction file leaves a stub behind
+
+For every section the diff removes from one instruction file and adds
+to another, the source file retains nothing of it: no stub heading, no
+one-line kernel, no "moved to X" pointer. Two sibling files sharing a
+single statement of a contract they both obey is a different shape and
+is allowed: nothing moved out, so neither file sends a reader chasing a
+pointer to reach its own rule.
+
+## An instruction file with no section heading uses `##` headings
+
+Every Markdown file the diff adds or flattens whose instructions sit
+directly under the `#` title carries each of those instructions as a
+`##` heading.
