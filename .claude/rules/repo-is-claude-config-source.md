@@ -35,7 +35,9 @@ therefore means editing `settings.json` in the same diff.
 
 `/docs/rules/` holds the on-demand rules files kept outside the
 `/rules/` set. Which of the two directories a new file goes in decides
-how `CLAUDE.md` announces it, per `CLAUDE.md`'s own lead.
+how `CLAUDE.md` announces it, per
+`docs/rules/extensions/claude-code-markdown-instructions-style.md` →
+"A new rules file is announced in `CLAUDE.md` per its directory".
 `/docs/rules/extensions/` under it holds this repo's own per-repo
 extensions of the global style guides, each at the fixed name its
 guide's lead names: `code-style.md`, `documentation-style.md`, and
