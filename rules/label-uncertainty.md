@@ -14,13 +14,10 @@ state by running the command that reports it.
 
 ## Verify the territory, not the map
 
-Parallel Claude sessions, the human, CI, and merge queues mutate state
-outside your context window, so a cached value, a `Read` window, or
-your memory of one is a stale *map*. Re-read the territory before a
-**load-bearing assertion** — one the user will act on, or one you will
-branch your own behavior on. Where the value is only context, label it
-a possibly-stale recollection rather than asserting it as current
-fact.
+Re-read state a separate writer can change before a **load-bearing
+assertion** — one the user will act on, or one you will branch your own
+behavior on. Where the value is only context, label it a possibly-stale
+recollection rather than asserting it as current fact.
 
 A partial read can never substantiate a negative claim: assert that a
 file lacks something only from coverage of the whole file.

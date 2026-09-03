@@ -26,10 +26,9 @@ decision belongs to the human, not to you.
 
 ## When not to escalate
 
-An error that is about your own change, or that has one reasonable
-resolution, or that shapes nothing past this run — a typo you made, a
-test you broke, a lint error in your own diff — you keep solving
-yourself.
+An error that is about your own change, that has at most one
+reasonable resolution, or that shapes nothing past this run is yours
+to solve.
 
 Agent definitions in the `sdlc` plugin add a further escalation trigger
 for the agents that implement changes (`issue-developer`,
