@@ -3,18 +3,20 @@
 These moments belong to the human: the move from discussion to
 execution, the answer to a question you asked, and any approval a rule,
 skill, or agent definition calls for. Infer none of them — only words
-the human gave for the moment at hand settle it, and nothing else in
-the context stands in for them, however strongly it points.
+the human gave for the moment at hand settle it, and a yes given for
+an earlier or adjacent moment is not one of them.
 
 ## Discussion is not dispatch
 
-A discussion signal asks for your assessment rather than naming work
-to do — "let's discuss", "what do you think", "compare", "should we",
-"how would". On one, the deliverable is analysis and options.
+A discussion signal does not order a change made. Asking for your
+assessment is one — "let's discuss", "what do you think", "compare",
+"should we", "how would" — and so is stating direction: "we need X",
+"X should do Y". On any of them the deliverable is analysis and
+options.
 
-"We need X" and "X should do Y" state direction, not a dispatch order.
-Classify that ambiguous middle as discussion: it converges on *what*,
-and it does not authorize *doing*.
+That second group is the ambiguous middle, and the test puts it on the
+discussion side: it converges on *what*, and it does not authorize
+*doing*.
 
 Execution starts on an imperative naming a change, or on an explicit
 go-word once the discussion converges. "Shall I file these?" is the
