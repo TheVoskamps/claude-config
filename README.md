@@ -1,4 +1,4 @@
-# global-claude-config
+# claude-config
 
 This repo contains the shared configuration of `~/.claude` and is meant
 to be used by and in conjunction with `TheVoskamps/macos-setup`
@@ -46,7 +46,11 @@ In order:
   path. The script never deletes it.
 - The script is **safe to re-run** and **non-destructive**. If
   `~/.claude/` is already a clone of the source repo, it reports that
-  and exits without moving anything or creating another backup.
+  and exits without moving anything or creating another backup. That
+  check compares only the `<owner>/<repo>` part of the origin, so SSH
+  and HTTPS origins both match regardless of letter case, and a
+  `~/.claude/` cloned under one of this repo's earlier names still
+  counts as installed.
 - It refuses to run when started from inside `~/.claude/` itself — once
   installed, update the canonical copy with `git -C ~/.claude pull`
   rather than re-running the installer.
