@@ -19,10 +19,9 @@ docs/rules/install-discipline.md — read before running any install
   on your own initiative — and, as a subagent, not even under user
   direction.
 docs/rules/git-recovery.md — read when a commit is rejected for missing
-  signatures, a merge is requested, a commit landed on the wrong
-  branch, or a git command is refused in a subagent worktree. Kernel:
-  never squash merge, and never merge the default branch into another —
-  rebase the other branch onto it instead.
+  signatures, a merge is requested, or a commit landed on the wrong
+  branch. Kernel: never squash merge, and never merge the default
+  branch into another — rebase the other branch onto it instead.
 docs/rules/code-style.md — read before writing or reviewing a file a
   computer interprets or compiles — source in any language, a shell
   script, a build file, a config a tool parses — and the inline

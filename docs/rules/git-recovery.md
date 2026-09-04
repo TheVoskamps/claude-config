@@ -39,16 +39,3 @@ with `git restore --source=HEAD --staged --worktree PATHS`, and
 publish with `git push --force-with-lease --force-if-includes`. The
 soft reset holds every change in the index until you name the paths to
 discard, so nothing goes silently.
-
-## Running git in a worktree-isolated subagent
-
-A `git` command joined to anything with `&&`, or fed its message on
-stdin from a heredoc, is refused with "names git in a form too complex
-to verify that it stays inside the worktree". The gate proves
-statically that the command targets the agent's own worktree, so it is
-not a permission prompt and there is no approving past it — run every
-`git` invocation as its own bare Bash call instead.
-
-For a commit message too long to pass as `-m`, write it to a file
-first and commit with `git commit -F PATH`; `gh pr create` takes
-`--body-file` the same way.
