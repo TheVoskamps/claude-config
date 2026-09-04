@@ -27,10 +27,7 @@ an unactivated virtual environment both put it on this axis.
 The only install a subagent may run on its own initiative is the
 project's **deterministic-from-lockfile install** — one that resolves
 no version the lockfile does not already pin, and fails rather than
-resolving one. Every other install goes to the escalation path below.
-
-Anything that resolves an unpinned version is forbidden as recovery,
-even when a tool is missing and an install "obviously" would fix it —
+resolving one. Every other install goes to the escalation path below,
 whether it comes from a package manager or from a binary, tarball, or
 wheel placed into a dependency tree by hand.
 

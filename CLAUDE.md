@@ -14,7 +14,8 @@ docs/rules/credential-surfaces.md — read when a command fails with an
   failure with its error verbatim and ask.
 docs/rules/install-discipline.md — read before running any install
   command, or when a needed tool is missing. Kernel: never install on
-  your own initiative; lockfile-honoring installs only.
+  your own initiative, beyond the project's own lockfile-honoring
+  install inside the worktree.
 docs/rules/git-recovery.md — read when a commit is rejected for missing
   signatures, a merge is requested, or a commit landed on the wrong
   branch. Kernel: never squash merge, and never merge the default
