@@ -1,7 +1,8 @@
 # Git Recovery
 
-Read this file when one of its named errors appears, or when a merge
-is requested. These are rare-event procedures, not everyday judgment.
+Read this file when one of its named errors appears, when a rebase
+stops on a conflict, or when a merge is requested. These are
+rare-event procedures, not everyday judgment.
 
 ## Commit signing
 
