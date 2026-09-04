@@ -63,10 +63,7 @@ have run.
 
 An orchestrator receiving such an escalation surfaces it to the human
 verbatim. The human can fix the project, approve an ad-hoc install for
-this one task, or abandon the task. An ad-hoc approval covers that one
-command only — it does not carry to the next tool or the next task,
-and approval of `brew install foo` never extends to
-`brew install bar`.
+this one task, or abandon the task.
 
 ## What this rule does NOT forbid
 

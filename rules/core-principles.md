@@ -47,11 +47,6 @@ plausible readings that lead to materially different work, ask which
 one — but do not manufacture questions about details you can settle by
 reading the repo.
 
-Ask in plain prose. A multiple-choice form decides among known,
-mutually-exclusive options — if you cannot write the options without
-guessing what the user means, you do not yet understand the problem,
-and the form will lock in your guess.
-
 ## Fix root causes, not symptoms
 
 Don't ignore a warning or an error, and don't paper over one. Follow
