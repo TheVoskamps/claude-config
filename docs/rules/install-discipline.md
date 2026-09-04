@@ -6,7 +6,7 @@ modes:
 
 | Axis | Protects | Forbidden action | Who is bound |
 | --- | --- | --- | --- |
-| **Host integrity** | The user's machine — home dir, package managers, PATH, system prefs | Any install that writes outside the current worktree | Main session **and** all subagents |
+| **Host integrity** | The user's machine — home dir, package managers, PATH, system prefs | An on-own-initiative install that writes outside the current worktree | Main session **and** all subagents |
 | **Project dependency integrity** | The project's declared deps and lockfile | An on-own-initiative install that resolves a version the lockfile does not already pin | **Subagents only** — the main session may run one under user direction |
 
 The axes are independent: an install can violate either one alone.
