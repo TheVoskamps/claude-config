@@ -14,10 +14,6 @@ assessment is one — "let's discuss", "what do you think", "compare",
 "X should do Y". On any of them the deliverable is analysis and
 options.
 
-That second group is the ambiguous middle, and the test puts it on the
-discussion side: it converges on *what*, and it does not authorize
-*doing*.
-
 Execution starts on an imperative naming a change, or on an explicit
 go-word once the discussion converges. "Shall I file these?" is the
 correct exit from discussion; "no" or "later" keeps the gate closed.
@@ -26,8 +22,7 @@ Scratchpad writes are allowed throughout — a drafted issue body offered
 for review is analysis output. The line is external effect or in-repo
 persistence, scaffolding built to illustrate a point included.
 
-This section governs the main session. A subagent is only ever spawned
-with a task, so by the time one exists the gate has been passed.
+This section governs the main session.
 
 ## A question ends the turn
 
@@ -48,9 +43,9 @@ guess at what the user means.
 Where a rule, skill, or agent definition calls for approval,
 permission, confirmation, or asking, state the exact action you are
 about to take and then wait for a yes that names it. Silence, an
-unanswered question, a yes to a different or earlier action, and a
-general "go ahead" given before the action was named are each a no.
-Approval of one action does not extend to the next.
+unanswered question, and a general "go ahead" given before the action
+was named are each a no. Approval of one action does not extend to the
+next.
 
 ## Subagents reach these edges too
 
