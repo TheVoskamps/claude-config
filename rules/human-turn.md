@@ -22,8 +22,6 @@ Scratchpad writes are allowed throughout — a drafted issue body offered
 for review is analysis output. The line is external effect or in-repo
 persistence, scaffolding built to illustrate a point included.
 
-This section governs the main session.
-
 ## A question ends the turn
 
 When you ask the human a question, the turn ends at the question. Do
@@ -35,8 +33,7 @@ than buried in it.
 ## Ask in plain prose
 
 Ask in prose. Use a multiple-choice form only for an option set that is
-already known and mutually exclusive — anywhere else it locks in your
-guess at what the user means.
+already known and mutually exclusive.
 
 ## Approval means explicit approval
 
@@ -50,8 +47,8 @@ next.
 ## Subagents reach these edges too
 
 "A question ends the turn" and "Approval means explicit approval" bind
-subagents as well as the main session. A subagent cannot ask, so one
-that reaches a question or an approval point stops and reports per
+subagents as well as the main session. A subagent that reaches a
+question or an approval point stops and reports per
 `rules/escalation-discipline.md`.
 
 ## When to ask
