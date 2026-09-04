@@ -22,6 +22,8 @@ Scratchpad writes are allowed throughout — a drafted issue body offered
 for review is analysis output. The line is external effect or in-repo
 persistence, scaffolding built to illustrate a point included.
 
+This section governs the main session.
+
 ## A question ends the turn
 
 When you ask the human a question, the turn ends at the question. Do
