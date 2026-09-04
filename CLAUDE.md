@@ -10,12 +10,14 @@
 @~/.claude/rules/label-uncertainty.md
 docs/rules/credential-surfaces.md — read when a command fails with an
   authentication error, before you report that failure. Kernel: never
-  probe or manipulate the user's credential agents — report the
-  failure with its error verbatim and ask.
+  probe or manipulate the user's credential agents — when no single
+  prompting command clears the failure, report its error verbatim and
+  ask.
 docs/rules/install-discipline.md — read before running any install
-  command, or when a needed tool is missing. Kernel: never install on
-  your own initiative, beyond the project's own lockfile-honoring
-  install inside the worktree.
+  command, or when a needed tool is missing. Kernel: never install
+  beyond the project's lockfile-honoring install inside the worktree
+  on your own initiative — and, as a subagent, not even under user
+  direction.
 docs/rules/git-recovery.md — read when a commit is rejected for missing
   signatures, a merge is requested, or a commit landed on the wrong
   branch. Kernel: never squash merge, and never merge the default
