@@ -49,7 +49,11 @@ No instruction the diff adds contradicts one already reachable in the
 same context — elsewhere in the same file, in another file the session
 loads, or in the tool description of the tool it governs. A reader
 resolves a contradiction by guessing, so the diff that introduces the
-better rule also changes the one it disagrees with.
+better rule also changes the one it disagrees with. That standard
+governs what a diff may add; a session that finds an existing
+contradiction in the course of other work escalates it per
+`rules/escalation-discipline.md` rather than editing either side
+itself.
 
 ## Guidance delegates judgment rather than enumerating cases
 
@@ -87,10 +91,12 @@ rest. A convention goes in a rules file the routing table reaches.
 ## Memory stays out of the instruction files
 
 No line the diff adds to `CLAUDE.md` or any other instruction file
-records memory — session lore, a fact learned in a run, a preference
-picked up along the way. Durability separates the two: a fact that
-held for the run that found it is memory, and one that holds for
-every later reader is the constraint the retention test admits.
+records memory — session lore, a transient fact a single run turned
+up, a preference picked up along the way. Memory lives outside these
+files, and durability separates the two: a fact that held only for the
+run that found it is memory, while one that holds for every later
+reader earns its place only if it also passes the retention test above
+— "A line earns its place by the retention test".
 
 ## No example teaches what an interface can state
 
