@@ -17,6 +17,20 @@ Derive every absolute path you hand a file tool from
 `git rev-parse --show-toplevel`, never from a repo path you carried in
 from a prompt, an environment block, or your own memory.
 
+## Shape git commands so the isolation gate can read them
+
+In a subagent worktree the isolation gate judges the command string,
+not the paths it resolves to: it refuses an inline
+environment-assignment prefix (`GIT_EDITOR=false git …`), a heredoc, an
+`&&` chain, and any multi-line script that names `git`. Issue one plain
+invocation per git command, and pass long text — a commit message, a PR
+body — as a file written with the Write tool: `git commit -F <file>`,
+`gh pr create --body-file <file>`.
+
+Where that leaves a claim about git's own behavior untestable, settle
+it from `git help` or a single non-mutating command and label what
+stays unverified, rather than retrying against the gate.
+
 ## Commit messages
 
 - First line: present-tense imperative verb and summary (e.g. "Add
