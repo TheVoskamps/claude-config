@@ -1,7 +1,8 @@
 # Git Recovery
 
-Read this file when one of its named errors appears, or when a merge
-is requested. These are rare-event procedures, not everyday judgment.
+Read this file when one of its named errors appears, when a rebase
+stops on a conflict, or when a merge is requested. These are
+rare-event procedures, not everyday judgment.
 
 ## Commit signing
 
@@ -39,3 +40,20 @@ with `git restore --source=HEAD --staged --worktree PATHS`, and
 publish with `git push --force-with-lease --force-if-includes`. The
 soft reset holds every change in the index until you name the paths to
 discard, so nothing goes silently.
+
+## Finishing a conflicted rebase
+
+Commit the resolution yourself, then let the rebase walk on:
+
+```bash
+git add RESOLVED_PATHS
+git commit --no-edit          # lands the resumed commit with its original message
+git rebase --continue         # finds nothing to commit, continues without an editor
+```
+
+Neither `GIT_EDITOR=true git rebase --continue` nor
+`git rebase --continue --no-edit` works: the first is rejected for its
+inline environment-assignment prefix and the second names a flag
+`rebase` does not accept. That prefix rejection comes from the
+permission gate, not from git, so it constrains nothing else about
+`git rebase`.
