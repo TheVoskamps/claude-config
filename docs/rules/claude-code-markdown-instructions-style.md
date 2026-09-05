@@ -43,6 +43,14 @@ No instruction the diff adds repeats one already reachable in the same
 context — elsewhere in the same file, in another file the session
 loads, or in the tool description of the tool it governs.
 
+## No instruction contradicts one stated in the same context
+
+No instruction the diff adds contradicts one already reachable in the
+same context — elsewhere in the same file, in another file the session
+loads, or in the tool description of the tool it governs. A reader
+resolves a contradiction by guessing, so the diff that introduces the
+better rule also changes the one it disagrees with.
+
 ## Guidance delegates judgment rather than enumerating cases
 
 Every behavior the diff specifies is stated as the principle behind
@@ -75,6 +83,13 @@ append only as part of a relocation or a displacement.
 Every line the diff adds to a `CLAUDE.md` states what the repo is for,
 states a gotcha it carries, or routes a reader to the file holding the
 rest. A convention goes in a rules file the routing table reaches.
+
+## Memory stays out of the instruction files
+
+No line the diff adds to `CLAUDE.md` or any other instruction file
+records memory — session lore, a fact learned in a run, a preference
+picked up along the way. Memory lives outside these files, and a
+session that needs it gets it from there.
 
 ## No example teaches what an interface can state
 
