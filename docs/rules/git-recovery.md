@@ -46,7 +46,7 @@ discard, so nothing goes silently.
 Commit the resolution yourself, then let the rebase walk on:
 
 ```bash
-git add <resolved paths>
+git add RESOLVED_PATHS
 git commit --no-edit          # lands the resumed commit with its original message
 git rebase --continue         # finds nothing to commit, continues without an editor
 ```
