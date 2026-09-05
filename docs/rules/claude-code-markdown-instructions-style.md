@@ -88,8 +88,9 @@ rest. A convention goes in a rules file the routing table reaches.
 
 No line the diff adds to `CLAUDE.md` or any other instruction file
 records memory — session lore, a fact learned in a run, a preference
-picked up along the way. Memory lives outside these files, and a
-session that needs it gets it from there.
+picked up along the way. Durability separates the two: a fact that
+held for the run that found it is memory, and one that holds for
+every later reader is the constraint the retention test admits.
 
 ## No example teaches what an interface can state
 
