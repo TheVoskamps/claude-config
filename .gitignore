@@ -12,11 +12,12 @@
 !/.markdownlint.jsonc
 # Static informational file; tracked like any other source file.
 !/CONTRIBUTORS
-# On-demand rules files under docs/rules/, plus this repo's own
-# per-repo style-guide extensions under docs/rules/extensions/, each
-# at the fixed path its own guide's lead names. Not under
-# .claude/rules/, which is auto-loaded recursively and would make an
-# on-demand guide always-on.
+# Un-ignores the whole docs/ tree. What it is there for: the on-demand
+# rules files under docs/rules/, plus this repo's own per-repo
+# style-guide extensions under docs/rules/extensions/, each at the
+# fixed path its own guide's lead names. Not under .claude/rules/,
+# which is auto-loaded recursively and would make an on-demand guide
+# always-on.
 !/docs/
 
 # Claude config — whitelist shareable files, ignore everything else.
