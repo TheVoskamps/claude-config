@@ -1,7 +1,8 @@
 # Git Recovery
 
 Read this file when one of its named errors appears, when a rebase
-stops on a conflict, or when a merge is requested. These are
+stops on a conflict, when a merge is requested, or when a git command
+is refused for its shape rather than for what it would do. These are
 rare-event procedures, not everyday judgment.
 
 ## Commit signing
@@ -30,6 +31,16 @@ branch — rebase the other branch onto it instead.
 3. `git checkout CORRECT_BRANCH` — the staged changes come with you.
 4. `git commit` — commit to the correct branch.
 5. `git stash pop` — re-apply the saved changes.
+
+## Committing a message too long for `-m`
+
+In a subagent worktree, write the message to a file under
+`.claude/tmp/` and commit with a plain `git commit -F FILE`, one git
+verb per Bash call. A heredoc piped into `git commit`, and `git add`,
+`git commit`, and `git log` chained with `&&`, are both refused by the
+worktree-isolation gate, which cannot statically verify such a command
+stays inside the worktree. `.claude/tmp/` is gitignored, so the message
+file never lands in the commit.
 
 ## Dropping a commit from a branch
 
