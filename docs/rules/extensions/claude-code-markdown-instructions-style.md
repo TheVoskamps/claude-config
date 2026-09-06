@@ -12,3 +12,6 @@ PR body flags the path left uncovered.
 Every file the diff adds under `rules/` has an `@` line in
 `CLAUDE.md`, and every file the diff adds under `docs/rules/` has a
 plain-path entry there.
+
+`docs/rules/extensions/` is the exception: an extension is reached
+from its own guide's lead, so it gets no `CLAUDE.md` entry.
