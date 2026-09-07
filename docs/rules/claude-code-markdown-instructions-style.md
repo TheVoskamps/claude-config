@@ -47,9 +47,8 @@ loads, or in the tool description of the tool it governs.
 
 No instruction the diff adds contradicts one already reachable in the
 same context — elsewhere in the same file, in another file the session
-loads, or in the tool description of the tool it governs. A reader
-resolves a contradiction by guessing, so the diff that introduces the
-better rule also changes the one it disagrees with.
+loads, or in the tool description of the tool it governs. The diff that
+introduces the better rule also changes the one it disagrees with.
 
 ## Guidance delegates judgment rather than enumerating cases
 
