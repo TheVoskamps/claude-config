@@ -22,11 +22,16 @@ from a prompt, an environment block, or your own memory.
 - First line: present-tense imperative verb and summary (e.g. "Add
   Lambda for account creation"); keep under 72 characters.
 - Blank line.
-- Detailed body: wrap at 132 characters; explain what and why.
-- Use clear, descriptive commit messages.
-- Focus on the "what" and "why", not the "how".
+- Detailed body: wrap at 132 characters; explain what and why, not
+  how.
 - Commit incrementally — small, focused commits rather than one large
   catch-all commit.
+
+Pass a multi-line message from a file — `git commit -F <path>` — and
+write that file in a Bash call of its own. The permission gate rejects
+a git command whose arguments are not static literals, so a message
+built by command substitution never reaches git, and it rejects a
+compound command it cannot verify stays inside one worktree.
 
 ## Commit and push approval
 
