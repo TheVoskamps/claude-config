@@ -12,9 +12,6 @@ than inventing a workaround — when you hit one of these:
 - **A fix that requires more than the task describes**, such as a
   failing test unrelated to your change.
 
-Each is a decision about which canonical path to take, and the
-decision belongs to the human, not to you.
-
 ## The report shape
 
 1. **The exact error or rule conflict, verbatim.** Quote the output;

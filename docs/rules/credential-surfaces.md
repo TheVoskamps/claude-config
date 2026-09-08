@@ -15,8 +15,7 @@ When a normal command fails with an auth error:
 2. If the failure is **expired or missing credentials** and the fix is
    a single command whose normal flow prompts the user for
    credentials, run that command and wait for the user to complete the
-   prompt. Running one is no different from running anything else that
-   blocks on I/O; if the user is slow to answer, keep waiting.
+   prompt. If the user is slow to answer, keep waiting.
 3. If the failure is **agent-state opaque** — e.g. SSH
    `Permission denied (publickey)` with no clear single-command fix —
    stop. Report it per "Reporting an auth failure" below, and wait
@@ -40,12 +39,10 @@ here. So the report has the following parts and nothing else:
 Forbidden in that report:
 
 - **Remediation.** No suggested commands, no `ssh-add`, no
-  "try X". The fix is the user's; suggesting one reaches into
-  the credential surface you were told not to touch.
+  "try X". The fix is the user's.
 - **Mechanism.** No explanation of why it failed, what
   `sign_and_send_pubkey` means, what the SSH handshake did, or
-  which key was tried. You did not observe the internals; do
-  not narrate them.
+  which key was tried.
 - **Unlabeled relay.** If the error text came from a subagent's
   report rather than a command you ran yourself, say so — "the
   subagent reported:" — and don't present it as something you

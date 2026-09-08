@@ -33,6 +33,5 @@ citation the user can follow.
 
 If instead you are constructing it because it sounds right, it is a
 hypothesis, and it is marked as one: "guess", "haven't verified", "I
-think but haven't checked". A weak hedge ("probably", "I believe")
-still lands as factual, and the user needs an explicit marker to know
-they should verify before acting.
+think but haven't checked". A weak hedge ("probably", "I believe") is
+not such a marker.

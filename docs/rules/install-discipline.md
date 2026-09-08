@@ -1,8 +1,7 @@
 # Install Discipline
 
 Distinct integrity concerns govern when you may install something.
-Keep them separate — they have different scopes and different failure
-modes:
+Keep them separate:
 
 | Axis | Protects | Forbidden action | Who is bound |
 | --- | --- | --- | --- |
