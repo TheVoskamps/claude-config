@@ -19,8 +19,11 @@ assertion** — one the user will act on, or one you will branch your own
 behavior on. Where the value is only context, label it a possibly-stale
 recollection rather than asserting it as current fact.
 
-A partial read can never substantiate a negative claim: assert that a
-file lacks something only from coverage of the whole file.
+A partial read can never substantiate a negative claim, and neither
+can a source you have not scanned in the current turn: before
+asserting that a file lacks something, check what the session already
+holds, and assert only from coverage of the whole file scanned in
+this turn.
 
 ## Label what you have not verified
 
