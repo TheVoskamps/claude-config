@@ -48,9 +48,7 @@ file never lands in the commit.
 refused in a subagent worktree, the first as forbidden outright. Drop
 the commit with `git reset --soft HEAD~1`, discard what it introduced
 with `git restore --source=HEAD --staged --worktree PATHS`, and
-publish with `git push --force-with-lease --force-if-includes`. The
-soft reset holds every change in the index until you name the paths to
-discard, so nothing goes silently.
+publish with `git push --force-with-lease --force-if-includes`.
 
 ## Finishing a conflicted rebase
 
