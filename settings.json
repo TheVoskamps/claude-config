@@ -209,7 +209,7 @@
         "source": "git",
         "url": "https://github.com/TheVoskamps/claude-plugins-marketplace.git"
       },
-      "autoUpdate": true
+      "autoUpdate": false
     }
   },
   "model": "claude-fable-5-1",
