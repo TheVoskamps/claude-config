@@ -31,10 +31,9 @@ nothing else.
 ## Preamble (not a rule source)
 
 A diff matches the comment density, style, naming, idiom, and
-structure of the surrounding codebase. A reader running `git blame`
-should learn who wrote a line, not be able to guess it from the style.
-A file the diff creates has no surrounding lines of its own, so the
-codebase around it is what it matches.
+structure of the surrounding codebase. A file the diff creates has no
+surrounding lines of its own, so the codebase around it is what it
+matches.
 
 That expectation resolves the cases the rules do not reach: an
 unfamiliar language, a file with two competing idioms in it, a
@@ -43,8 +42,7 @@ convention. When the rules below are silent, copy what is already
 there; when what is already there is genuinely wrong, fix it as its
 own change rather than as a silent rider on an unrelated one.
 
-Style is downstream of correctness, never a substitute for it. Fix the
-root cause of an error rather than its symptom.
+Fix the root cause of an error rather than its symptom.
 
 Suppression is not a fix — not `eslint-disable-next-line`, not a
 blanket `# type: ignore`, not a loosened linter config. When a lint or

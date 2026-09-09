@@ -28,10 +28,7 @@ from a prompt, an environment block, or your own memory.
   catch-all commit.
 
 Pass a multi-line message from a file — `git commit -F <path>` — and
-write that file in a Bash call of its own. The permission gate rejects
-a git command whose arguments are not static literals, so a message
-built by command substitution never reaches git, and it rejects a
-compound command it cannot verify stays inside one worktree.
+write that file in a Bash call of its own.
 
 ## Commit and push approval
 
