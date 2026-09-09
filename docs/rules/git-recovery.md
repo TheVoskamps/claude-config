@@ -1,8 +1,8 @@
 # Git Recovery
 
 Read this file when one of its named errors appears, when a rebase
-stops on a conflict, when a merge is requested, or when a command is
-refused for its shape rather than for what it would do. These are
+stops on a conflict, when a merge is requested, or when a git command
+is refused for its shape rather than for what it would do. These are
 rare-event procedures, not everyday judgment.
 
 ## Commit signing
@@ -41,14 +41,6 @@ verb per Bash call. A heredoc piped into `git commit`, and `git add`,
 worktree-isolation gate, which cannot statically verify such a command
 stays inside the worktree. `.claude/tmp/` is gitignored, so the message
 file never lands in the commit.
-
-## A filename containing `git` trips the worktree gate
-
-In a subagent worktree, the worktree-isolation gate refuses a compound
-command whose text contains `git` anywhere, a filename such as
-`rules/git-workflow.md` included. Read such files one per Bash call, or
-with a single `cat` naming them all, rather than in a loop or an `&&`
-chain.
 
 ## Dropping a commit from a branch
 
