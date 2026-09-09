@@ -28,24 +28,18 @@ from a prompt, an environment block, or your own memory.
   catch-all commit.
 
 Pass a multi-line message from a file — `git commit -F <path>` — and
-write that file in a Bash call of its own. The permission gate rejects
-a git command whose arguments are not static literals, so a message
-built by command substitution never reaches git, and it rejects a
-compound command it cannot verify stays inside one worktree.
+write that file in a Bash call of its own.
 
 ## Commit and push approval
 
-`git commit` and `git push` without a force flag are reversible, so
-they fall outside the approval carve-outs in
-`rules/core-principles.md` → "Work autonomously; stop at these edges"
-and need no advance approval on a working branch.
+`git commit` and `git push` without a force flag need no advance
+approval on a working branch: they fall outside the approval carve-outs
+in `rules/core-principles.md` → "Work autonomously; stop at these
+edges".
 
 After committing and once tests pass, present the summary of changes,
 the files modified with line counts, the proposed commit message, and
-the test results. Everything the user might then want is still
-available: more changes via another commit, a reworded message via
-`git commit --amend`, a rollback via `git reset --soft HEAD~1` (or
-`git reset HEAD~1` to unstage as well).
+the test results.
 
 Push to a working branch freely. Pushing to the **default branch**
 requires approval unless the user already asked for it explicitly:
@@ -54,7 +48,6 @@ show the commit, say plainly that it is on the default branch, ask
 yes.
 
 `--force`, `-f`, and `--mirror` on a push each require explaining why
-and getting explicit permission first — they can destroy work that is
-not yours. `--force-with-lease` and `--force-if-includes` are fine
-without it, e.g. after rebasing a branch onto the default branch's
-HEAD, because they refuse to clobber commits you haven't seen.
+and getting explicit permission first. `--force-with-lease` and
+`--force-if-includes` are fine without it, e.g. after rebasing a branch
+onto the default branch's HEAD.

@@ -19,9 +19,8 @@ approval before you act:
 - **Destructive or irreversible operations.** `git push --force`,
   `git push --mirror`, history rewrites, deleting remote branches,
   deleting cloud resources, dropping databases. `--force-with-lease`
-  and `--force-if-includes` are exempt: they refuse to clobber work
-  you have not seen. `git commit` and `git push` to a working branch
-  are not destructive and need no approval; see
+  and `--force-if-includes` are exempt. `git commit` and `git push` to
+  a working branch are not destructive and need no approval; see
   `rules/git-workflow.md` for the default-branch case.
 
 - **Anything the task did not name.** A ruling, a remark, or a

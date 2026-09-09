@@ -31,52 +31,36 @@ nothing else.
 ## Preamble (not a rule source)
 
 A diff matches the comment density, style, naming, idiom, and
-structure of the surrounding codebase. A reader running `git blame`
-should learn who wrote a line, not be able to guess it from the style.
-A file the diff creates has no surrounding lines of its own, so the
-codebase around it is what it matches.
+structure of the surrounding codebase. A file the diff creates has no
+surrounding lines of its own, so the codebase around it is what it
+matches.
 
-That expectation is not itself checkable, which is why it lives here
-rather than below. It resolves the cases the rules do not reach: an
+That expectation resolves the cases the rules do not reach: an
 unfamiliar language, a file with two competing idioms in it, a
 convention that is clearly a mistake but is nevertheless the
 convention. When the rules below are silent, copy what is already
 there; when what is already there is genuinely wrong, fix it as its
 own change rather than as a silent rider on an unrelated one.
 
-Style is downstream of correctness, never a substitute for it. A
-change that satisfies every rule below and is wrong is still wrong.
 Fix the root cause of an error rather than its symptom.
 
-Suppression is not a fix. `eslint-disable-next-line`, a blanket
-`# type: ignore`, a loosened linter config: each hides the problem and
-leaves it for the next reader. When a lint or type error resists a
-quick fix, find the correct annotation or type definition, or check
-whether the real problem is configuration (parser settings,
-`tsconfig`, plugin resolution). Web search is fair game for
+Suppression is not a fix — not `eslint-disable-next-line`, not a
+blanket `# type: ignore`, not a loosened linter config. When a lint or
+type error resists a quick fix, find the correct annotation or type
+definition, or check whether the real problem is configuration (parser
+settings, `tsconfig`, plugin resolution). Web search is fair game for
 understanding the rule you are hitting.
-
-The rules below that the correctness and suppression paragraphs above
-govern — "No suppression directive is added", "No caught error is
-discarded", and "Files conform to the repo's declared formatter and
-linter" — are their diff-checkable cases, not their whole content.
 
 ## Comments (not a rule source)
 
-A comment states a constraint the code cannot show. The code already
-shows what it does, in a notation more precise than English and one
-that cannot drift out of date. What the code cannot show is the world
-outside it: the upstream API that returns `null` for a 404 instead of
-raising, the ordering two functions must keep because a third depends
-on it, the constant that must match a value in a config file the
-compiler never sees, the obvious-looking simpler approach that was
-tried and does not work.
+A comment states a constraint the code cannot show: the upstream API
+that returns `null` for a 404 instead of raising, the ordering two
+functions must keep because a third depends on it, the constant that
+must match a value in a config file the compiler never sees, the
+obvious-looking simpler approach that was tried and does not work.
 
 The audience is a maintainer arriving in two years with no memory of
-this change, not the reviewer reading it this week. That single
-substitution settles most cases: the reviewer wants to know why you
-made the change, and the maintainer wants to know what will break if
-they undo it.
+this change, not the reviewer reading it this week.
 
 A comment's text is prose: one idea per sentence, active voice,
 concrete verbs. The rules below govern whether the comment belongs at
