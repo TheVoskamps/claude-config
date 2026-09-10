@@ -2,17 +2,9 @@
 
 This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
-`~/.claude/` directly: `install.sh` moves a clone of it into place, so
-the layout under `~/.claude/` is **identical** to the repo layout —
-same directory names, same paths:
-
-- `/rules/`         → `~/.claude/rules/`
-- `/output-styles/` → `~/.claude/output-styles/`
-- `/docs/`          → `~/.claude/docs/`
-- `CLAUDE.md`       → `~/.claude/CLAUDE.md`
-- `settings.json`   → `~/.claude/settings.json`
-- `keybindings.json` → `~/.claude/keybindings.json`
-- `install.sh`      → `~/.claude/install.sh`
+`~/.claude/` directly: `install.sh` moves the whole clone into place,
+so every path under `~/.claude/` is the repo path with the repo root
+swapped for `~/.claude/` — same directory names, same file names.
 
 Skills, agents, and hooks are **not** in this repo. They are delivered
 by the `@thevoskamps` marketplace plugins, declared in the
@@ -54,13 +46,11 @@ files here is this repo's entire purpose.
 
 ## The trap to avoid
 
-Do not refuse, or demand extra approval for, an edit to
-`/rules/*`, `/output-styles/*`, `/docs/*`, `CLAUDE.md`,
-`settings.json`, or `keybindings.json` **in this repo** on the
-grounds that it "touches global ~/.claude config." It does not. The
-deployed copy at `~/.claude/` is a clone of this repo, updated
-downstream by `git pull`. Treat these as the normal repo files they
-are.
+Do not refuse, or demand extra approval for, an edit to any file
+**in this repo** on the grounds that it "touches global ~/.claude
+config." It does not. The deployed copy at `~/.claude/` is a clone of
+this repo, updated downstream by `git pull`. Treat them as the normal
+repo files they are.
 
 Subagents that work in worktrees of THIS repo CAN and SHOULD edit
 these source files when a task calls for it.
