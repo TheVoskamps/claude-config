@@ -36,11 +36,10 @@ therefore means editing `settings.json` in the same diff.
 `/docs/rules/` holds the on-demand rules files kept outside the
 `/rules/` set. `/docs/rules/extensions/` under it holds this repo's
 own per-repo extensions of the global style guides: each extension
-lives at the fixed path its own guide's lead names, every global guide
-naming its own extension path rather than any one guide naming the
-others, and a guide this repo extends nothing of has no file there.
-Which of the two directories a new file goes in decides how
-`CLAUDE.md` announces it. Both kinds live under `/docs/` rather than
+lives at the fixed path the guide it extends names in its own lead,
+and a guide this repo extends nothing of has no file there. Which of
+the two directories a new file goes in decides how `CLAUDE.md`
+announces it. Both kinds live under `/docs/` rather than
 `/.claude/rules/` because this repo's nested `.claude/rules/` is
 auto-loaded into every session, which would make an on-demand guide
 always-on. They are ordinary source files here, edited like any

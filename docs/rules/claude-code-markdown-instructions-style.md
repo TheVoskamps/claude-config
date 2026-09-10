@@ -108,10 +108,7 @@ change, in repos that declare one.
 
 For every section the diff removes from one instruction file and adds
 to another, the source file retains nothing of it: no stub heading, no
-one-line kernel, no "moved to X" pointer. Two sibling files sharing a
-single statement of a contract they both obey is a different shape and
-is allowed: nothing moved out, so neither file sends a reader chasing a
-pointer to reach its own rule.
+one-line kernel, no "moved to X" pointer.
 
 ## An instruction file with no section heading uses `##` headings
 
