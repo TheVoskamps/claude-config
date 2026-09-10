@@ -45,6 +45,8 @@ docs/rules/claude-code-markdown-instructions-style.md — read before
   to delete as a test for what you add.
 docs/rules/one-place.md — read before writing a sentence into any
   Markdown file in a repo, instruction Markdown a session loads and
-  human documentation alike. Kernel: a fact lives in exactly one file
-  and no file points at another, so a duplicate is deleted or restated
-  as the condition its members satisfy, never synchronized.
+  human documentation alike. Kernel: a fact lives in exactly one file,
+  which never points at another or names who consumes it, so a
+  duplicate is deleted or restated as the condition its members
+  satisfy, never synchronized; an allowed pointer names a path and
+  stops there.
