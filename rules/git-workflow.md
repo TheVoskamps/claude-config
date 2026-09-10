@@ -7,9 +7,7 @@ You should be run from the root of a repo. Verify with
 repo root, tell the user rather than guessing.
 
 `cd` freely to any path at or below the repo root — subdirectories,
-worktrees under `.claude/worktrees/`, and back again. What you may
-write outside the repo root is the boundary rule in
-`rules/core-principles.md` → "Work autonomously; stop at these edges".
+worktrees under `.claude/worktrees/`, and back again.
 
 ## Anchor absolute paths to the checkout you are in
 
@@ -33,9 +31,7 @@ write that file in a Bash call of its own.
 ## Commit and push approval
 
 `git commit` and `git push` without a force flag need no advance
-approval on a working branch: they fall outside the approval carve-outs
-in `rules/core-principles.md` → "Work autonomously; stop at these
-edges".
+approval on a working branch.
 
 After committing and once tests pass, present the summary of changes,
 the files modified with line counts, the proposed commit message, and

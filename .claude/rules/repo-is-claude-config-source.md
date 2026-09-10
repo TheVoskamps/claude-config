@@ -2,9 +2,9 @@
 
 This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
-`~/.claude/` directly: `install.sh` moves a clone of it into place
-(see the root `README.md`), so the layout under `~/.claude/` is
-**identical** to the repo layout — same directory names, same paths:
+`~/.claude/` directly: `install.sh` moves a clone of it into place, so
+the layout under `~/.claude/` is **identical** to the repo layout —
+same directory names, same paths:
 
 - `/rules/`         → `~/.claude/rules/`
 - `/output-styles/` → `~/.claude/output-styles/`
@@ -40,21 +40,18 @@ lives at the fixed path its own guide's lead names, every global guide
 naming its own extension path rather than any one guide naming the
 others, and a guide this repo extends nothing of has no file there.
 Which of the two directories a new file goes in decides how
-`CLAUDE.md` announces it, per this repo's extension of
-`docs/rules/claude-code-markdown-instructions-style.md` → "A new rules
-file is announced in `CLAUDE.md` per its directory". Both kinds live
-under `/docs/` rather than `/.claude/rules/` because this repo's nested
-`.claude/rules/` is auto-loaded into every session, which would make
-an on-demand guide always-on. They are ordinary source files here,
-edited like any other.
+`CLAUDE.md` announces it. Both kinds live under `/docs/` rather than
+`/.claude/rules/` because this repo's nested `.claude/rules/` is
+auto-loaded into every session, which would make an on-demand guide
+always-on. They are ordinary source files here, edited like any
+other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside the repo you were started in, so the repository-boundary
-carve-out in `rules/core-principles.md` → "Work autonomously; stop at
-these edges" does not apply to them. That carve-out governs
-writes to the **deployed copies** under `~/.claude/` — e.g. reaching
-over into `~/.claude/` while working in some *other* repo. Editing the
-source files here is this repo's entire purpose.
+carve-out does not apply to them. That carve-out governs writes to the
+**deployed copies** under `~/.claude/` — e.g. reaching over into
+`~/.claude/` while working in some *other* repo. Editing the source
+files here is this repo's entire purpose.
 
 ## The trap to avoid
 

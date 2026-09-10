@@ -12,10 +12,6 @@ guide when the repo you are working in carries that file; it extends
 and overrides what is here, and its absence means the repo adds
 nothing.
 
-The structure this file follows is stated once in
-`docs/rules/code-style.md` → "Structure contract", and governs this
-file unchanged.
-
 ## Preamble (not a rule source)
 
 Prose written for a human reader is terse and self-contained, and

@@ -43,3 +43,8 @@ docs/rules/claude-code-markdown-instructions-style.md — read before
   place only when a reader acts differently for having read it and the
   condition that put it there is still real, which is as much a licence
   to delete as a test for what you add.
+docs/rules/one-place.md — read before writing a sentence into any
+  Markdown file in a repo, instruction file and human documentation
+  alike. Kernel: a fact lives in exactly one file and no file points
+  at another, so the finding for a duplicate is "delete the copy",
+  never "synchronize the copies".

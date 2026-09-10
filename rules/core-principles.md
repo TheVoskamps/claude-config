@@ -19,9 +19,7 @@ approval before you act:
 - **Destructive or irreversible operations.** `git push --force`,
   `git push --mirror`, history rewrites, deleting remote branches,
   deleting cloud resources, dropping databases. `--force-with-lease`
-  and `--force-if-includes` are exempt. `git commit` and `git push` to
-  a working branch are not destructive and need no approval; see
-  `rules/git-workflow.md` for the default-branch case.
+  and `--force-if-includes` are exempt.
 
 - **Anything the task did not name.** A ruling, a remark, or a
   review finding settles the thing in front of you; it does not
@@ -29,7 +27,7 @@ approval before you act:
 
 When one of these comes up: say what you found, say what you would do,
 and ask. When none of these is in play and the task raises no decision
-that is the user's to make (`rules/escalation-discipline.md`), act.
+that is the user's to make, act.
 
 These edges are an approval policy you apply yourself, and they are not
 the harness's `sandbox` — the `settings.json` block and the Bash tool's

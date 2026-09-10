@@ -27,10 +27,8 @@ When a normal command fails with an auth error:
 
 ## Reporting an auth failure
 
-This report shape overrides the general one in
-`rules/escalation-discipline.md` → "The report shape". That one
-invites naming options and a recommendation; both are out of bounds
-here. So the report has the following parts and nothing else:
+The report for an auth failure has the following parts and nothing
+else:
 
 1. A bare statement that the operation failed.
 2. The literal error output, verbatim, in a code block.
@@ -38,6 +36,9 @@ here. So the report has the following parts and nothing else:
 
 Forbidden in that report:
 
+- **Options and a recommendation.** No menu of what could be done
+  next, and no pick among them. An auth report that would carry them
+  anywhere else carries neither here.
 - **Remediation.** No suggested commands, no `ssh-add`, no
   "try X". The fix is the user's.
 - **Mechanism.** No explanation of why it failed, what
