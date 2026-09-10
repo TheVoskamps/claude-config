@@ -4,10 +4,6 @@ Read before writing a sentence into any Markdown file in a repo —
 instruction Markdown a session loads and human documentation alike.
 That is this guide's whole remit.
 
-The question at write time is not whether the copies are
-synchronized. It is whether the sentence should exist in more than
-one place at all, and the answer is no.
-
 ## A fact lives in exactly one file
 
 Every fact the diff states has one owner. Before writing a sentence

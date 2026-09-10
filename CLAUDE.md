@@ -46,5 +46,5 @@ docs/rules/claude-code-markdown-instructions-style.md — read before
 docs/rules/one-place.md — read before writing a sentence into any
   Markdown file in a repo, instruction file and human documentation
   alike. Kernel: a fact lives in exactly one file and no file points
-  at another, so the finding for a duplicate is "delete the copy",
-  never "synchronize the copies".
+  at another, so a duplicate is deleted or restated as the condition
+  its members satisfy, never synchronized.
