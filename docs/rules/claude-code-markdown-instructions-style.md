@@ -90,8 +90,7 @@ records memory — session lore, a transient fact a single run turned
 up, a preference picked up along the way. Memory lives outside these
 files, and durability separates the two: a fact that held only for the
 run that found it is memory, while one that holds for every later
-reader earns its place only if it also passes the retention test above
-— "A line earns its place by the retention test".
+reader earns its place only if it also passes the retention test.
 
 ## No example teaches what an interface can state
 

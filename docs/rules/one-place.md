@@ -24,19 +24,18 @@ is not.
 
 ## No file points at another file
 
-No sentence the diff adds sends the reader to another file, with two
-exceptions: a `CLAUDE.md` routing-table entry, and a guide's lead
-naming its own per-repo extension file. Nowhere else does a pointer
-help — an always-loaded file is already in context, and an on-demand
-file is reached by the trigger and kernel its routing-table entry
-carries.
+No sentence the diff adds sends the reader to another file, except a
+`CLAUDE.md` routing-table entry or a guide's lead naming its own
+per-repo extension file. Nowhere else does a pointer help — an
+always-loaded file is already in context, and an on-demand file is
+reached by the trigger and kernel its routing-table entry carries.
 
 Naming a file as the subject a rule governs is not pointing at it.
 
 ## A pointer names the file and never a heading
 
-Every pointer the two exceptions allow names a path and stops there.
-Headings get renamed and reworded; the path is what a reader opens.
+An allowed pointer names a path and stops there. Headings get renamed
+and reworded; the path is what a reader opens.
 
 ## A duplicate is deleted rather than reconciled
 
