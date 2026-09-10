@@ -12,25 +12,6 @@ guide when the repo you are working in carries that file; it extends
 and overrides what is here, and its absence means the repo adds
 nothing.
 
-## Structure contract
-
-This contract governs this guide and any per-repo extension file of
-it.
-
-Each `###` heading in this guide is exactly one rule, phrased as a
-falsifiable claim.
-
-The evidence a rule quantifies over is anything a second reader can
-independently go and re-check: the diff, the repository at head, and
-stable external documentation such as a language's standard-library
-reference. The test is reproducibility, not location.
-
-What is excluded is a rule resting on the reviewer's taste with
-nothing a disagreeing reader could go and look at.
-
-A tool enumerating rules from this guide reads its `###` headings and
-nothing else.
-
 ## Preamble (not a rule source)
 
 Prose written for a human reader is terse and self-contained, and

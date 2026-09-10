@@ -11,10 +11,10 @@ what is here, and its absence means the repo adds nothing.
 
 ## Structure contract
 
-This contract governs this guide and any per-repo extension file of
-it.
+This contract governs this guide, the documentation guide, and any
+per-repo extension file of either.
 
-Each `###` heading in this guide is exactly one rule, phrased as a
+Each `###` heading in a guide is exactly one rule, phrased as a
 falsifiable claim.
 
 The evidence a rule quantifies over is anything a second reader can
@@ -25,8 +25,8 @@ reference. The test is reproducibility, not location.
 What is excluded is a rule resting on the reviewer's taste with
 nothing a disagreeing reader could go and look at.
 
-A tool enumerating rules from this guide reads its `###` headings and
-nothing else.
+A guide's `###` headings are its complete rule set, and nothing else
+in a guide is a rule.
 
 ## Preamble (not a rule source)
 
