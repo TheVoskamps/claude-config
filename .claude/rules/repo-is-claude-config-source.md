@@ -3,7 +3,7 @@
 This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
 `~/.claude/` directly: `install.sh` moves the whole clone into place,
-so every path under `~/.claude/` is the repo path with the repo root
+so every file this repo ships lands at its repo path with the repo root
 swapped for `~/.claude/` — same directory names, same file names.
 
 Skills, agents, and hooks are **not** in this repo. They are delivered
@@ -29,13 +29,11 @@ therefore means editing `settings.json` in the same diff.
 `/rules/` set. `/docs/rules/extensions/` under it holds this repo's
 own per-repo extensions of the global style guides: each extension
 lives at the fixed path the guide it extends names in its own lead,
-and a guide this repo extends nothing of has no file there. Which of
-the two directories a new file goes in decides how `CLAUDE.md`
-announces it. Both kinds live under `/docs/` rather than
-`/.claude/rules/` because this repo's nested `.claude/rules/` is
-auto-loaded into every session, which would make an on-demand guide
-always-on. They are ordinary source files here, edited like any
-other.
+and a guide this repo extends nothing of has no file there. Both kinds
+live under `/docs/` rather than `/.claude/rules/` because this repo's
+nested `.claude/rules/` is auto-loaded into every session, which would
+make an on-demand guide always-on. They are ordinary source files here,
+edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside the repo you were started in, so the repository-boundary
