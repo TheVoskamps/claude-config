@@ -48,7 +48,5 @@ next.
 
 ## Subagents reach these edges too
 
-A subagent's question ends its turn too, and a subagent needs the same
-explicit, action-naming approval the main session does. A subagent that
-reaches a question or an approval point stops and reports back rather
-than deciding for itself.
+A subagent that reaches a question or an approval point stops and
+reports back rather than deciding for itself.

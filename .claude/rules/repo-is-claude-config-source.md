@@ -3,8 +3,9 @@
 This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
 `~/.claude/` directly: `install.sh` moves the whole clone into place,
-so every file this repo ships lands at its repo path with the repo root
-swapped for `~/.claude/` — same directory names, same file names.
+so the deployed path of a file this repo ships is its repo path with
+the repo root swapped for `~/.claude/` — same directory names, same
+file names.
 
 Skills, agents, and hooks are **not** in this repo. They are delivered
 by the `@thevoskamps` marketplace plugins, declared in the
