@@ -15,8 +15,8 @@ edit in the corresponding plugin repo, not here.
 ## What this means for editing
 
 When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
-edit is **in this repo** under `/rules/`, `/docs/rules/`, or
-`CLAUDE.md` — NOT the deployed copy in `~/.claude/`.
+edit is the one **in this repo** — NOT the deployed copy in
+`~/.claude/`.
 
 `/output-styles/` holds this repo's Claude Code output styles, one
 Markdown file per style. They are not rules files: they carry

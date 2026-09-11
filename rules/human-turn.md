@@ -48,7 +48,7 @@ next.
 
 ## Subagents reach these edges too
 
-"A question ends the turn" and "Approval means explicit approval" bind
-subagents as well as the main session. A subagent that reaches a
-question or an approval point stops and reports back rather than
-deciding for itself.
+A subagent's question ends its turn too, and a subagent needs the same
+explicit, action-naming approval the main session does. A subagent that
+reaches a question or an approval point stops and reports back rather
+than deciding for itself.
