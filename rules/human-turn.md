@@ -48,15 +48,5 @@ next.
 
 ## Subagents reach these edges too
 
-"A question ends the turn" and "Approval means explicit approval" bind
-subagents as well as the main session. A subagent that reaches a
-question or an approval point stops and reports per
-`rules/escalation-discipline.md`.
-
-## When to ask
-
-This file settles what asking and waiting mean. What triggers them is
-settled elsewhere: the approval categories in
-`rules/core-principles.md` → "Work autonomously; stop at these edges",
-the default-branch push in `rules/git-workflow.md` → "Commit and push
-approval", and the triggers in `rules/escalation-discipline.md`.
+A subagent that reaches a question or an approval point stops and
+reports back rather than deciding for itself.

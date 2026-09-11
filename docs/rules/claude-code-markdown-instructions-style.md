@@ -90,8 +90,7 @@ records memory — session lore, a transient fact a single run turned
 up, a preference picked up along the way. Memory lives outside these
 files, and durability separates the two: a fact that held only for the
 run that found it is memory, while one that holds for every later
-reader earns its place only if it also passes the retention test above
-— "A line earns its place by the retention test".
+reader earns its place only if it also passes the retention test.
 
 ## No example teaches what an interface can state
 
@@ -108,10 +107,7 @@ change, in repos that declare one.
 
 For every section the diff removes from one instruction file and adds
 to another, the source file retains nothing of it: no stub heading, no
-one-line kernel, no "moved to X" pointer. Two sibling files sharing a
-single statement of a contract they both obey is a different shape and
-is allowed: nothing moved out, so neither file sends a reader chasing a
-pointer to reach its own rule.
+one-line kernel, no "moved to X" pointer.
 
 ## An instruction file with no section heading uses `##` headings
 

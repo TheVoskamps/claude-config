@@ -18,25 +18,15 @@ When a normal command fails with an auth error:
    prompt. If the user is slow to answer, keep waiting.
 3. If the failure is **agent-state opaque** — e.g. SSH
    `Permission denied (publickey)` with no clear single-command fix —
-   stop. Report it per "Reporting an auth failure" below, and wait
-   for the user to deal with it. When told to retry, re-run the exact
-   original command verbatim.
+   stop. Report it and wait for the user to deal with it. When told
+   to retry, re-run the exact original command verbatim.
 4. If the command from step 2 doesn't resolve the failure, stop and
    ask. Never reroute around the failure by switching remotes,
    swapping profiles, or retry-looping.
 
 ## Reporting an auth failure
 
-This report shape overrides the general one in
-`rules/escalation-discipline.md` → "The report shape". That one
-invites naming options and a recommendation; both are out of bounds
-here. So the report has the following parts and nothing else:
-
-1. A bare statement that the operation failed.
-2. The literal error output, verbatim, in a code block.
-3. The question "What should I do?" (or equivalent).
-
-Forbidden in that report:
+Forbidden in an auth-failure report:
 
 - **Remediation.** No suggested commands, no `ssh-add`, no
   "try X". The fix is the user's.

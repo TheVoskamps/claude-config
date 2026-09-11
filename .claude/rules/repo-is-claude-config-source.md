@@ -2,17 +2,10 @@
 
 This repository (`TheVoskamps/claude-config`) is the
 **source** for the global Claude Code configuration. It becomes
-`~/.claude/` directly: `install.sh` moves a clone of it into place
-(see the root `README.md`), so the layout under `~/.claude/` is
-**identical** to the repo layout — same directory names, same paths:
-
-- `/rules/`         → `~/.claude/rules/`
-- `/output-styles/` → `~/.claude/output-styles/`
-- `/docs/`          → `~/.claude/docs/`
-- `CLAUDE.md`       → `~/.claude/CLAUDE.md`
-- `settings.json`   → `~/.claude/settings.json`
-- `keybindings.json` → `~/.claude/keybindings.json`
-- `install.sh`      → `~/.claude/install.sh`
+`~/.claude/` directly: `install.sh` moves the whole clone into place,
+so the deployed path of a file this repo ships is its repo path with
+the repo root swapped for `~/.claude/` — same directory names, same
+file names.
 
 Skills, agents, and hooks are **not** in this repo. They are delivered
 by the `@thevoskamps` marketplace plugins, declared in the
@@ -23,8 +16,8 @@ edit in the corresponding plugin repo, not here.
 ## What this means for editing
 
 When a task says "fix rule Y" or "update `CLAUDE.md`", the file to
-edit is **in this repo** under `/rules/`, `/docs/rules/`, or
-`CLAUDE.md` — NOT the deployed copy in `~/.claude/`.
+edit is the one **in this repo** — NOT the deployed copy in
+`~/.claude/`.
 
 `/output-styles/` holds this repo's Claude Code output styles, one
 Markdown file per style. They are not rules files: they carry
@@ -36,35 +29,27 @@ therefore means editing `settings.json` in the same diff.
 `/docs/rules/` holds the on-demand rules files kept outside the
 `/rules/` set. `/docs/rules/extensions/` under it holds this repo's
 own per-repo extensions of the global style guides: each extension
-lives at the fixed path its own guide's lead names, every global guide
-naming its own extension path rather than any one guide naming the
-others, and a guide this repo extends nothing of has no file there.
-Which of the two directories a new file goes in decides how
-`CLAUDE.md` announces it, per this repo's extension of
-`docs/rules/claude-code-markdown-instructions-style.md` → "A new rules
-file is announced in `CLAUDE.md` per its directory". Both kinds live
-under `/docs/` rather than `/.claude/rules/` because this repo's nested
-`.claude/rules/` is auto-loaded into every session, which would make
-an on-demand guide always-on. They are ordinary source files here,
+lives at the fixed path the guide it extends names in its own lead,
+and a guide this repo extends nothing of has no file there. Both kinds
+live under `/docs/` rather than `/.claude/rules/` because this repo's
+nested `.claude/rules/` is auto-loaded into every session, which would
+make an on-demand guide always-on. They are ordinary source files here,
 edited like any other.
 
 Editing these files **in this repo** is ordinary in-repo work: they
 are inside the repo you were started in, so the repository-boundary
-carve-out in `rules/core-principles.md` → "Work autonomously; stop at
-these edges" does not apply to them. That carve-out governs
-writes to the **deployed copies** under `~/.claude/` — e.g. reaching
-over into `~/.claude/` while working in some *other* repo. Editing the
-source files here is this repo's entire purpose.
+carve-out does not apply to them. That carve-out governs writes to the
+**deployed copies** under `~/.claude/` — e.g. reaching over into
+`~/.claude/` while working in some *other* repo. Editing the source
+files here is this repo's entire purpose.
 
 ## The trap to avoid
 
-Do not refuse, or demand extra approval for, an edit to
-`/rules/*`, `/output-styles/*`, `/docs/*`, `CLAUDE.md`,
-`settings.json`, or `keybindings.json` **in this repo** on the
-grounds that it "touches global ~/.claude config." It does not. The
-deployed copy at `~/.claude/` is a clone of this repo, updated
-downstream by `git pull`. Treat these as the normal repo files they
-are.
+Do not refuse, or demand extra approval for, an edit to any file
+**in this repo** on the grounds that it "touches global ~/.claude
+config." It does not. The deployed copy at `~/.claude/` is a clone of
+this repo, updated downstream by `git pull`. Treat them as the normal
+repo files they are.
 
 Subagents that work in worktrees of THIS repo CAN and SHOULD edit
 these source files when a task calls for it.

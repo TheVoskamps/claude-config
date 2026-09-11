@@ -11,8 +11,8 @@
 docs/rules/credential-surfaces.md — read when a command fails with an
   authentication error, before you report that failure. Kernel: never
   probe or manipulate the user's credential agents — when no single
-  prompting command clears the failure, report its error verbatim and
-  ask.
+  prompting command clears the failure, stop and ask, with no
+  remediation and no mechanism in the report.
 docs/rules/install-discipline.md — read before running any install
   command, or when a needed tool is missing. Kernel: never install
   beyond the project's lockfile-honoring install inside the worktree
@@ -43,3 +43,10 @@ docs/rules/claude-code-markdown-instructions-style.md — read before
   place only when a reader acts differently for having read it and the
   condition that put it there is still real, which is as much a licence
   to delete as a test for what you add.
+docs/rules/one-place.md — read before writing a sentence into any
+  Markdown file in a repo, instruction Markdown a session loads and
+  human documentation alike. Kernel: a fact lives in exactly one file,
+  which never points at another or names who consumes it, so a
+  duplicate is deleted or restated as the condition its members
+  satisfy, never synchronized; an allowed pointer names a path and
+  stops there.

@@ -25,8 +25,8 @@ reference. The test is reproducibility, not location.
 What is excluded is a rule resting on the reviewer's taste with
 nothing a disagreeing reader could go and look at.
 
-A tool enumerating rules from a guide reads its `###` headings and
-nothing else.
+A guide's `###` headings are its complete rule set, and nothing else
+in a guide is a rule.
 
 ## Preamble (not a rule source)
 
@@ -108,12 +108,11 @@ the repo already declares in its own configuration, including the
 lines the diff did not change.
 
 A diff that loosens the config to make itself pass violates this rule
-rather than satisfying it, and so does an inline disable comment
-(see "No suppression directive is added"). A config carve-out is
-legitimate only where a rule is genuinely undefined for the content —
-a line-length rule has no meaning inside a code fence or a table cell,
-because neither can be rewrapped — and the diff states that reasoning
-in a comment next to the setting.
+rather than satisfying it, and so does an inline disable comment. A
+config carve-out is legitimate only where a rule is genuinely undefined
+for the content — a line-length rule has no meaning inside a code fence
+or a table cell, because neither can be rewrapped — and the diff states
+that reasoning in a comment next to the setting.
 
 ### Public behavior changes ship with a test
 
