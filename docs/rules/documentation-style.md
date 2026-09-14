@@ -10,7 +10,9 @@ whole remit.
 Read `<repo>/docs/rules/extensions/documentation-style.md` after this
 guide when the repo you are working in carries that file; it extends
 and overrides what is here, and its absence means the repo adds
-nothing.
+nothing. `<repo>` is the repository the working tree belongs to — for a
+worktree, the repository the worktree was created from — and never
+`~/.claude`.
 
 ## Preamble (not a rule source)
 
