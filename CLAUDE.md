@@ -52,4 +52,5 @@
 
 A guide's `<repo>/docs/rules/extensions/…` file is in the repository the
 working tree belongs to — for a worktree, the repository the worktree
-was created from — and never in `~/.claude`.
+was created from. `~/.claude` supplies one only when it is itself that
+repository, never on its own account.
