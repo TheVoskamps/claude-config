@@ -12,9 +12,7 @@ Read
 `<repo>/docs/rules/extensions/claude-code-markdown-instructions-style.md`
 after this guide when the repo you are working in carries that file; it
 extends and overrides what is here, and its absence means the repo adds
-nothing. `<repo>` is the repository the working tree belongs to — for a
-worktree, the repository the worktree was created from — and never
-`~/.claude`.
+nothing.
 
 ## A line earns its place by the retention test
 

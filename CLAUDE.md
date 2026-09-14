@@ -49,3 +49,7 @@
   which never points at another or names who consumes it, so a duplicate
   is deleted or restated as the condition its members satisfy, never
   synchronized; an allowed pointer names a path and stops there.
+
+A guide's `<repo>/docs/rules/extensions/…` file is in the repository the
+working tree belongs to — for a worktree, the repository the worktree
+was created from — and never in `~/.claude`.
