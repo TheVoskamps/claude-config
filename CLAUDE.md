@@ -50,7 +50,9 @@
   is deleted or restated as the condition its members satisfy, never
   synchronized; an allowed pointer names a path and stops there.
 
-A guide's `<repo>/docs/rules/extensions/…` file is in the repository the
-working tree belongs to — for a worktree, the repository the worktree
-was created from. `~/.claude` supplies one only when it is itself that
-repository, never on its own account.
+`~/.claude/docs/rules/extensions/` exists, so a guide's
+`<repo>/docs/rules/extensions/…` pointer is easy to resolve there by
+mistake. `<repo>` is the repository the working tree belongs to — for a
+worktree, the repository the worktree was created from — and `~/.claude`
+is that repository only when it is itself the checkout you are working
+in, never on its own account.
