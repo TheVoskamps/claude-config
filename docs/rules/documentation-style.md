@@ -26,7 +26,9 @@ A caller reading the generated reference cannot see the code at all,
 so a restatement of the signature that would be redundant to a
 maintainer reading the file is the entry that reader depends on.
 
-## Rules
+## For Authors
+
+## For Authors and Checkers
 
 ### Every Markdown file the diff touches passes the repo's markdownlint
 
