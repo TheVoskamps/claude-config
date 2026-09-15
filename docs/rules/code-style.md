@@ -9,13 +9,25 @@ Read `<repo>/docs/rules/extensions/code-style.md` after this guide when
 the repo you are working in carries that file; it extends and overrides
 what is here, and its absence means the repo adds nothing.
 
-## Structure contract
+## Structure contract (not a rule source)
 
-This contract governs this guide, the documentation guide, and any
-per-repo extension file of either.
+This contract governs this guide, `documentation-style.md`,
+`claude-code-markdown-instructions-style.md`, and any per-repo
+extension file of any of them.
 
-Each `###` heading in a guide is exactly one rule, phrased as a
-falsifiable claim.
+A guide's rules sit under two `##` sections, and both are present in
+every guide and extension file, a section with no rules included.
+`## For Authors` holds the rules settled only with the toolchain or a
+sweep of the repository: building, testing, updating a call site,
+confirming a symbol is referenced or a helper already exists.
+`## For Authors and Checkers` holds the rules a reader settles from the
+diff's text and the output of the formatter and linter the repo
+declares. A reader who checks a diff rather than writes it applies the
+second section and nothing else, so a file without that header
+contributes no rules to such a reader.
+
+Each `###` heading under either section is exactly one rule, phrased
+as a falsifiable claim.
 
 The evidence a rule quantifies over is anything a second reader can
 independently go and re-check: the diff, the repository at head, and
@@ -66,27 +78,13 @@ A comment's text is prose: one idea per sentence, active voice,
 concrete verbs. The rules below govern whether the comment belongs at
 all.
 
-## Rules
-
-### No suppression directive is added
-
-No line the diff adds is a linter, type-checker, or compiler
-suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
-`# type: ignore`, `# noqa`, `@SuppressWarnings`, `#pragma warning
-disable`, or any equivalent. Removing an existing suppression is not a
-violation — only adding one is.
+## For Authors
 
 ### Every symbol the diff introduces is referenced
 
 Every function, class, constant, type, variable, parameter, and import
 the diff adds has at least one reference: a call site, a re-export, a
 test, or a documented public entry point.
-
-### No caught error is discarded
-
-No `catch`, `except`, `rescue`, or equivalent block the diff adds ends
-without doing one of: handling the error, re-raising it, wrapping it
-in a raised error, or returning it as a value the caller must handle.
 
 ### Existing helpers are reused rather than reimplemented
 
@@ -100,19 +98,6 @@ For every function, method, or exported constant whose signature or
 type the diff changes, the diff also updates every call site in the
 repository, or the change is proven backward-compatible by a default
 value or overload the diff adds.
-
-### Files conform to the repo's declared formatter and linter
-
-Every file the diff touches passes, in whole, the formatter and linter
-the repo already declares in its own configuration, including the
-lines the diff did not change.
-
-A diff that loosens the config to make itself pass violates this rule
-rather than satisfying it, and so does an inline disable comment. A
-config carve-out is legitimate only where a rule is genuinely undefined
-for the content — a line-length rule has no meaning inside a code fence
-or a table cell, because neither can be rewrapped — and the diff states
-that reasoning in a comment next to the setting.
 
 ### Public behavior changes ship with a test
 
@@ -136,6 +121,35 @@ place of the reference.
 For every defect the diff fixes, the diff also fixes every other
 instance of that same class of defect within the files the diff
 touches or the unit under review.
+
+## For Authors and Checkers
+
+### No suppression directive is added
+
+No line the diff adds is a linter, type-checker, or compiler
+suppression: `eslint-disable`, `@ts-ignore`, `@ts-expect-error`,
+`# type: ignore`, `# noqa`, `@SuppressWarnings`, `#pragma warning
+disable`, or any equivalent. Removing an existing suppression is not a
+violation — only adding one is.
+
+### No caught error is discarded
+
+No `catch`, `except`, `rescue`, or equivalent block the diff adds ends
+without doing one of: handling the error, re-raising it, wrapping it
+in a raised error, or returning it as a value the caller must handle.
+
+### Files conform to the repo's declared formatter and linter
+
+Every file the diff touches passes, in whole, the formatter and linter
+the repo already declares in its own configuration, including the
+lines the diff did not change.
+
+A diff that loosens the config to make itself pass violates this rule
+rather than satisfying it, and so does an inline disable comment. A
+config carve-out is legitimate only where a rule is genuinely undefined
+for the content — a line-length rule has no meaning inside a code fence
+or a table cell, because neither can be rewrapped — and the diff states
+that reasoning in a comment next to the setting.
 
 ### No comment narrates provenance
 
