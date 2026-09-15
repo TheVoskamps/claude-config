@@ -89,6 +89,11 @@ For every section the diff removes from one instruction file and adds
 to another, the source file retains nothing of it: no stub heading, no
 one-line kernel, no "moved to X" pointer.
 
+### No example teaches what an interface can state
+
+No example the diff adds demonstrates a behavior that a name, a
+parameter, a type, or a stated constraint could carry instead.
+
 ## For Authors and Checkers
 
 ### Every line changes what a reader does
@@ -108,11 +113,6 @@ append only as part of a relocation or a displacement.
 Every line the diff adds to a `CLAUDE.md` states what the repo is for,
 states a gotcha it carries, or routes a reader to the file holding the
 rest. A convention goes in a rules file the routing table reaches.
-
-### No example teaches what an interface can state
-
-No example the diff adds demonstrates a behavior that a name, a
-parameter, a type, or a stated constraint could carry instead.
 
 ### Every Markdown file the diff touches passes the repo's markdownlint
 

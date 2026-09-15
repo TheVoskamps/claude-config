@@ -11,8 +11,9 @@ what is here, and its absence means the repo adds nothing.
 
 ## Structure contract (not a rule source)
 
-This contract governs this guide, the documentation guide, the
-instructions guide, and any per-repo extension file of any of them.
+This contract governs this guide, `documentation-style.md`,
+`claude-code-markdown-instructions-style.md`, and any per-repo
+extension file of any of them.
 
 A guide's rules sit under two `##` sections, and both are present in
 every guide and extension file, a section with no rules included.
