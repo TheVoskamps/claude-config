@@ -40,6 +40,12 @@ file is what fires the test — state what a reader does differently for
 that line, and if you cannot state it, the line does not go in. Where
 a section's value is arguable, cut it rather than reword it.
 
+### Every line changes what a reader does
+
+Every line the diff adds states something a reader would otherwise get
+wrong: a constraint, a decision, a gotcha, a fact the file system does
+not already show.
+
 ### No instruction is stated twice in one context
 
 No instruction the diff adds repeats one already reachable in the same
@@ -95,12 +101,6 @@ No example the diff adds demonstrates a behavior that a name, a
 parameter, a type, or a stated constraint could carry instead.
 
 ## For Authors and Checkers
-
-### Every line changes what a reader does
-
-Every line the diff adds states something a reader would otherwise get
-wrong: a constraint, a decision, a gotcha, a fact the file system does
-not already show.
 
 ### `CLAUDE.md` stays under 200 lines
 
