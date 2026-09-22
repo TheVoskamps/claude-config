@@ -33,6 +33,9 @@
 !/plans/
 !/rules/
 !/skills/
+# Anthropic's bundled skills, re-synced by Claude Code into an
+# account-keyed directory. Machine state, not config this repo ships.
+/skills/synced/
 !/CLAUDE.md
 !/settings.json
 !/keybindings.json
