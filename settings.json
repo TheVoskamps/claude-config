@@ -212,9 +212,13 @@
       "autoUpdate": false
     }
   },
-  "model": "claude-opus-5",
-  "effortLevel": "low",
+  "model": "claude-opus-5-5",
+  "modelSettings": {
+    "claude-opus-5-5": { "effortLevel": "low" },
+    "claude-sonnet-5": { "effortLevel": "low" }
+  },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "low",
   "tui": "fullscreen",
   "theme": "dark",
   "verbose": false,
