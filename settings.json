@@ -190,7 +190,6 @@
     "show-agent-calls@thevoskamps": true,
     "show-loaded-rules@thevoskamps": true,
     "show-loaded-skills@thevoskamps": true,
-    "block-background-agents@thevoskamps": false,
     "guardrails@thevoskamps": true,
     "issues@thevoskamps": true,
     "issues-jira@thevoskamps": true,
