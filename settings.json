@@ -225,9 +225,9 @@
   "outputStyle": "Crisp",
   "agentPushNotifEnabled": true,
   "autoMode": {
-    "//version": "2026-07-26T05:06:02Z",
-    "//revision": "v23",
-    "//note": "Generated from session-log analysis, nine chunked critique rounds, and two full-config reviews against the captured classifier prompt (Fable 5, no token ceiling). v23 applies all findings from these reviews.",
+    "//version": "2026-09-24T21:36:50Z",
+    "//revision": "v24",
+    "//note": "Generated from session-log analysis, nine chunked critique rounds, and two full-config reviews against the captured classifier prompt (Fable 5, no token ceiling). v24 applies the 19 accepted findings of three /auto-mode-tools:tune-auto-mode rounds against the classifier prompt captured from Claude Code 2.1.281 (Opus 5.5, no token ceiling); one finding was rejected.",
     "environment": [
       "$defaults",
       "Slot precedence: where an entry in this list names the same slot as a default **Slot** entry, this entry governs and the default is void. This applies to Organization, Cloud provider(s), Repository visibility, Source control, Secrets management, CI/CD deploy targets, Internal package registry, Trusted internal domains, Trusted cloud buckets, Sensitive remote targets and Protected IaC scopes.",
