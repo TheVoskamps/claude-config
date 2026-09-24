@@ -200,7 +200,8 @@
     "cc-tools@thevoskamps": true,
     "claude-vm@thevoskamps": true,
     "github-claude-identity@thevoskamps": true,
-    "writing-tools@thevoskamps": true
+    "writing-tools@thevoskamps": true,
+    "auto-mode-tools@thevoskamps": true
   },
   "extraKnownMarketplaces": {
     "thevoskamps": {
