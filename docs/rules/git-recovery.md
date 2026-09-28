@@ -56,7 +56,7 @@ Commit the resolution yourself, then let the rebase walk on:
 
 ```bash
 git add RESOLVED_PATHS
-git commit --no-edit          # lands the resumed commit with its original message
+git commit -C REBASE_HEAD     # keeps the stopped commit's message and author
 git rebase --continue         # finds nothing to commit, continues without an editor
 ```
 
