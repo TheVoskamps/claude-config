@@ -16,8 +16,8 @@
 ~/.claude/docs/rules/install-discipline.md — read before running any
   install command, or when a needed tool is missing. Kernel: never
   install beyond the project's lockfile-honoring install inside the
-  worktree on your own initiative — and, as a subagent, not even under
-  user direction.
+  worktree on your own initiative; a subagent, like the main session,
+  runs a resolving install only under user direction.
 ~/.claude/docs/rules/git-recovery.md — read when a commit is rejected
   for missing signatures, a merge is requested, a rebase stops on a
   conflict, or a commit landed on the wrong branch. Kernel: never squash
