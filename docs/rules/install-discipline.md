@@ -6,7 +6,7 @@ Keep them separate:
 | Axis | Protects | Forbidden action | Who is bound |
 | --- | --- | --- | --- |
 | **Host integrity** | The user's machine — home dir, package managers, PATH, system prefs | An on-own-initiative install that writes outside the current worktree | Main session **and** all subagents |
-| **Project dependency integrity** | The project's declared deps and lockfile | Any install other than the project's deterministic-from-lockfile install, a hand-placed artifact matching the pin included | **Every subagent on its own initiative**; a subagent may run a resolving install only under user direction, as may the main session |
+| **Project dependency integrity** | The project's declared deps and lockfile | Any install other than the project's deterministic-from-lockfile install, a hand-placed artifact matching the pin included | Main session **and** all subagents, on their own initiative |
 
 The axes are independent: an install can violate either one alone.
 
