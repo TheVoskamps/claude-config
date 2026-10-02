@@ -21,12 +21,12 @@ A package manager you think of as project-local is still bound here
 whenever the invocation writes outside the worktree: a global flag and
 an unactivated virtual environment both put it on this axis.
 
-## Project dependency integrity — tightened for subagents
+## Project dependency integrity — lockfile-only unless the user directs
 
-On its own initiative, a subagent may run exactly one install: the
-project's **deterministic-from-lockfile install** — one that resolves
-no version the lockfile does not already pin, and fails rather than
-resolving one.
+On its own initiative, a subagent or the main session may run exactly
+one install: the project's **deterministic-from-lockfile install** —
+one that resolves no version the lockfile does not already pin, and
+fails rather than resolving one.
 
 A **resolving install** — one that writes or changes the lockfile — is
 permitted when the user directed it. Direction comes from the user in
@@ -34,10 +34,6 @@ the session, or from an issue the subagent was given to implement
 whose `## Files affected` section lists the lockfile tagged `new` or
 `update`. A lockfile mentioned anywhere else in an issue body is not
 direction.
-
-The main session is bound the same way: on its own initiative it runs
-only the deterministic-from-lockfile install, and it runs a resolving
-install only under user direction.
 
 Every other install goes to the escalation path below, whether it
 comes from a package manager or from a binary, tarball, or wheel
