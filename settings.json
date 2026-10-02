@@ -233,7 +233,7 @@
   "autoMode": {
     "//version": "2026-10-02T22:32:08Z",
     "//revision": "v25",
-    "//note": "Generated from session-log analysis, nine chunked critique rounds, and two full-config reviews against the captured classifier prompt (Fable 5, no token ceiling). v25 narrows Manifest Install to lockfile-honoring installs, adds runtime package runners to Runtime Fetch Execution, and corrects the container runtime and Homebrew entries.",
+    "//note": "Generated from session-log analysis, nine chunked critique rounds, and two full-config reviews against the captured classifier prompt (Fable 5, no token ceiling). v25 narrows Manifest Install to lockfile-honoring installs, adds runtime package runners to Runtime Fetch Execution, corrects the container runtime entries, and adds a Homebrew entry.",
     "environment": [
       "$defaults",
       "Slot precedence: where an entry in this list names the same slot as a default **Slot** entry, this entry governs and the default is void. This applies to Organization, Cloud provider(s), Repository visibility, Source control, Secrets management, CI/CD deploy targets, Internal package registry, Trusted internal domains, Trusted cloud buckets, Sensitive remote targets and Protected IaC scopes.",
