@@ -35,6 +35,10 @@ whose `## Files affected` section lists the lockfile tagged `new` or
 `update`. A lockfile mentioned anywhere else in an issue body is not
 direction.
 
+The main session is bound the same way: on its own initiative it runs
+only the deterministic-from-lockfile install, and it runs a resolving
+install only under user direction.
+
 Every other install goes to the escalation path below, whether it
 comes from a package manager or from a binary, tarball, or wheel
 placed into a dependency tree by hand.
