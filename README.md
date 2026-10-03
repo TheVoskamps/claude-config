@@ -96,34 +96,6 @@ plugin is attempted, a summary lists any failures at the end, and the
 script exits non-zero if any failed. It requires `jq` and `claude` on
 `PATH`.
 
-## Permission rules in `settings.json`
-
-Claude Code resolves a `permissions` rule set as deny, then ask, then
-allow, and in auto mode a matching rule settles the call before the
-classifier runs. A rule ending in `:*` matches by prefix; a rule with no
-`*` matches one exact command. An `ask` rule for an install verb
-therefore shadows every `allow` rule beneath it: `Bash(pnpm install:*)`
-in `ask` catches `pnpm install --frozen-lockfile`, and no `allow` rule
-can clear it.
-
-`permissions` is laid out around that constraint:
-
-- `allow` carries each lockfile-honoring install as an exact rule with no
-  wildcard, and runs `npx` tools with `--no-install` so the rule matches
-  only a copy the repository already has.
-- `deny` carries the commands that must never run in any mode — among
-  them `corepack enable`, which writes shims into the Node install's bin
-  directory and so changes global state from any directory.
-- `ask` carries no package or version manager verb. It holds only actions
-  that are not software changes on this machine: raw fetches,
-  `docker pull`, and the `helm` release verbs.
-
-Installing, removing, upgrading or re-pinning software through a package
-or version manager is judged by intent instead, by the `autoMode`
-"Software Change" entry, which only the user's own message naming the
-package and the change clears. An `ask` rule per mutating verb would
-fail silently on every verb it missed; the intent entry has no such gap.
-
 ## Contributing
 
 This is a public repository. Contributions are welcome:
