@@ -1,9 +1,7 @@
 # Code Style
 
-Read before writing or reviewing a file a computer interprets or
-compiles and no session loads as instruction — source in any language,
-a shell script, a build file, a config a tool parses — and every
-comment inside such a file. That is this guide's whole remit.
+Read before writing or reviewing a Code file. That is this guide's
+whole remit.
 
 Read `<repo>/docs/rules/extensions/code-style.md` after this guide when
 the repo you are working in carries that file; it extends and overrides
