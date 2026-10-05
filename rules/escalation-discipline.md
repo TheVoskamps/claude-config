@@ -26,8 +26,3 @@ than inventing a workaround — when you hit one of these:
 An error that is about your own change, that has at most one
 reasonable resolution, or that shapes nothing past this run is yours
 to solve.
-
-Agent definitions in the `sdlc` plugin add a further escalation trigger
-for the agents that implement changes (`issue-developer`,
-`issue-fixer`): a design decision the issue does not answer. That is a
-different surface from this file's, and both apply.
