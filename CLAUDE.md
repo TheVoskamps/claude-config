@@ -24,14 +24,14 @@
   conflict, or a commit landed on the wrong branch. Kernel: never squash
   merge, and never merge the default branch into another — rebase the
   other branch onto it instead.
-~/.claude/docs/rules/code-style.md — read before writing or reviewing a
-  Code file. Kernel: your diff should be indistinguishable in style from
-  the code it lands in, and a comment explains what the code does or a
+~/.claude/docs/rules/code-style.md — read before writing or reviewing
+  Code. Kernel: your diff should be indistinguishable in style from the
+  code it lands in, and a comment explains what the code does or a
   constraint it cannot show.
 ~/.claude/docs/rules/documentation-style.md — read before writing or
-  reviewing a Documentation file. Kernel: prose for a human reader is
-  terse, self-contained, and states no count the reader can derive from
-  what is already shown.
+  reviewing Documentation. Kernel: prose for a human reader is terse,
+  self-contained, and states no count the reader can derive from what is
+  already shown.
 ~/.claude/docs/rules/claude-code-markdown-instructions-style.md — read
   before writing or reviewing Instruction Markdown. Kernel: a line earns
   its place only when a reader acts differently for having read it and

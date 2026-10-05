@@ -13,8 +13,3 @@ and never by its name or location:
 - **Code** — a file a computer interprets or compiles and no session
   loads as instruction, such as source in any language, a shell script,
   a build file, or a config a tool parses, every comment in it included.
-
-## A repo's own account of its paths settles the class
-
-Where a repo's instruction files describe how its paths are used at run
-time, that description settles the class of the files on those paths.
