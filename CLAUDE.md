@@ -24,18 +24,16 @@
   merge, and never merge the default branch into another — rebase the
   other branch onto it instead.
 ~/.claude/docs/rules/code-style.md — read before writing or reviewing a
-  file a computer interprets or compiles — source in any language, a
-  shell script, a build file, a config a tool parses — and the inline
-  comments in it. Kernel: your diff should be indistinguishable in style
-  from the code it lands in, and a comment states a constraint the code
-  cannot show.
+  file a computer interprets or compiles and no session loads as
+  instruction — source in any language, a shell script, a build file,
+  a config a tool parses — and every comment in it. Kernel: your diff
+  should be indistinguishable in style from the code it lands in, and
+  a comment explains what the code does or a constraint it cannot show.
 ~/.claude/docs/rules/documentation-style.md — read before writing or
   reviewing a file no computer interprets or compiles and no session
-  loads as instruction (a README, a changelog, a design doc), or a doc
-  comment: TSDoc, JSDoc, a docstring, or any other annotation a tool
-  extracts into a generated API reference. Kernel: a doc comment is the
-  symbol's published contract, written for a caller who will never open
-  the file.
+  loads as instruction (a README, a changelog, a design doc). Kernel:
+  prose for a human reader is terse, self-contained, and states no
+  count the reader can derive from what is already shown.
 ~/.claude/docs/rules/claude-code-markdown-instructions-style.md — read
   before writing or reviewing Markdown a model loads as instructions:
   `CLAUDE.md`, files under `rules/` and `docs/rules/`, `SKILL.md`

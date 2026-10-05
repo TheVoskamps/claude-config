@@ -1,9 +1,9 @@
 # Code Style
 
 Read before writing or reviewing a file a computer interprets or
-compiles — source in any language, a shell script, a build file, a
-config a tool parses — and the inline comments inside such a file.
-That is this guide's whole remit.
+compiles and no session loads as instruction — source in any language,
+a shell script, a build file, a config a tool parses — and every
+comment inside such a file. That is this guide's whole remit.
 
 Read `<repo>/docs/rules/extensions/code-style.md` after this guide when
 the repo you are working in carries that file; it extends and overrides
@@ -65,11 +65,17 @@ understanding the rule you are hitting.
 
 ## Comments (not a rule source)
 
-A comment states a constraint the code cannot show: the upstream API
-that returns `null` for a 404 instead of raising, the ordering two
-functions must keep because a third depends on it, the constant that
-must match a value in a config file the compiler never sees, the
-obvious-looking simpler approach that was tried and does not work.
+A comment does one of two things. It explains what the code does —
+for a symbol, its contract to callers, in TSDoc or the language's
+equivalent format: what comes back, what can go wrong, and what the
+caller must guarantee before calling. Or it states a constraint the
+code cannot show: the upstream API that returns `null` for a 404
+instead of raising, the ordering two functions must keep because a
+third depends on it, the constant that must match a value in a config
+file the compiler never sees, the obvious-looking simpler approach
+that was tried and does not work.
+
+A comment does not paraphrase a line that reads plainly on its own.
 
 The audience is a maintainer arriving in two years with no memory of
 this change, not the reviewer reading it this week.
