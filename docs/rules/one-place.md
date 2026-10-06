@@ -1,8 +1,8 @@
 # One Place
 
 Read before writing a sentence into any Markdown file in a repo —
-instruction Markdown a session loads and human documentation alike.
-That is this guide's whole remit.
+Instruction Markdown and Documentation alike. That is this guide's
+whole remit.
 
 ## A fact lives in exactly one file
 

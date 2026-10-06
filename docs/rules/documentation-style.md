@@ -1,8 +1,7 @@
 # Documentation Style
 
-Read before writing or reviewing a file no computer interprets or
-compiles and no session loads as instruction — a README, a changelog,
-a design doc. That is this guide's whole remit.
+Read before writing or reviewing Documentation.
+That is this guide's whole remit.
 
 Read `<repo>/docs/rules/extensions/documentation-style.md` after this
 guide when the repo you are working in carries that file; it extends

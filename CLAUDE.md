@@ -8,6 +8,7 @@
 @~/.claude/rules/escalation-discipline.md
 @~/.claude/rules/human-turn.md
 @~/.claude/rules/label-uncertainty.md
+@~/.claude/rules/file-classes.md
 ~/.claude/docs/rules/credential-surfaces.md — read when a command fails
   with an authentication error, before you report that failure. Kernel:
   never probe or manipulate the user's credential agents — when no
@@ -23,30 +24,25 @@
   conflict, or a commit landed on the wrong branch. Kernel: never squash
   merge, and never merge the default branch into another — rebase the
   other branch onto it instead.
-~/.claude/docs/rules/code-style.md — read before writing or reviewing a
-  file a computer interprets or compiles and no session loads as
-  instruction — source in any language, a shell script, a build file,
-  a config a tool parses — and every comment in it. Kernel: your diff
-  should be indistinguishable in style from the code it lands in, and
-  a comment explains what the code does or a constraint it cannot show.
+~/.claude/docs/rules/code-style.md — read before writing or reviewing
+  Code. Kernel: your diff should be indistinguishable in style from the
+  code it lands in, and a comment explains what the code does or a
+  constraint it cannot show.
 ~/.claude/docs/rules/documentation-style.md — read before writing or
-  reviewing a file no computer interprets or compiles and no session
-  loads as instruction (a README, a changelog, a design doc). Kernel:
-  prose for a human reader is terse, self-contained, and states no
-  count the reader can derive from what is already shown.
+  reviewing Documentation. Kernel: prose for a human reader is terse,
+  self-contained, and states no count the reader can derive from what is
+  already shown.
 ~/.claude/docs/rules/claude-code-markdown-instructions-style.md — read
-  before writing or reviewing Markdown a model loads as instructions:
-  `CLAUDE.md`, files under `rules/` and `docs/rules/`, `SKILL.md`
-  bodies, agent definitions, output styles. Kernel: a line earns its
-  place only when a reader acts differently for having read it and the
-  condition that put it there is still real, which is as much a licence
-  to delete as a test for what you add.
+  before writing or reviewing Instruction Markdown. Kernel: a line earns
+  its place only when a reader acts differently for having read it and
+  the condition that put it there is still real, which is as much a
+  licence to delete as a test for what you add.
 ~/.claude/docs/rules/one-place.md — read before writing a sentence into
-  any Markdown file in a repo, instruction Markdown a session loads and
-  human documentation alike. Kernel: a fact lives in exactly one file,
-  which never points at another or names who consumes it, so a duplicate
-  is deleted or restated as the condition its members satisfy, never
-  synchronized; an allowed pointer names a path and stops there.
+  any Markdown file in a repo, Instruction Markdown and Documentation
+  alike. Kernel: a fact lives in exactly one file, which never points at
+  another or names who consumes it, so a duplicate is deleted or
+  restated as the condition its members satisfy, never synchronized; an
+  allowed pointer names a path and stops there.
 
 `~/.claude/docs/rules/extensions/` exists, so a guide's
 `<repo>/docs/rules/extensions/…` pointer is easy to resolve there by
