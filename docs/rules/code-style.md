@@ -1,7 +1,6 @@
 # Code Style
 
-Read before writing or reviewing Code. That is this guide's whole
-remit.
+Read before writing or reviewing Code. That is this guide's whole remit.
 
 Read `<repo>/docs/rules/extensions/code-style.md` after this guide when
 the repo you are working in carries that file; it extends and overrides

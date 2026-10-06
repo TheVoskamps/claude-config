@@ -1,9 +1,10 @@
 # Claude Code Markdown Instructions Style
 
-Read before writing or reviewing Instruction Markdown. That is this
-guide's whole remit, and it covers those files whole — what earns a
-place in them, how much of it there should be, and the shape and
-linting of what lands.
+Read before writing or reviewing Instruction Markdown.
+That is this guide's whole
+remit, and it covers those files whole — what earns a place in them,
+how much of it there should be, and the shape and linting of what
+lands.
 
 Read
 `<repo>/docs/rules/extensions/claude-code-markdown-instructions-style.md`
