@@ -22,3 +22,9 @@ Read does not open a directory, so list one with `ls`.
 
 Every Bash call that remains is one command, fed by no pipe or heredoc,
 and with no `;`, `&&`, `$?`, or other shell expansion.
+
+When the command is `git` or a script whose name begins `git-`, give it
+no argument whose last path component is `git` or a `git-` name without
+a file extension, in any case. Write such a path as a quoted pathspec
+glob, such as `'plugins/*-tools/bin/*-branch-sync'`, and join an option
+to such a value with `=`, as in `--grep=git-branch-sync`.
