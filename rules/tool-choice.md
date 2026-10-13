@@ -22,4 +22,5 @@ Read does not open a directory, so list one with `ls`.
 ## Keep every other Bash call a single plain command
 
 Every Bash call that remains is one command, with no `;`, `&&`, `$?`, or
-other shell expansion; the worktree guard refuses each of them.
+other shell expansion: the worktree guard refuses any such call it
+cannot show stays clear of git.

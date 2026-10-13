@@ -17,8 +17,8 @@ with the committer email matching a verified email on that account.
 
 ## Merging
 
-Dry-run the merge first:
-`git checkout TARGET_BRANCH && git merge --no-commit --no-ff main`.
+Dry-run the merge first, one git verb per Bash call:
+`git checkout TARGET_BRANCH`, then `git merge --no-commit --no-ff main`.
 
 Don't squash merge, and don't merge the default branch into another
 branch — rebase the other branch onto it instead.
