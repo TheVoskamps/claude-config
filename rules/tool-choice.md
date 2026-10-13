@@ -20,5 +20,5 @@ Read does not open a directory, so list one with `ls`.
 
 ## Keep every other Bash call a single plain command
 
-Every Bash call that remains is one command, with no `;`, `&&`, `$?`, or
-other shell expansion.
+Every Bash call that remains is one command, fed by no pipe or heredoc,
+and with no `;`, `&&`, `$?`, or other shell expansion.
