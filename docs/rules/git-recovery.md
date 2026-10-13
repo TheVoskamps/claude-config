@@ -18,7 +18,7 @@ with the committer email matching a verified email on that account.
 ## Merging
 
 Dry-run the merge first:
-`git checkout TARGET_BRANCH && git merge --no-commit --no-ff main`.
+`git checkout TARGET_BRANCH`, then `git merge --no-commit --no-ff main`.
 
 Don't squash merge, and don't merge the default branch into another
 branch — rebase the other branch onto it instead.
@@ -35,12 +35,8 @@ branch — rebase the other branch onto it instead.
 ## Committing a message too long for `-m`
 
 In a subagent worktree, write the message to a file under
-`.claude/tmp/` and commit with a plain `git commit -F FILE`, one git
-verb per Bash call. A heredoc piped into `git commit`, and `git add`,
-`git commit`, and `git log` chained with `&&`, are both refused by the
-worktree-isolation gate, which cannot statically verify such a command
-stays inside the worktree. `.claude/tmp/` is gitignored, so the message
-file never lands in the commit.
+`.claude/tmp/` and commit with `git commit -F FILE`. `.claude/tmp/` is
+gitignored, so the message file never lands in the commit.
 
 ## Dropping a commit from a branch
 

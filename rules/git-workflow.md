@@ -26,7 +26,7 @@ from a prompt, an environment block, or your own memory.
   catch-all commit.
 
 Pass a multi-line message from a file — `git commit -F <path>` — and
-write that file in a Bash call of its own.
+write that file in a call of its own.
 
 ## Commit and push approval
 
