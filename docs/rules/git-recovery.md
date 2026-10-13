@@ -36,11 +36,9 @@ branch — rebase the other branch onto it instead.
 
 In a subagent worktree, write the message to a file under
 `.claude/tmp/` and commit with a plain `git commit -F FILE`, one git
-verb per Bash call. A heredoc piped into `git commit`, and `git add`,
-`git commit`, and `git log` chained with `&&`, are both refused by the
-worktree-isolation gate, which cannot statically verify such a command
-stays inside the worktree. `.claude/tmp/` is gitignored, so the message
-file never lands in the commit.
+verb per Bash call. Never pipe a heredoc into `git commit`, and never
+chain `git add`, `git commit`, and `git log` with `&&`. `.claude/tmp/`
+is gitignored, so the message file never lands in the commit.
 
 ## Dropping a commit from a branch
 

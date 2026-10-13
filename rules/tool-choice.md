@@ -1,8 +1,7 @@
 # Tool Choice
 
 This rule overrides the auto-mode guidance that leaves the choice
-between Bash and the dedicated file tools open: the worktree Bash guard
-refuses many of the shell commands that guidance suggests.
+between Bash and the dedicated file tools open.
 
 ## Read and change files with the file tools
 
@@ -22,5 +21,4 @@ Read does not open a directory, so list one with `ls`.
 ## Keep every other Bash call a single plain command
 
 Every Bash call that remains is one command, with no `;`, `&&`, `$?`, or
-other shell expansion: the worktree guard refuses any such call it
-cannot show stays clear of git.
+other shell expansion.
