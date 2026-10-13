@@ -9,6 +9,7 @@
 @~/.claude/rules/human-turn.md
 @~/.claude/rules/label-uncertainty.md
 @~/.claude/rules/file-classes.md
+@~/.claude/rules/tool-choice.md
 ~/.claude/docs/rules/credential-surfaces.md — read when a command fails
   with an authentication error, before you report that failure. Kernel:
   never probe or manipulate the user's credential agents — when no
