@@ -1,30 +1,34 @@
 #!/usr/bin/env bash
 
-# Install or update the Claude Code plugins and marketplaces declared in a
-# settings.json (default `~/.claude/settings.json`).
+# Install or update Claude Code plugins and marketplaces.
 #
 # Usage:
 #
-#     ./plugins.sh --install [SETTINGS_FILE]
-#     ./plugins.sh --update  [SETTINGS_FILE]
+#     ./plugins.sh --install
+#     ./plugins.sh --update
 #     ./plugins.sh --help
 #
 # Add `--dry-run` to either mode to print the `claude` commands that would run
-# without executing any of them.
-#
-# Both modes read the same two blocks from SETTINGS_FILE:
-#
-#   - `.extraKnownMarketplaces` — a map of marketplace-name -> { source, ... }.
-#   - `.enabledPlugins`         — a map of `<plugin>@<marketplace>` -> enabled.
-#     A plugin counts as enabled when its value is `true` or `.enabled == true`.
+# without executing any of them. Neither mode takes a positional argument.
 #
 # What each mode does:
 #
-#   --update   Refresh marketplaces and plugins already present.
-#                marketplace: `claude plugin marketplace update <name>`
-#                plugin:      `claude plugin update <plugin@marketplace>`
+#   --update   Refresh the marketplaces and enabled plugins the `claude` CLI
+#              lists, so every settings source counts (user, project, local,
+#              managed).
+#                marketplace: each `.name` from
+#                  `claude plugin marketplace list --json`
+#                  -> `claude plugin marketplace update <name>`
+#                plugin:      each `.id` from `claude plugin list --json` whose
+#                  row has `.enabled == true`, once per id (the listing has a
+#                  row per scope) -> `claude plugin update <id>`
 #
-#   --install  Add marketplaces, then install enabled plugins.
+#   --install  Add marketplaces, then install enabled plugins, both read from
+#              two blocks of `~/.claude/settings.json`:
+#                - `.extraKnownMarketplaces` — marketplace-name -> { source }.
+#                - `.enabledPlugins`         — `<plugin>@<marketplace>` ->
+#                  enabled. A plugin counts as enabled when its value is
+#                  `true` or `.enabled == true`.
 #                marketplace: `claude plugin marketplace add <source-arg>`
 #                  The <source-arg> is derived from each marketplace's
 #                  `.source` block: `.source.repo` for a github source, else
@@ -56,12 +60,14 @@ error_exit() { echo "Error: $1" >&2; exit 1; }
 
 usage() {
     cat <<'EOF'
-Install or update Claude Code plugins/marketplaces from a settings.json.
+Install or update Claude Code plugins and marketplaces.
 
 Usage:
-  ./plugins.sh --install [SETTINGS_FILE]   Add marketplaces, install plugins
-  ./plugins.sh --update  [SETTINGS_FILE]   Update marketplaces and plugins
-  ./plugins.sh --help                      Show this help
+  ./plugins.sh --install   Add marketplaces and install enabled plugins
+                           from ~/.claude/settings.json
+  ./plugins.sh --update    Update the marketplaces and enabled plugins
+                           that `claude plugin ... list --json` reports
+  ./plugins.sh --help      Show this help
 
 Options:
   --dry-run   Print the claude commands that would run; execute nothing.
@@ -69,8 +75,6 @@ Options:
 Environment:
   VERBOSE=1   Do not quiet --update: print every per-item label and the
               full claude plugin output, including no-op progress chatter.
-
-SETTINGS_FILE defaults to ~/.claude/settings.json.
 EOF
 }
 
@@ -141,10 +145,25 @@ run_item() {
 
 # --- jq extractors ---------------------------------------------------------
 
-# Echo each marketplace name (key of .extraKnownMarketplaces), one per line.
-marketplace_names() {
-    jq -r '(.extraKnownMarketplaces // {}) | keys[]' "$SETTINGS"
+# --update reads the claude CLI listings. Each extractor below echoes one item
+# per line and returns non-zero when the listing command or its parse fails.
+
+# Echo each marketplace name `claude plugin marketplace list --json` reports.
+listed_marketplaces() {
+    local json
+    json=$(claude plugin marketplace list --json) || return 1
+    jq -r '.[].name' <<<"$json"
 }
+
+# Echo each plugin id `claude plugin list --json` reports as enabled, once:
+# the listing has one row per scope the plugin is installed in.
+listed_enabled_plugins() {
+    local json
+    json=$(claude plugin list --json) || return 1
+    jq -r '[.[] | select(.enabled == true) | .id] | unique | .[]' <<<"$json"
+}
+
+# --install reads $SETTINGS.
 
 # Echo, for each marketplace, "<name>\t<add-source-arg>" where the source arg
 # is derived from its `.source` block (repo for github, else url or path).
@@ -177,29 +196,39 @@ do_update() {
         QUIET=1
     fi
 
-    info "Updating marketplaces from $SETTINGS"
-    local name found=0
-    while IFS= read -r name; do
-        [[ -z "$name" ]] && continue
-        found=1
-        run_item "marketplace update: $name" \
-            claude plugin marketplace update "$name"
-    done < <(marketplace_names)
-    if [[ "$found" == 0 ]]; then
-        warn "no marketplaces in .extraKnownMarketplaces; skipping"
+    info "Updating marketplaces listed by claude plugin marketplace list"
+    local names name found=0
+    if ! names=$(listed_marketplaces); then
+        warn "failed: claude plugin marketplace list --json"
+        FAILURES+=("marketplace list")
+    else
+        while IFS= read -r name; do
+            [[ -z "$name" ]] && continue
+            found=1
+            run_item "marketplace update: $name" \
+                claude plugin marketplace update "$name"
+        done <<<"$names"
+        if [[ "$found" == 0 ]]; then
+            warn "no marketplaces in claude plugin marketplace list; skipping"
+        fi
     fi
 
-    info "Updating plugins from $SETTINGS"
-    local plugin
+    info "Updating enabled plugins listed by claude plugin list"
+    local plugins plugin
     found=0
-    while IFS= read -r plugin; do
-        [[ -z "$plugin" ]] && continue
-        found=1
-        run_item "plugin update: $plugin" \
-            claude plugin update "$plugin"
-    done < <(enabled_plugins)
-    if [[ "$found" == 0 ]]; then
-        warn "no enabled plugins in .enabledPlugins; skipping"
+    if ! plugins=$(listed_enabled_plugins); then
+        warn "failed: claude plugin list --json"
+        FAILURES+=("plugin list")
+    else
+        while IFS= read -r plugin; do
+            [[ -z "$plugin" ]] && continue
+            found=1
+            run_item "plugin update: $plugin" \
+                claude plugin update "$plugin"
+        done <<<"$plugins"
+        if [[ "$found" == 0 ]]; then
+            warn "no enabled plugins in claude plugin list; skipping"
+        fi
     fi
 }
 
@@ -238,7 +267,7 @@ do_install() {
 # --- Main ------------------------------------------------------------------
 
 main() {
-    local mode="" settings_arg=""
+    local mode=""
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
@@ -248,26 +277,23 @@ main() {
             -h|--help) usage; exit 0 ;;
             --) shift; break ;;
             -*) error_exit "unknown option: $1 (try --help)" ;;
-            *)
-                [[ -n "$settings_arg" ]] && error_exit "unexpected extra argument: $1"
-                settings_arg="$1"
-                ;;
+            *) error_exit "unexpected argument: $1 (try --help)" ;;
         esac
         shift
     done
-    # A SETTINGS_FILE after `--`.
-    [[ $# -gt 0 ]] && { settings_arg="$1"; shift; }
-    [[ $# -gt 0 ]] && error_exit "unexpected extra argument: $1"
+    [[ $# -gt 0 ]] && error_exit "unexpected argument: $1 (try --help)"
 
     [[ -z "$mode" ]] && { usage >&2; error_exit "exactly one of --install or --update is required"; }
 
-    SETTINGS="${settings_arg:-$HOME/.claude/settings.json}"
+    SETTINGS="$HOME/.claude/settings.json"
 
-    # Preconditions.
+    # Preconditions. jq parses the claude CLI listings as well as $SETTINGS.
     command -v jq     >/dev/null 2>&1 || error_exit "jq not found on PATH"
     command -v claude >/dev/null 2>&1 || error_exit "claude not found on PATH"
-    [[ -f "$SETTINGS" ]] || error_exit "settings file not found: $SETTINGS"
-    jq -e . "$SETTINGS" >/dev/null 2>&1 || error_exit "settings file is not valid JSON: $SETTINGS"
+    if [[ "$mode" == install ]]; then
+        [[ -f "$SETTINGS" ]] || error_exit "settings file not found: $SETTINGS"
+        jq -e . "$SETTINGS" >/dev/null 2>&1 || error_exit "settings file is not valid JSON: $SETTINGS"
+    fi
 
     case "$mode" in
         install) do_install ;;

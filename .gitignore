@@ -43,9 +43,12 @@
 # Self-contained installer that lands this repo onto ~/.claude.
 !/install.sh
 
-# Installs/updates the Claude Code plugins and marketplaces declared in
-# a settings.json (companion to install.sh).
+# Installs/updates the Claude Code plugins and marketplaces (companion
+# to install.sh).
 !/plugins.sh
+
+# Updates the ~/.claude checkout, then runs plugins.sh --update.
+!/config.sh
 
 # The *nested* .claude/ (this repo's root IS ~/.claude, so .claude/
 # here is the per-repo config for using ~/.claude on itself). Each
