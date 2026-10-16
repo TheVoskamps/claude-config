@@ -15,7 +15,7 @@
 #      recovery path; the script never destroys it.
 #   2. Install the clone by MOVING the whole clone (intact `.git` and
 #      `origin` pointing at the source repo) to `~/.claude/`. You can
-#      later `git pull` in `~/.claude/` to update.
+#      later run `~/.claude/config.sh` to update it.
 #   3. Additively overlay your previous `~/.claude/` files (from the
 #      backup) on top of the freshly-installed clone, LOCAL WINS: your
 #      old files overwrite the clone's where they collide. `.git` is
@@ -27,7 +27,7 @@
 #     moving anything.
 #   - Non-destructive. The timestamped backup is the recovery path.
 #   - Refuses to run from inside `~/.claude/` (the canonical copy there
-#     is updated via `git pull`, not by re-running this installer).
+#     is updated via `config.sh`, not by re-running this installer).
 #
 # Standalone: no dependency on the `macos-setup` repo or any external
 # script. It is modeled on the idioms of that repo's
@@ -228,13 +228,13 @@ unique_backup_path() {
 
 main() {
     # Step 2 (self-protection): refuse to run from inside ~/.claude. The
-    # canonical copy at ~/.claude is meant to be updated via `git pull`,
+    # canonical copy at ~/.claude is meant to be updated via config.sh,
     # not by re-running this installer onto itself.
     if [[ "$SRC_ROOT" == "$CLAUDE_DIR" ]]; then
         echo
         info "This installer was started from inside $CLAUDE_DIR."
         info "It is not meant to run from there: the canonical copy at"
-        info "$CLAUDE_DIR is updated with 'git -C \"$CLAUDE_DIR\" pull',"
+        info "$CLAUDE_DIR is updated with '$CLAUDE_DIR/config.sh',"
         info "not by re-running this script onto itself. Nothing to do."
         exit 0
     fi
@@ -246,7 +246,7 @@ main() {
         echo
         success "$CLAUDE_DIR is already a clone of the source repo."
         info "Nothing to install. Update it later with:"
-        info "  git -C \"$CLAUDE_DIR\" pull"
+        info "  \"$CLAUDE_DIR/config.sh\""
         exit 0
     fi
 
@@ -296,7 +296,7 @@ main() {
         echo "everything you had."
     fi
     echo "$CLAUDE_DIR is now a live clone of the source repo; update it with:"
-    echo "  git -C \"$CLAUDE_DIR\" pull"
+    echo "  \"$CLAUDE_DIR/config.sh\""
 }
 
 main "$@"

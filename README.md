@@ -31,7 +31,7 @@ In order:
 2. **Installs** the clone by moving the whole clone — including its
    intact `.git` and `origin` pointing at the source repo — to
    `~/.claude/`. After this, `~/.claude/` is a live git clone you can
-   update later with `git -C ~/.claude pull`.
+   update later with `~/.claude/config.sh` (see [Updating](#updating)).
 3. **Additively restores** your previous `~/.claude/` files on top of
    the freshly-installed clone, **local wins**: any file you already had
    overwrites the clone's version where they collide, and the clone's
@@ -52,15 +52,46 @@ In order:
   `~/.claude/` cloned under one of this repo's earlier names still
   counts as installed.
 - It refuses to run when started from inside `~/.claude/` itself — once
-  installed, update the canonical copy with `git -C ~/.claude pull`
+  installed, update the canonical copy with `~/.claude/config.sh`
   rather than re-running the installer.
+
+### Updating
+
+`config.sh` updates the checkout it lives in, normally `~/.claude`, and
+then its plugins:
+
+```sh
+~/.claude/config.sh            # pull, then ./plugins.sh --update
+~/.claude/config.sh --dry-run  # show what would change, pull nothing
+```
+
+It fetches with prune, fast-forwards the current branch to its
+upstream, and then runs `plugins.sh --update` from the freshly pulled
+copy, exiting with its status. `VERBOSE=1` passes through to
+`plugins.sh`.
+
+It refuses, printing why and changing nothing, when:
+
+- a tracked file has uncommitted changes;
+- HEAD is detached, or the current branch has no upstream;
+- the branch has diverged from its upstream and cannot fast-forward;
+- an untracked or ignored local file or directory sits at a path the
+  incoming commits add, or such a file sits at a parent path of one,
+  which a fast-forward would otherwise overwrite or delete without a
+  word. Content tracked at HEAD at or under the path never blocks: that
+  is git's to replace.
+
+It never stashes and never switches branches. Untracked files elsewhere
+do not block it.
+
+`--dry-run` fetches, prints the incoming commits and their diffstat,
+leaves HEAD where it is, and runs `plugins.sh --update --dry-run`. The
+same refusals apply.
 
 ## Managing plugins
 
-`plugins.sh` is a companion to `install.sh` that installs or updates the
-Claude Code marketplaces and plugins declared in a `settings.json`
-(default `~/.claude/settings.json`). It reads the `extraKnownMarketplaces`
-and `enabledPlugins` blocks and drives the `claude plugin` CLI:
+`plugins.sh` is a companion to `install.sh` that installs or updates
+Claude Code marketplaces and plugins through the `claude plugin` CLI:
 
 ```sh
 ./plugins.sh --install            # add marketplaces, then install plugins
@@ -68,14 +99,18 @@ and `enabledPlugins` blocks and drives the `claude plugin` CLI:
 ./plugins.sh --install --dry-run  # print the commands without running them
 ```
 
-A `SETTINGS_FILE` may be passed as a positional argument to read a
-settings file other than `~/.claude/settings.json`.
-
-- `--install` adds each marketplace (deriving the source argument from
-  its `source` block) and then installs every enabled plugin.
-- `--update` updates each marketplace and every enabled plugin in place.
+- `--install` reads the `extraKnownMarketplaces` and `enabledPlugins`
+  blocks of `~/.claude/settings.json`, adds each marketplace (deriving
+  the source argument from its `source` block), and then installs every
+  enabled plugin.
+- `--update` reads the `claude` CLI's own listings, so marketplaces and
+  plugins from every settings source count: it updates each marketplace
+  `claude plugin marketplace list --json` names, and each plugin
+  `claude plugin list --json` reports as enabled, once even when it is
+  enabled in more than one scope.
 - `--dry-run` combines with either mode to print the `claude` commands
-  that would run without executing any of them.
+  that would run without executing any of them. With `--update` it
+  still runs the two read-only listings.
 
 `--update` is quiet: an item that was already up to date prints nothing,
 so a fully-synced run shows only its two section headers and the closing
