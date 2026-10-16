@@ -148,8 +148,9 @@ run_item() {
 
 # --- jq extractors ---------------------------------------------------------
 
-# --update reads the claude CLI listings. Each extractor below echoes one item
-# per line and returns non-zero when the listing command or its parse fails.
+# --update reads the claude CLI listings. Each listed_* extractor echoes one
+# item per line and returns non-zero when the listing command or its parse
+# fails.
 
 # Echo each marketplace name `claude plugin marketplace list --json` reports.
 listed_marketplaces() {
