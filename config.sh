@@ -13,7 +13,8 @@
 #   1. Refuse when the working tree has uncommitted changes to tracked files,
 #      HEAD is detached, or the current branch has no upstream.
 #   2. `git fetch --prune`, then refuse when the branch has diverged from its
-#      upstream and so cannot fast-forward.
+#      upstream and so cannot fast-forward, or when a local file not tracked
+#      at HEAD, ignored or not, sits at a path the incoming commits add.
 #   3. Fast-forward the current branch to its upstream.
 #   4. Run `plugins.sh --update` from this directory, i.e. the copy step 3
 #      just pulled, and exit with its status. VERBOSE reaches it through the
@@ -23,8 +24,9 @@
 # tree as they were. The script never stashes and never switches branches.
 #
 # Untracked files do not count as uncommitted changes: `~/.claude` holds
-# local state its `.gitignore` may not cover, and git itself refuses a
-# fast-forward that would overwrite an untracked file.
+# local state, most of it gitignored. Only one at a path the incoming commits
+# add matters, and step 2 checks for it because git does not: a fast-forward
+# overwrites an ignored file at such a path without a word.
 #
 # `--dry-run` fetches, prints the incoming commits and their diffstat, does
 # not pull, and runs `plugins.sh --update --dry-run`. The same refusals apply.
@@ -49,11 +51,12 @@ Usage:
                           then run ./plugins.sh --update
   ./config.sh --dry-run   Fetch and show the incoming commits without
                           pulling, then run ./plugins.sh --update --dry-run
-  ./config.sh --help      Show this help
+  ./config.sh -h, --help  Show this help
 
 Refuses, changing nothing, on uncommitted changes to tracked files, a
-detached HEAD, a branch with no upstream, or a branch that cannot
-fast-forward to its upstream.
+detached HEAD, a branch with no upstream, a branch that cannot
+fast-forward to its upstream, or an untracked or ignored local file at a
+path the incoming commits add.
 
 Environment:
   VERBOSE=1   Passed through to plugins.sh.
@@ -98,6 +101,19 @@ main() {
         git -C "$dir" merge-base --is-ancestor '@{u}' HEAD \
             || error_exit "branch $branch has diverged from $upstream; cannot fast-forward"
         warn "branch $branch is ahead of $upstream; nothing to pull"
+    fi
+
+    # The three-dot range diffs from the merge base, so a branch ahead of its
+    # upstream adds nothing here.
+    local path clobbered=()
+    while IFS= read -r -d '' path; do
+        if [[ -e "$dir/$path" || -L "$dir/$path" ]]; then
+            clobbered+=("$path")
+        fi
+    done < <(git -C "$dir" diff --name-only --no-renames --diff-filter=A -z 'HEAD...@{u}')
+    if [[ ${#clobbered[@]} -gt 0 ]]; then
+        printf '  %s\n' "${clobbered[@]}" >&2
+        error_exit "$upstream adds the paths above, where $dir holds an untracked or ignored file; move each aside first"
     fi
 
     if [[ "$dry_run" == 1 ]]; then
