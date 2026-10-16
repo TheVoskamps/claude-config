@@ -68,16 +68,18 @@ EOF
 # --- Main ------------------------------------------------------------------
 
 main() {
-    local dry_run=0
+    local dry_run=0 help=0
 
+    # Every argument is checked before --help acts on any.
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --dry-run) dry_run=1 ;;
-            --help) usage; exit 0 ;;
+            --help) help=1 ;;
             *) error_exit "unexpected argument: $1 (try --help)" ;;
         esac
         shift
     done
+    [[ "$help" == 1 ]] && { usage; exit 0; }
 
     local dir
     dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -105,9 +107,9 @@ main() {
         warn "branch $branch is ahead of $upstream; nothing to pull"
     fi
 
-    # A path blocks when a local file sits at it and nothing tracked does:
-    # either at a path the incoming commits add, or as a non-directory at a
-    # parent path of one. Content tracked at or under the path is git's to
+    # A path blocks when a local non-directory, a symlink included, sits at it
+    # and nothing tracked does, the path being one the incoming commits add or
+    # a parent path of one. Content tracked at or under the path is git's to
     # replace, as when upstream turns a tracked directory into a file. With
     # core.ignorecase, tracked content matches case-insensitively, so a
     # case-only rename upstream does not block. The three-dot range diffs from
@@ -120,7 +122,7 @@ main() {
     local path parent candidate candidates clobbered=() seen=$'\n'
     while IFS= read -r -d '' path; do
         candidates=()
-        if [[ -e "$dir/$path" || -L "$dir/$path" ]]; then
+        if [[ -L "$dir/$path" || ( -e "$dir/$path" && ! -d "$dir/$path" ) ]]; then
             candidates+=("$path")
         fi
         parent=$path
@@ -147,7 +149,8 @@ main() {
     if [[ "$dry_run" == 1 ]]; then
         info "Incoming commits from $upstream:"
         git -C "$dir" log --oneline 'HEAD..@{u}'
-        git -C "$dir" diff --stat 'HEAD..@{u}'
+        # Three dots: the incoming commits' changes, not HEAD's commits undone.
+        git -C "$dir" diff --stat 'HEAD...@{u}'
         info "Dry run: not pulling"
         exec "$dir/plugins.sh" --update --dry-run
     fi
