@@ -13,9 +13,9 @@
 #   1. Refuse when the working tree has uncommitted changes to tracked files,
 #      HEAD is detached, or the current branch has no upstream.
 #   2. `git fetch --prune`, then refuse when the branch has diverged from its
-#      upstream and so cannot fast-forward, or when a local file not tracked
-#      at HEAD, ignored or not, sits at a path the incoming commits add or at
-#      a parent path of one.
+#      upstream and so cannot fast-forward, or when a local file or directory
+#      holding nothing tracked at HEAD, ignored or not, sits at a path the
+#      incoming commits add, or such a file at a parent path of one.
 #   3. Fast-forward the current branch to its upstream.
 #   4. Run `plugins.sh --update` from this directory, i.e. the copy step 3
 #      just pulled, and exit with its status. VERBOSE reaches it through the
@@ -27,8 +27,8 @@
 # Untracked files do not count as uncommitted changes: `~/.claude` holds
 # local state, most of it gitignored. Only one at a path the incoming commits
 # add, or at a parent path of one, matters, and step 2 checks for it because
-# git does not: a fast-forward overwrites an ignored file at such a path
-# without a word.
+# git does not: a fast-forward overwrites an ignored file at such a path, or
+# deletes a directory holding only ignored files there, without a word.
 #
 # `--dry-run` fetches, prints the incoming commits and their diffstat, does
 # not pull, and runs `plugins.sh --update --dry-run`. The same refusals apply.
@@ -57,8 +57,9 @@ Usage:
 
 Refuses, changing nothing, on uncommitted changes to tracked files, a
 detached HEAD, a branch with no upstream, a branch that cannot
-fast-forward to its upstream, or an untracked or ignored local file at a
-path the incoming commits add or at a parent path of one.
+fast-forward to its upstream, or an untracked or ignored local file or
+directory at a path the incoming commits add, or such a file at a parent
+path of one.
 
 Environment:
   VERBOSE=1   Passed through to plugins.sh.
@@ -107,13 +108,14 @@ main() {
         warn "branch $branch is ahead of $upstream; nothing to pull"
     fi
 
-    # A path blocks when a local non-directory, a symlink included, sits at it
-    # and nothing tracked does, the path being one the incoming commits add or
-    # a parent path of one. Content tracked at or under the path is git's to
-    # replace, as when upstream turns a tracked directory into a file. With
-    # core.ignorecase, tracked content matches case-insensitively, so a
-    # case-only rename upstream does not block. The three-dot range diffs from
-    # the merge base, so a branch ahead of its upstream adds nothing here.
+    # A path the incoming commits add blocks when a local file or directory, a
+    # symlink included, sits at it, and a parent path of one blocks when a local
+    # non-directory does; either only when nothing is tracked at or under the
+    # path. Content tracked at or under the path is git's to replace, as when
+    # upstream turns a tracked directory into a file. With core.ignorecase,
+    # tracked content matches case-insensitively, so a case-only rename
+    # upstream does not block. The three-dot range diffs from the merge base,
+    # so a branch ahead of its upstream adds nothing here.
     local pathspec_magic=literal
     if [[ "$(git -C "$dir" config --bool core.ignorecase || true)" == true ]]; then
         pathspec_magic=literal,icase
@@ -122,7 +124,7 @@ main() {
     local path parent candidate candidates clobbered=() seen=$'\n'
     while IFS= read -r -d '' path; do
         candidates=()
-        if [[ -L "$dir/$path" || ( -e "$dir/$path" && ! -d "$dir/$path" ) ]]; then
+        if [[ -L "$dir/$path" || -e "$dir/$path" ]]; then
             candidates+=("$path")
         fi
         parent=$path
@@ -143,7 +145,7 @@ main() {
     done < <(git -C "$dir" diff --name-only --no-renames --diff-filter=A -z 'HEAD...@{u}')
     if [[ ${#clobbered[@]} -gt 0 ]]; then
         printf '  %s\n' "${clobbered[@]}" >&2
-        error_exit "$upstream adds files at or under the paths above, where $dir holds an untracked or ignored file; move each aside first"
+        error_exit "$upstream adds files at or under the paths above, where $dir holds an untracked or ignored file or directory; move each aside first"
     fi
 
     if [[ "$dry_run" == 1 ]]; then
