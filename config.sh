@@ -14,7 +14,8 @@
 #      HEAD is detached, or the current branch has no upstream.
 #   2. `git fetch --prune`, then refuse when the branch has diverged from its
 #      upstream and so cannot fast-forward, or when a local file not tracked
-#      at HEAD, ignored or not, sits at a path the incoming commits add.
+#      at HEAD, ignored or not, sits at a path the incoming commits add or at
+#      a parent path of one.
 #   3. Fast-forward the current branch to its upstream.
 #   4. Run `plugins.sh --update` from this directory, i.e. the copy step 3
 #      just pulled, and exit with its status. VERBOSE reaches it through the
@@ -25,8 +26,9 @@
 #
 # Untracked files do not count as uncommitted changes: `~/.claude` holds
 # local state, most of it gitignored. Only one at a path the incoming commits
-# add matters, and step 2 checks for it because git does not: a fast-forward
-# overwrites an ignored file at such a path without a word.
+# add, or at a parent path of one, matters, and step 2 checks for it because
+# git does not: a fast-forward overwrites an ignored file at such a path
+# without a word.
 #
 # `--dry-run` fetches, prints the incoming commits and their diffstat, does
 # not pull, and runs `plugins.sh --update --dry-run`. The same refusals apply.
@@ -51,12 +53,12 @@ Usage:
                           then run ./plugins.sh --update
   ./config.sh --dry-run   Fetch and show the incoming commits without
                           pulling, then run ./plugins.sh --update --dry-run
-  ./config.sh -h, --help  Show this help
+  ./config.sh --help      Show this help
 
 Refuses, changing nothing, on uncommitted changes to tracked files, a
 detached HEAD, a branch with no upstream, a branch that cannot
 fast-forward to its upstream, or an untracked or ignored local file at a
-path the incoming commits add.
+path the incoming commits add or at a parent path of one.
 
 Environment:
   VERBOSE=1   Passed through to plugins.sh.
@@ -71,7 +73,7 @@ main() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --dry-run) dry_run=1 ;;
-            -h|--help) usage; exit 0 ;;
+            --help) usage; exit 0 ;;
             *) error_exit "unexpected argument: $1 (try --help)" ;;
         esac
         shift
@@ -103,17 +105,43 @@ main() {
         warn "branch $branch is ahead of $upstream; nothing to pull"
     fi
 
-    # The three-dot range diffs from the merge base, so a branch ahead of its
-    # upstream adds nothing here.
-    local path clobbered=()
+    # A path blocks when a local file sits at it and nothing tracked does:
+    # either at a path the incoming commits add, or as a non-directory at a
+    # parent path of one. Content tracked at or under the path is git's to
+    # replace, as when upstream turns a tracked directory into a file. With
+    # core.ignorecase, tracked content matches case-insensitively, so a
+    # case-only rename upstream does not block. The three-dot range diffs from
+    # the merge base, so a branch ahead of its upstream adds nothing here.
+    local pathspec_magic=literal
+    if [[ "$(git -C "$dir" config --bool core.ignorecase || true)" == true ]]; then
+        pathspec_magic=literal,icase
+    fi
+
+    local path parent candidate candidates clobbered=() seen=$'\n'
     while IFS= read -r -d '' path; do
+        candidates=()
         if [[ -e "$dir/$path" || -L "$dir/$path" ]]; then
-            clobbered+=("$path")
+            candidates+=("$path")
         fi
+        parent=$path
+        while [[ "$parent" == */* ]]; do
+            parent=${parent%/*}
+            if [[ -L "$dir/$parent" || ( -e "$dir/$parent" && ! -d "$dir/$parent" ) ]]; then
+                candidates+=("$parent")
+            fi
+        done
+        for candidate in ${candidates[@]+"${candidates[@]}"}; do
+            [[ "$seen" == *$'\n'"$candidate"$'\n'* ]] && continue
+            seen+="$candidate"$'\n'
+            # The clean-tree check above makes the index match HEAD.
+            if [[ -z "$(git -C "$dir" ls-files -- ":($pathspec_magic)$candidate")" ]]; then
+                clobbered+=("$candidate")
+            fi
+        done
     done < <(git -C "$dir" diff --name-only --no-renames --diff-filter=A -z 'HEAD...@{u}')
     if [[ ${#clobbered[@]} -gt 0 ]]; then
         printf '  %s\n' "${clobbered[@]}" >&2
-        error_exit "$upstream adds the paths above, where $dir holds an untracked or ignored file; move each aside first"
+        error_exit "$upstream adds files at or under the paths above, where $dir holds an untracked or ignored file; move each aside first"
     fi
 
     if [[ "$dry_run" == 1 ]]; then
