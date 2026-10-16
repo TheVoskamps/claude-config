@@ -9,7 +9,9 @@
 #     ./plugins.sh --help
 #
 # Add `--dry-run` to either mode to print the `claude` commands that would run
-# without executing any of them. Neither mode takes a positional argument.
+# without executing any of them. `--update --dry-run` still runs the two
+# read-only `claude plugin ... list --json` listings it takes its items from.
+# Neither mode takes a positional argument.
 #
 # What each mode does:
 #
@@ -70,7 +72,8 @@ Usage:
   ./plugins.sh --help      Show this help
 
 Options:
-  --dry-run   Print the claude commands that would run; execute nothing.
+  --dry-run   Print the claude commands that would run; execute none of
+              them. --update still runs the read-only list --json listings.
 
 Environment:
   VERBOSE=1   Do not quiet --update: print every per-item label and the
