@@ -75,8 +75,11 @@ It refuses, printing why and changing nothing, when:
 - a tracked file has uncommitted changes;
 - HEAD is detached, or the current branch has no upstream;
 - the branch has diverged from its upstream and cannot fast-forward;
-- an untracked or ignored local file sits at a path the incoming
-  commits add, which a fast-forward would otherwise overwrite.
+- an untracked or ignored local file or directory sits at a path the
+  incoming commits add, or such a file sits at a parent path of one,
+  which a fast-forward would otherwise overwrite or delete without a
+  word. Content tracked at HEAD at or under the path never blocks: that
+  is git's to replace.
 
 It never stashes and never switches branches. Untracked files elsewhere
 do not block it.
