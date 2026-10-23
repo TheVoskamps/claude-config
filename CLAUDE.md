@@ -12,8 +12,9 @@
 @~/.claude/rules/tool-choice.md
 ~/.claude/docs/rules/credential-surfaces.md — read when a command fails
   with an authentication error, before you report that failure. Kernel:
-  never probe or manipulate the user's credential agents — when no
-  single prompting command clears the failure, stop and ask, with no
+  never probe or manipulate the user's credential agents — the one
+  command you run yourself is `aws sso login` for an expired AWS SSO
+  session; every other auth failure is stop and ask, with no
   remediation and no mechanism in the report.
 ~/.claude/docs/rules/install-discipline.md — read before running any
   install command, or when a needed tool is missing. Kernel: never
