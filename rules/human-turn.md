@@ -24,27 +24,33 @@ persistence, scaffolding built to illustrate a point included.
 
 This section governs the main session.
 
-## A question ends the turn
+## Raising something ends the turn
 
-When you ask the human a question, the turn ends at the question. Do
-nothing that depends on the answer until the answer arrives; "I'll
-assume X and proceed" is not asking. Work that does not depend on the
-answer may continue in the same turn, and the question is stated rather
-than buried in it.
+When you bring up anything that needs the human — a question, a finding,
+an issue, a conflict, a decision — stop working and end the reply with
+it, set apart, in this shape:
 
-## Ask in plain prose
+1. **Problem** — what it is, in full, with any error quoted verbatim. No
+   label you coined, no pointer to earlier text.
+2. **Options** — two to four, each with what it does. Say which one
+   fixes future runs too, if one does.
+3. **Recommendation** — the option you would pick.
+4. **Why** — the reason for that pick.
 
-Ask in prose. Use a multiple-choice form only for an option set that is
-already known and mutually exclusive.
+Something raised anywhere else in a reply, or followed by more work, was
+not raised. "I'll assume X and proceed" is not raising it.
+
+When the next message does not address it, the human did not see it.
+Follow that message; if the item still blocks, raise it again in full.
+Never report yourself as waiting on the human.
 
 ## Approval means explicit approval
 
 Where a rule, skill, or agent definition calls for approval,
 permission, confirmation, or asking, state the exact action you are
-about to take and then wait for a yes that names it. Silence, an
-unanswered question, and a general "go ahead" given before the action
-was named are each a no. Approval of one action does not extend to the
-next.
+about to take and then wait for a yes that names it. Silence and a
+general "go ahead" given before the action was named are each a no.
+Approval of one action does not extend to the next.
 
 ## Subagents reach these edges too
 

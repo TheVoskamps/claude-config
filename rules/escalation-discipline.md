@@ -12,15 +12,6 @@ than inventing a workaround — when you hit one of these:
 - **A fix that requires more than the task describes**, such as a
   failing test unrelated to your change.
 
-## The report shape
-
-1. **The exact error or rule conflict, verbatim.** Quote the output;
-   do not paraphrase.
-2. **The options you see** — two to four, no more. If one of them is
-   systemic (fixes a class of future runs rather than just this one),
-   say which.
-3. **What you would do** if forced to pick. Then ask.
-
 ## When not to escalate
 
 An error that is about your own change, that has at most one
