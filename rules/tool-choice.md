@@ -18,10 +18,16 @@ them, use plain `grep` and `find`.
 
 Read does not open a directory, so list one with `ls`.
 
-## Keep every other Bash call a single plain command
+## Keep every other Bash call a plain command or a read-only pipeline
 
-Every Bash call that remains is one command, fed by no pipe or heredoc,
-and with no `;`, `&&`, `$?`, or other shell expansion.
+Every Bash call that remains is one command, or a `|` pipeline in which
+no stage changes a file or other state. Judge each stage by its effect:
+`xargs -0 jsonlint --quiet` only reads, so it may be a stage, while
+`tee`, `sed -i`, and `xargs rm` each write, so none of them may.
+
+An unquoted glob argument, such as `assets/*.yml`, is allowed. No other
+chaining or expansion is: no `;`, `&&`, `||`, `$?`, command substitution
+(`$(…)` or backticks), variable expansion, heredoc, or redirection.
 
 When the command is `git` or a script whose name begins `git-`, give it
 no argument whose last path component is `git` or a `git-` name without
