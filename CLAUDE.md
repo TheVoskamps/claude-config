@@ -23,7 +23,8 @@
   runs a resolving install only under user direction.
 ~/.claude/docs/rules/git-recovery.md — read when a commit is rejected
   for missing signatures, a merge is requested, a rebase stops on a
-  conflict, or a commit landed on the wrong branch. Kernel: never squash
+  conflict, a commit landed on the wrong branch or must be dropped from
+  one, or a commit message is too long for `-m`. Kernel: never squash
   merge, and never merge the default branch into another — rebase the
   other branch onto it instead.
 ~/.claude/docs/rules/code-style.md — read before writing or reviewing
