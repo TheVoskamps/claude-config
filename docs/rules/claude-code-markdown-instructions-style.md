@@ -118,9 +118,7 @@ table reaches.
 
 Every line the diff adds to a `CLAUDE.md` below the repository root
 states a convention, a gotcha, or a route for the directory it sits
-in, and nothing that applies outside that directory. It loads only
-when the session works under that directory, so it is a path-scoped
-home for that directory's conventions.
+in, and nothing that applies outside that directory.
 
 ### Every Markdown file the diff touches passes the repo's markdownlint
 
