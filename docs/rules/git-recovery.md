@@ -1,9 +1,9 @@
 # Git Recovery
 
 Read this file when one of its named errors appears, when a rebase
-stops on a conflict, when a merge is requested, or when a git command
-is refused for its shape rather than for what it would do. These are
-rare-event procedures, not everyday judgment.
+stops on a conflict, when a merge is requested, or when a commit must
+be dropped from a branch. These are rare-event procedures, not
+everyday judgment.
 
 ## Commit signing
 
