@@ -23,7 +23,8 @@
   runs a resolving install only under user direction.
 ~/.claude/docs/rules/git-recovery.md — read when a commit is rejected
   for missing signatures, a merge is requested, a rebase stops on a
-  conflict, or a commit landed on the wrong branch. Kernel: never squash
+  conflict, a commit landed on the wrong branch or must be dropped from
+  one, or a commit message is too long for `-m`. Kernel: never squash
   merge, and never merge the default branch into another — rebase the
   other branch onto it instead.
 ~/.claude/docs/rules/code-style.md — read before writing or reviewing
@@ -45,6 +46,12 @@
   another or names who consumes it, so a duplicate is deleted or
   restated as the condition its members satisfy, never synchronized; an
   allowed pointer names a path and stops there.
+~/.claude/docs/rules/worktree-git-refusal.md — read when a Bash call
+  is refused as "names git in a form too complex to verify". Kernel:
+  the check matches the letters git anywhere in a command that also
+  holds a loop, $(…), $? or a heredoc, whether or not git runs; split
+  the command into plain calls with literal operands rather than
+  rewording around the word.
 
 `~/.claude/docs/rules/extensions/` exists, so a guide's
 `<repo>/docs/rules/extensions/…` pointer is easy to resolve there by
