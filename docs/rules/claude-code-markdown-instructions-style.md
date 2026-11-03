@@ -102,15 +102,23 @@ parameter, a type, or a stated constraint could carry instead.
 
 ### `CLAUDE.md` stays under 200 lines
 
-Every `CLAUDE.md` the diff touches is under 200 lines afterwards, or
-the diff does not lengthen it — a file already past target takes an
-append only as part of a relocation or a displacement.
+Every `CLAUDE.md` the diff touches, nested ones included, is under 200
+lines afterwards, or the diff does not lengthen it — a file already
+past target takes an append only as part of a relocation or a
+displacement.
 
-### `CLAUDE.md` holds purpose, gotchas, and a routing table
+### The root `CLAUDE.md` holds purpose, gotchas, and a routing table
 
-Every line the diff adds to a `CLAUDE.md` states what the repo is for,
-states a gotcha it carries, or routes a reader to the file holding the
-rest. A convention goes in a rules file the routing table reaches.
+Every line the diff adds to the repository-root `CLAUDE.md` states what
+the repo is for, states a gotcha it carries, or routes a reader to the
+file holding the rest. A convention goes in a rules file the routing
+table reaches.
+
+### A nested `CLAUDE.md` holds only its own directory's guidance
+
+Every line the diff adds to a `CLAUDE.md` below the repository root
+states a convention, a gotcha, or a route for the directory it sits
+in, and nothing that applies outside that directory.
 
 ### Every Markdown file the diff touches passes the repo's markdownlint
 
