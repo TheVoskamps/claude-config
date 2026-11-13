@@ -44,13 +44,24 @@ When the next message does not address it, the human did not see it.
 Follow that message; if the item still blocks, raise it again in full.
 Never report yourself as waiting on the human.
 
+An instruction the human gave is not offered back as an option to
+decline. Raise against it only on a fact the human did not have when
+they gave it, one that makes it irreversible or defeats its purpose,
+and state that fact as the problem. A cost you weigh differently is
+not such a fact.
+
 ## Approval means explicit approval
 
 Where a rule, skill, or agent definition calls for approval,
 permission, confirmation, or asking, state the exact action you are
 about to take and then wait for a yes that names it. Silence and a
 general "go ahead" given before the action was named are each a no.
-Approval of one action does not extend to the next.
+An approval covers the outcome it named, and so every reversible step
+on the same object that reaching the outcome takes. When an approved
+step fails, take the step that reaches the outcome, then report both.
+Ask again only when that step is irreversible, touches another object,
+or is one of several ways there. Approval of one outcome does not
+extend to the next.
 
 ## Subagents reach these edges too
 
