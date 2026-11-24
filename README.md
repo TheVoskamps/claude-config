@@ -131,6 +131,25 @@ plugin is attempted, a summary lists any failures at the end, and the
 script exits non-zero if any failed. It requires `jq` and `claude` on
 `PATH`.
 
+## Account directories
+
+An account directory, `$HOME/.claude.<name>`, runs Claude Code under a
+separate account while sharing this configuration. It holds symlinks
+into `$HOME/.claude` for what the accounts share, and the account's own
+state as real files beside them.
+
+`.cc-tools/account-symlinks.yml` is the whitelist of what is shared:
+
+- Each entry under `symlinks:` is a top-level name of `$HOME/.claude`,
+  never a path, that an account directory links to the same name there.
+  An entry need not be tracked in this repo: `plugins` is not.
+- A name the list leaves out is not shared, so it stays the account's
+  own.
+- `schema-version` stamps the file's format and changes only when the
+  format does, not when the list does.
+
+To share another top-level name across accounts, add it to the list.
+
 ## Contributing
 
 This is a public repository. Contributions are welcome:

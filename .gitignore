@@ -67,6 +67,13 @@
 # stays ignored even though its sibling repo-config.md is tracked.
 /.issues/user-config.md
 
+# Whitelist of the top-level names an account directory,
+# $HOME/.claude.<name>, symlinks to the same name under $HOME/.claude.
+# Everything else in the directory stays ignored.
+!/.cc-tools/
+/.cc-tools/*
+!/.cc-tools/account-symlinks.yml
+
 # Subagent memory entries. Ignoring them keeps a worktree removable
 # with plain `git worktree remove`, and enforces the never-staged
 # invariant structurally.
