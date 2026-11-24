@@ -1,0 +1,10 @@
+schema-version: 1
+symlinks:
+  - CLAUDE.md
+  - docs
+  - keybindings.json
+  - output-styles
+  - plugins
+  - rules
+  - settings.json
+  - skills
