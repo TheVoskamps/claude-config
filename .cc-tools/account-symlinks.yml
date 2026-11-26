@@ -3,6 +3,7 @@ symlinks:
   - CLAUDE.md
   - docs
   - keybindings.json
+  - logs
   - output-styles
   - plugins
   - rules
