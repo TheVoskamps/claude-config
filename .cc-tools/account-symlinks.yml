@@ -2,10 +2,14 @@ schema-version: 1
 symlinks:
   - CLAUDE.md
   - docs
+  - file-history
+  - history.jsonl
   - keybindings.json
   - logs
   - output-styles
+  - paste-cache
   - plugins
+  - projects
   - rules
   - settings.json
   - skills
